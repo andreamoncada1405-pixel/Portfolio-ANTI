@@ -1,0 +1,1527 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* --- THEME VARIABLES --- */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f0f0;
+    /* Leggermente più chiaro per contrasto */
+    --text-main: #111111;
+    /* Quasi nero per massima leggibilità */
+    --text-sub: #555555;
+    /* Grigio scuro, non chiaro */
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.1);
+    --modal-bg: #ffffff;
+    --modal-overlay: rgba(255, 255, 255, 0.95);
+    --nav-text: #000000;
+    --pill-bg: rgba(0, 0, 0, 0.05);
+    --close-btn-bg: rgba(0, 0, 0, 0.05);
+    --close-btn-hover: rgba(0, 0, 0, 0.1);
+    --globe-center: #e5e5e5;
+    --globe-edge: #f0f0f0;
+    --particle-color: 20, 20, 20;
+    /* Particelle scure */
+
+    /* --- GRID MANIPS (Adjust these to change spacing) --- */
+    --grid-gap-v: 4vh;
+    --grid-gap-h: 4vw;
+}
+
+[data-theme="dark"] {
+    --bg-color: #050505;
+    --text-main: #f3f3f3;
+    --text-sub: #cbd5e1;
+    --card-bg: #333333;
+    --card-border: rgba(255, 255, 255, 0.15);
+    --modal-bg: #1a1a1a;
+    --modal-overlay: rgba(0, 0, 0, 0.85);
+    --nav-text: #ffffff;
+    --pill-bg: rgba(255, 255, 255, 0.05);
+    --close-btn-bg: rgba(255, 255, 255, 0.1);
+    --close-btn-hover: rgba(255, 255, 255, 0.2);
+    --globe-center: #111111;
+    --globe-edge: #050505;
+    --particle-color: 255, 255, 255;
+    /* Particelle chiare */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    letter-spacing: -0.02em;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- GRID CARD STYLES --- */
+.project-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    position: relative;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    outline: none;
+}
+
+/* Grayscale to Color transition for all project covers */
+.project-card img,
+.project-card video,
+.project-card .project-marquee-wall,
+.project-card .reyou-visual-container,
+.project-card .hr-visual-container {
+    filter: grayscale(1);
+    transition: filter 0.5s ease, opacity 0.5s ease;
+    opacity: 0.8;
+    /* Slightly dimmed for a more subtle look */
+}
+
+.project-card:hover img,
+.project-card:hover video,
+.project-card:hover .project-marquee-wall,
+.project-card:hover .reyou-visual-container {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Pause animations by default, play on hover */
+.project-card video,
+.project-card .marquee-col {
+    animation-play-state: paused !important;
+}
+
+.project-card:hover video,
+.project-card:hover .marquee-col {
+    animation-play-state: running !important;
+}
+
+.project-card:hover {
+    transform: scale(0.98);
+    border-color: var(--text-sub);
+}
+
+.project-card:focus-visible {
+    /* High visibility focus ring */
+    outline: 2px solid var(--text-main);
+    outline-offset: 4px;
+    transform: scale(0.99);
+    /* Slight scale to indicate selection like hover */
+    border-color: var(--text-main);
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(15px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-window {
+    background: var(--modal-bg);
+    width: 90vw;
+    height: 90vh;
+    max-width: 1400px;
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.2);
+    /* Ombra più leggera */
+    position: relative;
+    transform: scale(0.96);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    color: var(--text-main);
+}
+
+.modal-window::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-backdrop.active .modal-window {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Close Button */
+.close-modal-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    background: var(--close-btn-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.2s;
+    color: var(--text-main);
+}
+
+.close-modal-btn:hover {
+    background: var(--close-btn-hover);
+}
+
+/* Typography Colors Dynamic */
+.text-dynamic-main {
+    color: var(--text-main);
+}
+
+.text-dynamic-sub {
+    color: var(--text-sub);
+}
+
+/* Nav & Links */
+.lang-btn.active {
+    color: var(--text-main);
+    border-bottom: 1px solid var(--text-main);
+}
+
+.lang-btn {
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: color 0.3s;
+    padding-bottom: 2px;
+}
+
+.lang-btn:hover {
+    color: var(--text-main);
+}
+
+/* Theme Switcher */
+.theme-switch {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+    color: var(--text-main);
+}
+
+.theme-switch:hover {
+    background: var(--pill-bg);
+}
+
+/* Canvas Background */
+#hero-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    background: radial-gradient(circle at center, var(--globe-center) 0%, var(--globe-edge) 80%);
+    transition: background 0.5s ease;
+}
+
+.method-pill {
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Utility Classes */
+.hover-underline {
+    color: var(--text-sub);
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.hover-underline:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
+
+.method-intro-bg {
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+}
+
+/* --- ABOUT SECTION 3D HOVER --- */
+.about-container {
+    perspective: 2000px;
+}
+
+.about-card,
+.about-photo-card {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tilt towards center on hover */
+.about-container:hover .about-card {
+    transform: rotateY(10deg);
+}
+
+.about-container:hover .about-photo-card {
+    transform: rotateY(-10deg);
+}
+
+.about-photo-card {
+    background-color: rgba(var(--particle-color), 0.03);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grayscale to Color transition triggered by card hover */
+.about-photo-card img,
+.about-photo-card .client-logo {
+    filter: grayscale(1);
+    transition: filter 0.7s ease, opacity 0.7s ease;
+    opacity: 0.6;
+    margin: 0 24px;
+    /* Added spacing to individual logos for consistent marquee looping */
+}
+
+.about-container:hover .about-photo-card img,
+.about-container:hover .about-photo-card .client-logo {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Dark mode logo visibility: Invert dark logos to light */
+[data-theme="dark"] .client-logo {
+    filter: invert(1) brightness(1.2) grayscale(1);
+}
+
+[data-theme="dark"] .about-container:hover .client-logo,
+[data-theme="dark"] .marquee-container:hover .client-logo {
+    filter: invert(0) brightness(1) grayscale(0);
+}
+
+/* Marquee Animation */
+.marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- PROJECT MARQUEE WALL (Marseille Style) --- */
+.project-marquee-wall {
+    position: absolute;
+    inset: -30%;
+    /* Slightly larger to account for more columns */
+    display: flex;
+    gap: 0.5rem;
+    /* Even tighter gap */
+    padding: 1rem;
+    transform: rotate(-10deg);
+    /* Simple rotation, no skew to avoid deformation */
+    pointer-events: none;
+    z-index: 0;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+    /* Black background as requested */
+}
+
+.marquee-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Even tighter gap */
+    width: 180px;
+    /* Increased size to see content better */
+    flex-shrink: 0;
+}
+
+.marquee-col.col-desktop {
+    width: 260px;
+    /* Wider for desktop screens */
+}
+
+.marquee-col.col-wide {
+    width: 340px;
+}
+
+/* Stagger columns using animation-delay to break horizontal alignment */
+.marquee-col:nth-child(1) {
+    animation-delay: -10s;
+}
+
+.marquee-col:nth-child(2) {
+    animation-delay: -30s;
+}
+
+.marquee-col:nth-child(3) {
+    animation-delay: 0s;
+}
+
+/* No delay to start centered */
+.marquee-col:nth-child(4) {
+    animation-delay: -20s;
+}
+
+.marquee-col:nth-child(5) {
+    animation-delay: -40s;
+}
+
+.marquee-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Slightly smaller radius for a tighter look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: block;
+}
+
+.col-up {
+    animation: marquee-v-up 25s linear infinite;
+}
+
+.col-down {
+    animation: marquee-v-down 30s linear infinite;
+}
+
+@keyframes marquee-v-up {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes marquee-v-down {
+    from {
+        transform: translateY(-50%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* No pause on hover - keeping it constant as requested */
+
+/* --- REYOU CHAIR ANIMATION --- */
+.reyou-card-bg {
+    background-color: rgba(var(--particle-color), 0.05);
+}
+
+[data-theme="dark"] .reyou-card-bg {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.reyou-chair {
+    transform: translateX(-150%);
+    opacity: 0;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    will-change: transform, opacity;
+}
+
+.project-card:hover .reyou-chair {
+    animation: chair-slide 3.5s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes chair-slide {
+    0% {
+        transform: translateX(-150%) rotate(-2deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateX(-20%) rotate(0deg);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateX(20%) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(150%) rotate(2deg);
+        opacity: 0;
+    }
+}
+
+/* --- REYOU ENHANCED VISUALS --- */
+.reyou-visual-container {
+    background-color: #1b1b1d;
+    /* Matches the user-provided reyou-blueprint.png precisely */
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    opacity: 1 !important;
+    /* Full initial opacity to match brighter cards */
+}
+
+.reyou-blueprint {
+    position: absolute;
+    inset: 0;
+    background-image: url('reyou-blueprint.png');
+    background-size: cover;
+    /* Using cover as the user has already added padding to the image itself */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+    /* Almost full opacity for line clarity */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.7) contrast(1) grayscale(1) opacity(0.5);
+}
+
+.reyou-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    animation: grid-move 25s linear infinite;
+    animation-play-state: paused;
+    /* Static by default */
+    z-index: 1;
+}
+
+.reyou-scan-beam {
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(59, 130, 246, 0.05) 30%,
+            rgba(59, 130, 246, 0.4) 50%,
+            rgba(59, 130, 246, 0.05) 70%,
+            transparent);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reyou-glitch-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.reyou-glitch-item {
+    position: absolute;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    background-color: rgba(10, 15, 25, 0.9);
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Technical Label inside items */
+.reyou-glitch-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(59, 130, 246, 0.2);
+    color: rgba(59, 130, 246, 0.9);
+    font-size: 8px;
+    font-family: monospace;
+    padding: 2px 5px;
+    text-align: left;
+    border-top: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.item-chair {
+    width: 110px;
+    height: 130px;
+    top: 10%;
+    left: 10%;
+    background-image: url('reyou-chair-wf.png');
+}
+
+.item-desk {
+    width: 140px;
+    height: 100px;
+    top: 45%;
+    right: 8%;
+    background-image: url('reyou-desk-wf.png');
+    background-size: 85%;
+}
+
+.item-table {
+    width: 120px;
+    height: 90px;
+    top: 10%;
+    right: 10%;
+    background-image: url('reyou-table-wf.png');
+}
+
+/* Hover Activations - Sequential Logic */
+.project-card:hover .reyou-grid {
+    animation-play-state: running;
+}
+
+.project-card:hover .reyou-scan-beam {
+    animation: scan-move-seq 8s infinite ease-in-out;
+}
+
+.project-card:hover .item-chair {
+    animation: chair-seq 8s infinite;
+}
+
+.project-card:hover .item-desk {
+    animation: desk-seq 8s infinite;
+}
+
+.project-card:hover .item-table {
+    animation: table-seq 8s infinite;
+}
+
+/* Neutralize individual delays, logic is now in keyframes */
+.item-chair,
+.item-desk,
+.item-table {
+    animation-delay: 0s !important;
+}
+
+.project-card:hover .reyou-blueprint {
+    opacity: 1;
+    filter: brightness(1.1) contrast(1.4) grayscale(0) saturate(1.2);
+    transform: scale(1.02);
+}
+
+@keyframes scan-move-seq {
+    0% {
+        top: -30%;
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    15% {
+        top: 100%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes chair-seq {
+
+    0%,
+    18% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    22%,
+    38% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    42%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes desk-seq {
+
+    0%,
+    43% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    47%,
+    63% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    67%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes table-seq {
+
+    0%,
+    68% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    72%,
+    88% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    92%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes grid-move {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 60px 60px;
+    }
+}
+
+/* --- RAIN EFFECT (ALTAREA) --- */
+.rain-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+}
+
+.project-card:hover .rain-container {
+    opacity: 1;
+}
+
+.rain-drop {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 100%);
+    width: 1px;
+    height: 60px;
+    top: -100px;
+    animation: fall linear infinite;
+    filter: blur(0.5px);
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* --- AI EXPERTISE SECTION --- */
+#ai-star-container {
+    perspective: 1000px;
+    transition: transform 0.5s ease;
+}
+
+/* --- HELENA RUBINSTEIN (HR) LUXURY WAVES --- */
+.hr-visual-container {
+    background: linear-gradient(135deg, #000503 0%, #00120d 100%);
+    /* Ultra Deep Onyx-Emerald */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.hr-svg-waves {
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+    height: 190px;
+    opacity: 1;
+}
+
+.hr-wave-use {
+    animation: move-forever 35s cubic-bezier(.45, .05, .55, .95) infinite;
+    /* More liquid curve */
+    animation-play-state: paused;
+}
+
+.project-card:hover .hr-wave-use {
+    animation-play-state: running;
+}
+
+.wave1 {
+    fill: url(#silk-emerald);
+    animation-delay: -2s;
+    animation-duration: 25s;
+    opacity: 0.95;
+    mix-blend-mode: initial;
+}
+
+.wave2 {
+    fill: rgba(0, 0, 0, 0.9);
+    /* Dynamic Shadow Gap */
+    animation-delay: -2.5s;
+    animation-duration: 22s;
+}
+
+.wave3 {
+    fill: url(#gloss-gold);
+    animation-delay: -3s;
+    animation-duration: 18s;
+    /* Synchronized faster shine */
+    opacity: 1;
+    mix-blend-mode: screen;
+}
+
+.wave4 {
+    fill: rgba(0, 3, 2, 1);
+    /* Bottom Anchor Shadow */
+    animation-delay: -3.5s;
+    animation-duration: 30s;
+}
+
+.hr-gloss-overlay {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover .hr-gloss-overlay {
+    opacity: 1;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+.hr-logo-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 180px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card .hr-logo {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+    transition: all 0.5s ease;
+}
+
+.project-card:hover .hr-logo-wrapper {
+    transform: scale(1.1);
+}
+
+.project-card:hover .hr-logo {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(189, 155, 92, 0.3));
+}
+
+/* Ensure the HR card doesn't get the global grayscale filter on its logo specifically if we want it crisp */
+.project-card:hover .hr-visual-container {
+    filter: grayscale(0) brightness(1.1);
+}
+
+/* --- PROJECTS MASTER GRID MODAL --- */
+.projects-master-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s step-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projects-master-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s step-start;
+}
+
+.projects-grid-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    scroll-snap-type: both mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Removed display: flex to fix overflow padding issue */
+    scroll-behavior: smooth;
+}
+
+.projects-grid-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.projects-grid-container {
+    display: grid;
+    display: inline-grid;
+    /* inline-grid + pseudo-element ensures padding is honored on all sides */
+    grid-template-columns: repeat(3, 75vw);
+    grid-template-rows: repeat(3, 85vh);
+    grid-auto-rows: 85vh;
+    gap: var(--grid-gap-v) var(--grid-gap-h);
+    padding: 7.5vh 12.5vw;
+    position: relative;
+}
+
+/* Pseudo-element to force right and bottom spacing in scrollable container */
+.projects-grid-container::after {
+    content: "";
+    grid-column: 3;
+    grid-row: 4;
+    height: 15vh;
+    /* Vertical clearance */
+    width: 12.5vw;
+    /* Horizontal clearance */
+    pointer-events: none;
+}
+
+.project-grid-cell {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    /* Ensure snap always centers this cell */
+}
+
+/* Inner modal-like window inside the grid cell */
+.project-grid-cell .modal-window {
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    /* Enable flex for layouts */
+    flex-direction: column;
+    overflow: hidden;
+    /* Try to contain without scroll */
+}
+
+/* --- OPTIMIZED MODAL LAYOUTS --- */
+.modal-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0;
+}
+
+/* SPLIT LAYOUT (Mobile Apps / Vertical Visuals) */
+.layout-split {
+    flex-direction: row;
+}
+
+.layout-split .text-side {
+    width: 50%;
+    /* Widened from 45% */
+    padding: 6vh 5vw;
+    /* Reduced from 8vh to bring content closer to top */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Changed from center to prevent floating space */
+    position: relative;
+    z-index: 20;
+}
+
+
+.layout-split .visual-side {
+    width: 50%;
+    background: #f5f5f7;
+    position: relative;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+}
+
+[data-theme="dark"] .layout-split .visual-side {
+    background: #111;
+}
+
+
+
+/* STACKED LAYOUT (Websites / Horizontal Visuals) */
+.layout-stacked {
+    flex-direction: column;
+    height: auto;
+    min-height: 100%;
+}
+
+.layout-stacked .text-side {
+    height: auto;
+    flex: 0 0 auto;
+    padding: 5.5vh 4vw;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+    z-index: 20;
+}
+
+.layout-stacked .visual-side {
+    height: auto;
+    min-height: 60vh;
+    flex: 0 0 auto;
+    position: relative;
+    background: #f5f5f7;
+    /* overflow: hidden; Removed for sticky chip */
+}
+
+.layout-stacked .visual-side img {
+    height: auto;
+}
+
+[data-theme="dark"] .layout-stacked .visual-side {
+    background: #111;
+}
+
+/* COMPACT TYPOGRAPHY FOR MODALS */
+.modal-title-compact {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.modal-meta-compact {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.modal-points-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.layout-stacked .modal-points-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-top: 1.5rem;
+    width: 65%;
+    padding-bottom: 0;
+}
+
+.layout-stacked .header-group {
+    width: 30%;
+}
+
+.point-item h4 {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.25rem;
+    opacity: 0.7;
+}
+
+.point-item p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-sub);
+}
+
+/* iframe / img containment */
+.visual-side iframe:not(.scale-iframe-content),
+.visual-side img,
+.visual-side video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    display: block;
+}
+
+.visual-side iframe.scale-iframe-content {
+    object-fit: none;
+    overflow: hidden;
+}
+
+/* Close button for the master modal */
+.master-close-btn {
+    position: fixed;
+    top: 7.5vh;
+    right: 4vw;
+    width: 50px;
+    height: 50px;
+    background: var(--close-btn-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100000;
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    font-size: 20px;
+}
+
+.master-close-btn:hover {
+    background: var(--close-btn-hover);
+    transform: scale(1.1);
+}
+
+.master-close-btn.pos-left {
+    left: 4vw;
+    right: auto;
+}
+
+.master-close-btn.pos-right {
+    right: 4vw;
+    left: auto;
+}
+
+.master-close-btn.pos-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* Custom scaler for Figma iframes to prevent cropping */
+.scale-iframe-content {
+    width: 500px !important;
+    height: 2000px !important;
+    min-height: 2000px;
+    min-width: 500px;
+    transform: scale(0.72) translateY(380px);
+    transform-origin: top center;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    position: relative;
+    margin: 0 auto;
+    border: none;
+    display: block;
+}
+
+.rockease-iframe {
+    width: 1600px !important;
+    height: 2400px !important;
+    min-height: 2400px;
+    min-width: 1600px;
+    transform: scale(0.5) translateY(1625px);
+    transform-origin: top center;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    position: relative;
+    margin: 0 auto;
+    border: none;
+    display: block;
+}
+
+.reyou-iframe {
+    width: 1538px !important;
+    height: 1000px !important;
+    min-height: 1000px;
+    min-width: 1538px;
+    transform: scale(0.48);
+    transform-origin: center center;
+    border-radius: 12px;
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+    margin: auto;
+    margin-top: -80px;
+    border: none;
+    display: block;
+}
+
+/* Interactive Prototype Badge - Soap Bubble */
+.prototype-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle at 30% 30%,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(200, 255, 220, 0.3) 25%,
+            rgba(180, 240, 200, 0.2) 50%,
+            rgba(150, 220, 180, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    /* Visible to float */
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: float-bubble 3s ease-in-out infinite, bubble-shimmer 4s ease-in-out infinite;
+}
+
+.badge-yellow {
+    background: rgba(255, 255, 230, 0.2);
+    /* Glassy faint yellow */
+    color: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+
+
+
+
+
+
+.prototype-badge::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.prototype-badge.pop {
+    animation: bubble-pop 0.5s ease-out forwards;
+}
+
+.prototype-badge svg {
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes float-bubble {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-20px);
+    }
+}
+
+@keyframes bubble-shimmer {
+
+    0%,
+    100% {
+        box-shadow:
+            inset 0 2px 30px rgba(255, 255, 255, 0.6),
+            inset 0 -2px 30px rgba(100, 200, 150, 0.4),
+            0 10px 40px rgba(100, 200, 150, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        box-shadow:
+            inset 0 2px 35px rgba(255, 255, 255, 0.7),
+            inset 0 -2px 35px rgba(120, 220, 170, 0.5),
+            0 15px 50px rgba(120, 220, 170, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+}
+
+@keyframes bubble-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.prototype-badge:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Hide bubble after animation */
+.prototype-badge.hidden {
+    display: none;
+}
+
+/* Floating Chip for External Links on Images */
+.visit-site-chip {
+    position: sticky;
+    bottom: 30px;
+    margin: -80px auto 30px auto;
+    left: 0;
+    right: 0;
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 22px;
+    border-radius: 50px;
+    display: table;
+    /* Centers with margin auto */
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+.visit-site-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background: #000000;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode adjustment if needed, assuming the image is usually bright but sticking to light chip looks premium on most 'cover' style images, 
+   but for stacked layout the image is on the side/bottom. 
+   If layout-stacked .visual-side is the container. */
+.layout-stacked .visual-side {
+    position: relative;
+    /* Ensure positioning context */
+}
+
+.visit-site-chip svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2px;
+}
+
+/* Scroll Indicator Overlay */
+.scroll-indicator-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s ease, background-color 0.2s;
+    animation: bounce-vertical 2.5s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-indicator-overlay:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-indicator-overlay.rotate-180 svg {
+    transform: rotate(180deg);
+}
+
+.scroll-indicator-overlay svg {
+    transition: transform 0.3s ease;
+}
+
+.scroll-indicator-overlay.rotate-180:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+@keyframes bounce-vertical {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* GROUPE ATLANTIC (Interop) Specific Overrides */
+[data-project="modal-interop"] .layout-stacked .text-side {
+    padding: 3vh 4vw;
+    /* Reduced from 5.5vh to reclaim space */
+}
+
+[data-project="modal-interop"] .layout-stacked .modal-points-grid {
+    /* Three column layout with auto-sizing for the collaboration part to prevent wrap */
+    grid-template-columns: 1.2fr 1fr auto;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+[data-project="modal-interop"] .layout-stacked .visual-side iframe {
+    /* Align prototype to start exactly after the text section */
+    margin-top: 0;
+}
+
+/* VAMOS BIKES Specific Overrides */
+[data-project="modal-vamos"] .layout-stacked .text-side {
+    border-bottom: none;
+}
+
+[data-project="modal-vamos"] .layout-stacked .visual-side {
+    margin-top: -30px;
+    z-index: 10;
+    border-top: 1px solid var(--card-border);
+}
+
+[data-project="modal-vamos"] .layout-stacked .visual-side img {
+    /* Image just fits container now */
+    position: relative;
+    z-index: 1;
+}
+
+[data-project="modal-vamos"] .layout-stacked .modal-points-grid {
+    grid-template-columns: 1.2fr 1.0fr 0.8fr;
+}

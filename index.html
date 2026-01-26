@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrea Moncada | Global Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="antialiased selection:bg-blue-500 selection:text-white">
+
+    <!-- Absolute Nav: Scrolls away with content -->
+    <nav class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300"
+        style="color: var(--text-main);">
+        <div class="text-xs font-bold tracking-widest uppercase">
+            Andrea Moncada
+            <span class="opacity-50 mx-2">|</span>
+            <span class="font-normal opacity-70" style="color: var(--text-sub);">Global Designer & Innovation
+                Strategist</span>
+        </div>
+
+        <div class="flex items-center gap-6 md:gap-8">
+            <div class="hidden md:flex gap-6 text-xs font-medium text-dynamic-sub tracking-widest uppercase">
+                <a href="#about" class="hover-underline">About</a>
+                <a href="#method" class="hover-underline">Method</a>
+                <a href="#work" class="hover-underline">Work</a>
+                <a href="https://www.linkedin.com/in/andrea-moncada1405/" target="_blank"
+                    class="hover-underline">LinkedIn</a>
+                <a href="CV.pdf" target="_blank" class="hover-underline">CV</a>
+            </div>
+
+            <div class="h-4 w-px bg-current opacity-20 hidden md:block"></div>
+
+            <div class="flex items-center gap-4">
+                <div class="flex gap-3 text-[10px] font-bold uppercase tracking-widest">
+                    <button onclick="setLanguage('fr')" id="btn-fr" class="lang-btn active">FR</button>
+                    <button onclick="setLanguage('en')" id="btn-en" class="lang-btn">EN</button>
+                    <button onclick="setLanguage('it')" id="btn-it" class="lang-btn">IT</button>
+                </div>
+
+                <button onclick="toggleTheme()" class="theme-switch w-8 h-8" aria-label="Toggle Theme">
+                    <svg id="icon-sun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg id="icon-moon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <canvas id="hero-canvas"></canvas>
+
+    <header
+        class="h-screen flex flex-col items-center justify-center px-6 text-center relative z-10 pointer-events-none">
+        <div class="fade-in delay-200 pointer-events-auto">
+            <h1 class="text-5xl md:text-7xl font-medium tracking-tighter mb-6 text-dynamic-main" data-key="hero_title">
+                Systemic Design <br> & Innovation Mgmt.
+            </h1>
+            <p class="text-xs md:text-sm uppercase tracking-widest opacity-60 max-w-lg mx-auto leading-relaxed text-dynamic-sub"
+                data-key="hero_subtitle">
+                Bridging Creative Strategy & Business Impact
+            </p>
+        </div>
+    </header>
+
+    <section id="about"
+        class="min-h-[90vh] flex items-center justify-center px-6 md:px-24 py-24 relative z-20 overflow-hidden">
+        <div
+            class="about-container group flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-6xl mx-auto h-auto">
+
+            <!-- Description Card -->
+            <div class="about-card max-w-2xl text-center md:text-left backdrop-blur-md p-8 md:p-12 rounded-2xl border shadow-2xl bg-[rgba(var(--particle-color),0.03)] border-[var(--card-border)] flex flex-col justify-between"
+                style="border-color: var(--card-border);">
+                <div>
+                    <p class="text-2xl md:text-4xl leading-tight font-normal text-dynamic-main mb-12"
+                        data-key="story_text">
+                        I don't just design interfaces, I manage <span class="font-normal"
+                            style="color: var(--text-main)">Innovation Ecosystems</span>.
+                        Transitioning from Global Design to Innovation Management, I leverage creative methodologies to
+                        de-risk
+                        business ventures.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 border-t pt-8 text-left"
+                    style="border-color: var(--card-border);">
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
+                            data-key="about_education">Education</span>
+                        <a href="https://em-lyon.com/" target="_blank"
+                            class="block text-sm text-dynamic-main hover:opacity-70 transition">EM Lyon (MS)</a>
+                        <a href="https://www.cy-ecolededesign.fr/" target="_blank"
+                            class="block text-sm text-dynamic-main hover:opacity-70 transition">CY Design</a>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
+                            data-key="about_current">Current</span>
+                        <a href="https://kciope.com/" target="_blank"
+                            class="block text-sm text-dynamic-main hover:opacity-70 transition">K-ciope (Paris)</a>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
+                            data-key="about_focus">Focus</span>
+                        <span class="block text-sm text-dynamic-main">Innovation Mgmt</span>
+                        <span class="block text-sm text-dynamic-main">Systemic Design</span>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
+                            data-key="about_frameworks">Frameworks</span>
+                        <span class="block text-sm text-dynamic-main">UX Methods</span>
+                        <span class="block text-sm text-dynamic-main">Design Thinking</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photo & Clients Card -->
+            <div
+                class="about-photo-card w-full md:w-[420px] rounded-2xl shadow-2xl flex-shrink-0 relative overflow-hidden flex flex-col">
+                <!-- Profile Photo with internal padding -->
+                <div class="p-4 md:p-6 flex-1 min-h-[350px] flex items-center justify-center">
+                    <div class="w-full h-full rounded-xl overflow-hidden relative shadow-inner">
+                        <img id="profile-img" src="Photo-profil.jpg" alt="Andrea Moncada"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                    </div>
+                </div>
+
+                <!-- Inset Divider -->
+                <div class="mx-8 border-t opacity-50" style="border-color: var(--card-border);"></div>
+
+                <!-- Client Carousel (Unified with card) -->
+                <div class="pb-8 pt-6 px-6 md:px-8 flex-shrink-0">
+                    <div class="marquee-container overflow-hidden">
+                        <div class="marquee-content flex items-center">
+                            <!-- Duplicate once for infinite effect -->
+                            <img src="MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
+                            <img src="Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
+                            <img src="Agirc-arrco-l.png" alt="Agirc-arrco"
+                                class="client-logo h-20 w-auto object-contain">
+                            <img src="OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
+                            <img src="Synergie-l.png" alt="Synergie" class="client-logo h-14 w-auto object-contain">
+                            <img src="Vamos bike - l.png" alt="Vamos Bikes"
+                                class="client-logo h-14 w-auto object-contain">
+                            <img src="Groupe Atlantis-l.png" alt="Groupe Atlantis"
+                                class="client-logo h-14 w-auto object-contain">
+
+                            <!-- Duplicated items -->
+                            <img src="MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
+                            <img src="Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
+                            <img src="Agirc-arrco-l.png" alt="Agirc-arrco"
+                                class="client-logo h-20 w-auto object-contain">
+                            <img src="OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
+                            <img src="Synergie-l.png" alt="Synergie" class="client-logo h-14 w-auto object-contain">
+                            <img src="Vamos bike - l.png" alt="Vamos Bikes"
+                                class="client-logo h-14 w-auto object-contain">
+                            <img src="Groupe Atlantis-l.png" alt="Groupe Atlantis"
+                                class="client-logo h-14 w-auto object-contain">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SCROLLYTELLING METHODOLOGY SECTION -->
+    <!-- Height is 400vh to allow for 4 screens worth of scroll distance -->
+    <section id="method-scroller" class="relative z-10" style="height: 500vh;">
+
+        <!-- Sticky Viewport: Stays fixed while parent scrolls -->
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
+
+            <!-- 1. MASKED LAYER: Background & Track -->
+            <!-- This layer fades out at top/bottom to blend with global particles -->
+            <!-- 1. MASKED LAYER: Background & Track -->
+            <!-- This layer fades out at top/bottom AND LEFT (to clear text area) -->
+            <div class="absolute inset-0 w-full h-full pointer-events-none"
+                style="-webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%), linear-gradient(to right, transparent 0%, transparent 22%, black 30%, black 100%); mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%), linear-gradient(to right, transparent 0%, transparent 22%, black 30%, black 100%); -webkit-mask-composite: source-in; mask-composite: intersect;">
+                <!-- No solid background (showing global particles) -->
+
+                <!-- Horizontal Track (Rendered by JS) -->
+                <!-- Note: We move the track INSIDE this masked wrapper so it fades too -->
+                <div id="methodology-track"
+                    class="absolute left-1/2 top-0 bottom-0 flex items-center h-full will-change-transform pl-[10vw]">
+                    <!-- Rendered by script.js -->
+                </div>
+            </div>
+
+            <!-- 2. UNMASKED LAYER: UI Elements -->
+            <!-- Context Header (Fixed at top of viewport, fully opaque) -->
+            <div class="absolute top-0 left-0 w-full p-8 md:p-12 z-40 pointer-events-none">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-[10px] uppercase tracking-widest text-dynamic-sub"
+                        data-key="method_process">Processus</span>
+                    <div class="text-right hidden md:block opacity-50">
+                        <p class="text-[10px] uppercase tracking-widest">Scroll to Explore</p>
+                    </div>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-dynamic-main" data-key="method_title">Design & Decide<sup
+                        class="text-sm">®</sup></h2>
+            </div>
+
+            <!-- Intro Paragraph (Fixed, Visible) -->
+            <div id="method-intro"
+                class="absolute left-8 md:left-12 top-32 max-w-[300px] z-50 pointer-events-none method-intro-bg py-4 pr-6">
+                <p class="text-sm md:text-base leading-relaxed text-dynamic-sub font-light mb-4"
+                    data-key="method_intro_1">
+                    Une approche systémique pour dérisquer l'innovation.
+                </p>
+                <p class="text-sm md:text-base leading-relaxed text-dynamic-sub font-light mb-4"
+                    data-key="method_intro_2">
+                    De la définition du besoin initial <strong>("CdC")</strong> jusqu'à la réussite finale
+                    <strong>("Succès")</strong>,
+                    nous alternons rigoureusement phases de divergence et de convergence.
+                </p>
+                <p class="text-sm md:text-base leading-relaxed text-dynamic-sub font-light" data-key="method_intro_3">
+                    Ce processus permet de transformer l'incertitude en valore tangibile, en validant chaque étape par
+                    la
+                    data et l'expérience utilisateur, avant d'engager les ressources de développement.
+                </p>
+            </div>
+
+            <!-- Central Cursor / "Scanner" Line -->
+            <div id="timeline-cursor"
+                class="absolute left-1/2 top-0 bottom-0 w-px bg-red-500/50 z-30 pointer-events-none hidden md:block">
+                <div
+                    class="absolute top-[calc(50%+3rem)] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 border border-red-500 rounded-full">
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>
+
+    <section id="work" class="px-4 md:px-12 pb-32 relative z-20">
+        <h2 class="text-xs font-bold uppercase tracking-widest mb-12 opacity-50 pl-2 text-dynamic-main"
+            data-key="section_work">Selected Works</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-kciope')" role="button" tabindex="0">
+
+                    <!-- NEW: Infinite Marquee Wall -->
+                    <div class="project-marquee-wall">
+                        <!-- Column 1 (Focus: C1, C2) -->
+                        <div class="marquee-col col-up">
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <!-- Duplicate for infinite loop -->
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                        </div>
+                        <!-- Column 2 (Focus: C3, C4) -->
+                        <div class="marquee-col col-down">
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
+                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <!-- Duplicate for infinite loop -->
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
+                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                        </div>
+                        <!-- Column 3 (Focus: C1, C2, C3, C4 Mixed) -->
+                        <div class="marquee-col col-up">
+                            <img src="C1.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <!-- Duplicate for infinite loop -->
+                            <img src="C1.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                        </div>
+                        <!-- Column 4 (Focus: C1, C2) -->
+                        <div class="marquee-col col-down">
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
+                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <!-- Duplicate for infinite loop -->
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
+                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
+                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                        </div>
+                        <!-- Column 5 (Focus: C3, C4) -->
+                        <div class="marquee-col col-up">
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <!-- Duplicate for infinite loop -->
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="C3.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
+                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p0_title">ALR3 - Adoptez le R3flexe
+                        </h3>
+                        <p class="text-sm text-gray-300" data-key="p0_desc">UX/UI Designer • 2024-2026</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
+                            target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">K-ciopé</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.marseille.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Ville de Marseille</a>
+                    </div>
+                    <button onclick="openModal('modal-kciope')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-rockease')" role="button" tabindex="0">
+                    <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
+                        <source src="Video-rockease-cover.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_rockease_title">Rockease
+                        </h3>
+                        <p class="text-sm text-gray-300" data-key="p_rockease_desc">UI Designer • 2025
+                        </p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
+                            target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">K-ciopé</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.colas.com/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Colas</a>
+                    </div>
+                    <button onclick="openModal('modal-rockease')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-synergie')" role="button" tabindex="0">
+
+                    <!-- Infinite Marquee Wall for Synergie -->
+                    <div class="project-marquee-wall">
+                        <!-- Column 1 -->
+                        <div class="marquee-col col-up">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <!-- Duplicate -->
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="marquee-col col-down">
+                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                            <!-- Duplicate -->
+                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                        </div>
+                        <!-- Column 3 (Focus: A1 centered) -->
+                        <div class="marquee-col col-up">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <!-- Duplicate -->
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                        </div>
+                        <!-- Column 4 -->
+                        <div class="marquee-col col-down">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <!-- Duplicate -->
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                        </div>
+                        <!-- Column 5 -->
+                        <div class="marquee-col col-up">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <!-- Duplicate -->
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
+                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_synergie_title">Synergie</h3>
+                        <p class="text-sm text-gray-300" data-key="p_synergie_desc">UX Strategy • Digital Transformation
+                        </p>
+                    </div>
+                </div>
+                <!-- Updated Meta (No 'chez Kciope' redundancy if evident, but keeping format) -->
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
+                            target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">K-ciopé</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.synergie.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Synergie</a>
+                    </div>
+                    <button onclick="openModal('modal-synergie')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        Case ↗</button>
+                </div>
+            </div>
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-vamos')" role="button" tabindex="0">
+                    <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
+                        <source src="Video-vamos-cover.mp4" type="video/mp4">
+                    </video>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_vamos_title">Vamos Bikes</h3>
+                        <p class="text-sm text-gray-300" data-key="p_vamos_desc">Delivery Phase • Video First UI</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
+                            href="https://www.agencyeight.com.au/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Agency 8</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://vamosbikes.com.au/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Vamos Bikes</a>
+                    </div>
+                    <button onclick="openModal('modal-vamos')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+
+
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-agirc')" role="button" tabindex="0">
+
+                    <!-- Infinite Marquee Wall for Agirc-Arrco (Desktop Optimized) -->
+                    <div class="project-marquee-wall">
+                        <!-- Column 1 -->
+                        <div class="marquee-col col-desktop col-up">
+                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                            <!-- Duplicate -->
+                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="marquee-col col-desktop col-down">
+                            <img src="B7.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                            <!-- Duplicate -->
+                            <img src="B7.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                        </div>
+                        <!-- Column 3 (Focus: B1) -->
+                        <div class="marquee-col col-desktop col-up">
+                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B3.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B7.png" alt="Agirc-Arrco UI">
+                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <!-- Duplicate -->
+                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B3.png" alt="Agirc-Arrco UI">
+                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B7.png" alt="Agirc-Arrco UI">
+                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                        </div>
+                        <!-- Column 4 -->
+                        <div class="marquee-col col-desktop col-down">
+                            <img src="B6.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B1.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B5.png" alt="Agirc-Arrco UI">
+                            <!-- Duplicate -->
+                            <img src="B6.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B1.png" alt="Agirc-Arrco UI">
+                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B5.png" alt="Agirc-Arrco UI">
+                        </div>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_agirc_title">Agirc-Arrco
+                        </h3>
+                        <p class="text-sm text-gray-300" data-key="p_agirc_desc">UX Researcher & Analyst • 2025</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
+                            target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">K-ciopé</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.agirc-arrco.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Agirc-Arrco</a>
+                    </div>
+                    <button onclick="openModal('modal-agirc')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        Case ↗</button>
+                </div>
+            </div>
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-altarea')" role="button" tabindex="0">
+                    <img src="Cover-ALTAREA.png" alt="Altarea" class="object-cover w-full h-full opacity-90">
+
+                    <!-- Rain Effect Container -->
+                    <div class="rain-container">
+                        <div class="rain-drop" style="left: 5%; animation-duration: 0.6s; animation-delay: 0.1s;"></div>
+                        <div class="rain-drop" style="left: 10%; animation-duration: 0.8s; animation-delay: 0.2s;">
+                        </div>
+                        <div class="rain-drop" style="left: 15%; animation-duration: 0.7s; animation-delay: 0.5s;">
+                        </div>
+                        <div class="rain-drop" style="left: 20%; animation-duration: 0.9s; animation-delay: 0.3s;">
+                        </div>
+                        <div class="rain-drop" style="left: 25%; animation-duration: 0.6s; animation-delay: 0.1s;">
+                        </div>
+                        <div class="rain-drop" style="left: 30%; animation-duration: 0.8s; animation-delay: 0.4s;">
+                        </div>
+                        <div class="rain-drop" style="left: 35%; animation-duration: 0.7s; animation-delay: 0.2s;">
+                        </div>
+                        <div class="rain-drop" style="left: 40%; animation-duration: 0.9s; animation-delay: 0.6s;">
+                        </div>
+                        <div class="rain-drop" style="left: 45%; animation-duration: 0.6s; animation-delay: 0.1s;">
+                        </div>
+                        <div class="rain-drop" style="left: 50%; animation-duration: 0.8s; animation-delay: 0.3s;">
+                        </div>
+                        <div class="rain-drop" style="left: 55%; animation-duration: 0.7s; animation-delay: 0.5s;">
+                        </div>
+                        <div class="rain-drop" style="left: 60%; animation-duration: 0.9s; animation-delay: 0.2s;">
+                        </div>
+                        <div class="rain-drop" style="left: 65%; animation-duration: 0.6s; animation-delay: 0.4s;">
+                        </div>
+                        <div class="rain-drop" style="left: 70%; animation-duration: 0.8s; animation-delay: 0.7s;">
+                        </div>
+                        <div class="rain-drop" style="left: 75%; animation-duration: 0.7s; animation-delay: 0.3s;">
+                        </div>
+                        <div class="rain-drop" style="left: 80%; animation-duration: 0.9s; animation-delay: 0.1s;">
+                        </div>
+                        <div class="rain-drop" style="left: 85%; animation-duration: 0.6s; animation-delay: 0.5s;">
+                        </div>
+                        <div class="rain-drop" style="left: 90%; animation-duration: 0.8s; animation-delay: 0.2s;">
+                        </div>
+                        <div class="rain-drop" style="left: 95%; animation-duration: 0.7s; animation-delay: 0.8s;">
+                        </div>
+                        <div class="rain-drop" style="left: 12%; animation-duration: 0.9s; animation-delay: 0.3s;">
+                        </div>
+                        <div class="rain-drop" style="left: 28%; animation-duration: 0.6s; animation-delay: 0.6s;">
+                        </div>
+                        <div class="rain-drop" style="left: 42%; animation-duration: 0.8s; animation-delay: 0.1s;">
+                        </div>
+                        <div class="rain-drop" style="left: 58%; animation-duration: 0.7s; animation-delay: 0.4s;">
+                        </div>
+                        <div class="rain-drop" style="left: 72%; animation-duration: 0.9s; animation-delay: 0.7s;">
+                        </div>
+                        <div class="rain-drop" style="left: 88%; animation-duration: 0.6s; animation-delay: 0.2s;">
+                        </div>
+                        <div class="rain-drop" style="left: 3%; animation-duration: 0.8s; animation-delay: 0.5s;"></div>
+                        <div class="rain-drop" style="left: 53%; animation-duration: 0.7s; animation-delay: 0.1s;">
+                        </div>
+                        <div class="rain-drop" style="left: 97%; animation-duration: 0.9s; animation-delay: 0.6s;">
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_altarea_title">ALTAREA</h3>
+                        <p class="text-sm text-gray-300" data-key="p_altarea_desc">Global Designer - 2024</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
+                            href="https://www.cy-ecolededesign.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.altarea.com/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Altarea</a>
+                    </div>
+                    <button onclick="openModal('modal-altarea')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        Case ↗</button>
+                </div>
+            </div>
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-reyou')" role="button" tabindex="0">
+
+                    <div class="reyou-visual-container absolute inset-0">
+                        <div class="reyou-blueprint"></div>
+                        <div class="reyou-grid"></div>
+                        <div class="reyou-scan-beam"></div>
+                        <div class="reyou-glitch-layer">
+                            <div class="reyou-glitch-item item-chair"><span>MOD: CH-01</span></div>
+                            <div class="reyou-glitch-item item-desk"><span>MOD: DK-09</span></div>
+                            <div class="reyou-glitch-item item-table"><span>MOD: TB-04</span></div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_reyou_title">REYOU</h3>
+                        <p class="text-sm text-gray-300" data-key="p_reyou_desc">Design Global • Showroom 3D</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
+                            href="https://www.cy-ecolededesign.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.re-you.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">REYOU</a>
+                    </div>
+                    <button onclick="openModal('modal-reyou')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                    onclick="openModal('modal-elba')" role="button" tabindex="0">
+                    <div class="hr-visual-container absolute inset-0">
+                        <svg class="hr-svg-waves" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none"
+                            shape-rendering="auto">
+                            <defs>
+                                <path id="gentle-wave"
+                                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                                <linearGradient id="gloss-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#2a200a;stop-opacity:1" />
+                                    <stop offset="35%" style="stop-color:#846524;stop-opacity:1" />
+                                    <stop offset="45%" style="stop-color:#e6c47b;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#fffbed;stop-opacity:1" />
+                                    <stop offset="55%" style="stop-color:#e6c47b;stop-opacity:1" />
+                                    <stop offset="65%" style="stop-color:#846524;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#141005;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="silk-emerald" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#000d08;stop-opacity:1" />
+                                    <stop offset="40%" style="stop-color:#004d35;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#1fd698;stop-opacity:1" />
+                                    <stop offset="60%" style="stop-color:#004d35;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#000d08;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <g class="parallax-waves">
+                                <use xlink:href="#gentle-wave" x="48" y="0" class="hr-wave-use wave1" />
+                                <use xlink:href="#gentle-wave" x="48" y="2" class="hr-wave-use wave2" />
+                                <use xlink:href="#gentle-wave" x="48" y="4" class="hr-wave-use wave3" />
+                                <use xlink:href="#gentle-wave" x="48" y="6" class="hr-wave-use wave4" />
+                            </g>
+                        </svg>
+                        <div class="hr-gloss-overlay absolute inset-0 pointer-events-none"></div>
+                        <div class="hr-logo-wrapper">
+                            <img src="Logo-HR.png" alt="Helena Rubinstein" class="hr-logo">
+                        </div>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_elba_title">Helena Rubinstein</h3>
+                        <p class="text-sm text-gray-300" data-key="p_elba_desc">Stratégie Luxe & 3D</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
+                            href="https://www.cy-ecolededesign.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.helenarubinstein.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Helena Rubinstein</a>
+                    </div>
+                    <button onclick="openModal('modal-elba')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+
+            <div class="group flex flex-col gap-3">
+                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-zinc-800"
+                    onclick="openModal('modal-interop')" role="button" tabindex="0">
+                    <!-- Marquee Wall for Interop -->
+                    <div class="project-marquee-wall">
+                        <!-- Column 1 -->
+                        <div class="marquee-col col-wide col-up">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <!-- Duplicate -->
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                        </div>
+                        <!-- Column 2 -->
+                        <div class="marquee-col col-wide col-down">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <!-- Duplicate -->
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                        </div>
+                        <!-- Column 3 -->
+                        <div class="marquee-col col-wide col-up">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <!-- Duplicate -->
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                        </div>
+                        <!-- Column 4 -->
+                        <div class="marquee-col col-wide col-down">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                            <!-- Duplicate -->
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="3.png" alt="Interop UI">
+                            <img src="D2.png" alt="Interop UI">
+                            <img src="D1.png" alt="Interop UI">
+                        </div>
+                    </div>
+
+                    <div
+                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_interop_title">Groupe Atlantic</h3>
+                        <p class="text-sm text-gray-300" data-key="p_interop_desc">UX/UI Designer - 2025</p>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center px-2">
+                    <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
+                        <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
+                            target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">K-ciopé</a>
+                        <span class="opacity-50 mx-1">x</span>
+                        <a href="https://www.groupe-atlantic.fr/" target="_blank"
+                            class="hover:underline hover:text-dynamic-main transition-colors">Groupe Atlantic</a>
+                    </div>
+                    <button onclick="openModal('modal-interop')"
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        Case ↗</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        </article>
+
+        </div>
+    </section>
+
+    <!-- AI EXPERTISE SECTION (Simplified for Star Animation) -->
+    <section id="ai-expertise" class="px-8 md:px-12 py-32 relative z-20 overflow-hidden">
+        <!-- Subtle AI background glow -->
+        <div class="absolute inset-0 pointer-events-none opacity-20 dark:opacity-40">
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]">
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <span class="text-[10px] uppercase tracking-[0.3em] mb-4 block text-dynamic-sub"
+                data-key="section_ai_expertise">Expertise IA</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-dynamic-main tracking-tight uppercase"
+                data-key="ai_expertise_title">
+                DesignOps & Automatisation</h2>
+
+            <div class="flex justify-center items-center py-10 relative">
+                <!-- AI Star Container -->
+                <div id="ai-star-container"
+                    class="relative w-full aspect-square max-w-[500px] flex justify-center items-center cursor-pointer group"
+                    onclick="openModal('modal-make')" role="button" tabindex="0">
+
+                    <!-- Particles will morph into 'IA' here -->
+                    <div id="ai-star-target" class="w-1 h-1"></div>
+                </div>
+            </div>
+
+            <p class="max-w-2xl mx-auto text-dynamic-main text-xl md:text-2xl leading-relaxed mb-10 font-normal"
+                data-key="ai_expertise_desc">
+                Optimisation des flux créatifs par l'IA. Je conçois des systèmes qui automatisent les tâches
+                répétitives pour libérer le potentiel créatif des équipes.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <span
+                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Figma
+                    Make</span>
+                <span
+                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">OpenAI
+                    API</span>
+                <span
+                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Design
+                    Ops</span>
+                <span
+                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Antigravity</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-24 px-6 text-center border-t relative z-20"
+        style="border-color: var(--card-border);">
+        <p class="text-sm mb-6 uppercase tracking-widest text-dynamic-sub" data-key="footer_desc">Open to Innovation
+            Roles</p>
+        <button onclick="openModal('modal-contact')"
+            class="text-3xl md:text-5xl font-medium text-dynamic-main hover:opacity-70 transition block mx-auto"
+            data-key="cta_talk">hello@andreamoncada.com</button>
+    </footer>
+
+    <!-- CONSOLIDATED PROJECT GRID (3x4 for 10 projects) -->
+    <div id="projects-master-modal" class="projects-master-modal" onclick="closeModal(event)" role="dialog"
+        aria-modal="true">
+        <button type="button" class="master-close-btn" onclick="closeModalForce()" aria-label="Close Modal">✕</button>
+
+        <div class="projects-grid-viewport">
+            <div class="projects-grid-container">
+                <!-- ROW 1 -->
+                <!-- 1. KCIOPE -->
+                <div class="project-grid-cell" data-project="modal-kciope">
+                    <div class="modal-window">
+                        <!-- SPLIT LAYOUT -->
+                        <div class="modal-content-wrapper layout-split">
+                            <!-- Left: Text -->
+                            <div class="text-side">
+                                <span class="modal-meta-compact">Innovation • Civic Tech</span>
+                                <h2 class="modal-title-compact mb-6" data-key="p0_title_full">ALR3 - Adoptez le R3flexe
+                                </h2>
+                                <p class="text-sm text-dynamic-sub mb-2 leading-relaxed" data-key="p0_main_desc">Vecteur
+                                    clé de la transition
+                                    écologique, l'application devait dépasser sa fonction utilitaire pour devenir un
+                                    véritable moteur d'engagement. Cette refonte a métamorphosé un outil technique
+                                    complexe en un compagnon du quotidien, fluide et intuitif, démocratisant l'accès aux
+                                    éco-gestes pour l'ensemble des habitants de la Métropole.</p>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte</h4>
+                                        <p data-key="p0_context_desc">Navigation complexe et faible adoption.
+                                            Transformation d'un outil
+                                            administratif en expérience citoyenne fluide, alignant service public et
+                                            standards UX modernes.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p0_achievements">• Audit UX et analyse des usages (Analytics)<br>
+                                            • Animation d'ateliers de co-conception métier<br>
+                                            • Refonte de l'architecture de l'information<br>
+                                            • Création du système visuel et UI Design<br>
+                                            • Prototypage interactif haute-fidélité (Figma)</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="nav_complete_title">Navigation Complète</h4>
+                                        <p><span data-key="nav_complete_alr3">Explorez le prototype →</span> <a
+                                                href="https://prototype-alr3.figma.site/" target="_blank"
+                                                class="border-b border-transparent hover:border-current transition font-medium text-blue-600 font-bold">prototype-alr3.figma.site
+                                                ↗</a></p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-auto pt-6 border-t border-gray-400 dark:border-white/5 flex justify-between items-baseline">
+                                    <div class="block">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium">Innovation UX/UI • 2024-2026</span>
+                                    </div>
+                                    <div class="block text-right">
+                                        <span
+                                            class="text-[10px] uppercase text-dynamic-sub block mb-1 opacity-0">Spacer</span>
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap mt-2">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span><a
+                                                href="https://kciope.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">K-CIOPÉ</a><span
+                                                class="opacity-50 mx-1">x</span><a href="https://www.marseille.fr/"
+                                                target="_blank"
+                                                class="text-dynamic-main underline transition-colors">VILLE
+                                                DE
+                                                MARSEILLE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right: Visual -->
+                            <div class="visual-side flex items-center justify-center">
+                                <div class="relative flex items-center justify-center">
+                                    <!-- Interactive Badge -->
+                                    <div class="prototype-badge" data-key="preview_label">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                            <line x1="12" y1="19" x2="12" y2="22" />
+                                        </svg>
+                                        <span>Clicca per interagire</span>
+                                    </div>
+                                    <iframe src="https://prototype-alr3.figma.site/" class="scale-iframe-content"
+                                        allow="fullscreen" loading="lazy"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. ROCKEASE -->
+                <div class="project-grid-cell" data-project="modal-rockease">
+                    <div class="modal-window">
+                        <!-- SPLIT LAYOUT -->
+                        <div class="modal-content-wrapper layout-split">
+                            <!-- Left: Text -->
+                            <div class="text-side">
+                                <span class="modal-meta-compact">Marketplace B2B</span>
+                                <h2 class="modal-title-compact mb-6" data-key="p_rockease_title_full">Rockease</h2>
+                                <p class="text-sm text-dynamic-sub mb-2 leading-relaxed"
+                                    data-key="p_rockease_main_desc">Au sein de la Digital Factory,
+                                    l'enjeu était de réduire le "Time-to-Market" sans sacrifier la qualité visuelle.
+                                    Mon rôle hybride a permis de combler le fossé entre design et développement. En
+                                    traduisant directement les concepts graphiques en solutions Webflow modulaires,
+                                    nous avons créé une plateforme robuste, évolutive et parfaitement fidèle à
+                                    l'identité de marque du groupe.</p>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte</h4>
+                                        <p data-key="p_rockease_context_desc">Marketplace B2B pour la commande de
+                                            matériaux de construction. Réduction du
+                                            "Time-to-Market" tout en maintenant une qualité visuelle premium et une
+                                            fidélité parfaite à l'identité de marque Colas.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_rockease_achievements">• Co-conception des interfaces<br>
+                                            • Développement et intégration Webflow<br>
+                                            • Architecture CMS & Collections<br>
+                                            • Gestion du Responsive Design<br>
+                                            • Recette visuelle (Pixel Perfect)</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="nav_complete_title">Navigation Complète</h4>
+                                        <p><span data-key="nav_complete_rockease">Explorez le site →</span> <a
+                                                href="https://www.rockease.fr/" target="_blank"
+                                                class="border-b border-transparent hover:border-current transition font-medium text-blue-600 font-bold">rockease.fr
+                                                ↗</a></p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-auto pt-6 border-t border-gray-400 dark:border-white/5 flex justify-between items-baseline">
+                                    <div class="block">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium">UI Designer • 2025</span>
+                                    </div>
+                                    <div class="block text-right">
+                                        <span
+                                            class="text-[10px] uppercase text-dynamic-sub block mb-1 opacity-0">Spacer</span>
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap mt-2">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span><a
+                                                href="https://kciope.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">K-CIOPÉ</a><span
+                                                class="opacity-50 mx-1">x</span><a href="https://www.colas.com/"
+                                                target="_blank"
+                                                class="text-dynamic-main underline transition-colors">COLAS</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right: Visual -->
+                            <div class="visual-side">
+                                <iframe src="https://www.rockease.fr/" allow="fullscreen" loading="lazy"
+                                    class="rockease-iframe"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. SYNERGIE -->
+                <div class="project-grid-cell" data-project="modal-synergie">
+                    <div class="modal-window">
+                        <!-- STACKED LAYOUT -->
+                        <div class="modal-content-wrapper layout-stacked">
+                            <!-- Top: Text -->
+                            <div class="text-side">
+                                <div class="header-group">
+                                    <span class="modal-meta-compact" data-key="p_synergie_subtitle">Digital
+                                        Transformation</span>
+                                    <h2 class="modal-title-compact" data-key="p_synergie_title_full">Synergie Group</h2>
+                                    <p class="text-sm text-dynamic-sub mt-2 leading-tight"
+                                        data-key="p_synergie_main_desc">Dans une guerre des talents compétitive,
+                                        l'expérience numérique est la première vitrine de la marque employeur.</p>
+
+                                    <div class="mt-6">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium block">UX/UI Designer • 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte & Solution</h4>
+                                        <p data-key="p_synergie_context_desc">Réseau international. Projet "Apollo" :
+                                            conception d'un tunnel d'acquisition progressif pour réduire l'abandon.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_synergie_achievements">• Scénarisation des parcours<br>
+                                            • Design de l'Onboarding<br>
+                                            • Dashboard Candidat</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
+                                            <a href="https://kciope.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">K-CIOPÉ</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.synergie.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">SYNERGIE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom: Visual -->
+                            <div class="visual-side">
+                                <img src="Img-inside-Synergie.png" alt="Synergie UI Design">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 2 -->
+                <!-- 4. AGIRC -->
+                <div class="project-grid-cell" data-project="modal-vamos">
+                    <div class="modal-window">
+                        <!-- STACKED LAYOUT -->
+                        <div class="modal-content-wrapper layout-stacked">
+                            <!-- Top: Text -->
+                            <div class="text-side">
+                                <div class="header-group">
+                                    <span class="modal-meta-compact" data-key="p_vamos_subtitle">Marketplace B2B</span>
+                                    <h2 class="modal-title-compact" data-key="p_vamos_title_full">Vamos Bikes (AU)</h2>
+                                    <p class="text-sm text-dynamic-sub mt-2 leading-tight" data-key="p_vamos_main_desc">
+                                        Plus qu'une vitrine, le site est ici le premier vendeur.</p>
+
+                                    <div class="mt-6">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium block" data-key="p_vamos_desc">UX/UI Designer •
+                                            2024</span>
+                                    </div>
+                                </div>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte & Solution</h4>
+                                        <p data-key="p_vamos_context_desc">Un site existant vieillissant qui ne
+                                            reflétait pas la qualité premium des vélos.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_vamos_achievements">• Audit UX et stratégie e-commerce<br>
+                                            • Refonte de l'identité visuelle</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
+                                            <a href="https://www.agencyeight.com.au/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">Agency
+                                                8</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://vamosbikes.com.au/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">Vamos
+                                                Bikes</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom: Visual -->
+                            <div class="visual-side" style="position: relative;">
+                                <img src="Img-inside-VAMOS.png" alt="Vamos Bikes UI">
+                                <a href="https://vamosbikes.com.au/" target="_blank" class="visit-site-chip">
+                                    <span data-key="open_site_label">Visit Website ↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. VAMOS -->
+                <div class="project-grid-cell" data-project="modal-agirc">
+                    <div class="modal-window">
+                        <!-- STACKED LAYOUT -->
+                        <div class="modal-content-wrapper layout-stacked">
+                            <!-- Top: Text -->
+                            <div class="text-side">
+                                <div class="header-group">
+                                    <span class="modal-meta-compact" data-key="p_agirc_subtitle">Retraite Complémentaire
+                                        B2B</span>
+                                    <h2 class="modal-title-compact" data-key="p_agirc_title_full">Agirc-Arrco</h2>
+                                    <p class="text-sm text-dynamic-sub mt-2 leading-tight" data-key="p_agirc_main_desc">
+                                        Intervention ciblée pour valider la refonte de l'espace B2B Agirc-Arrco.</p>
+
+                                    <div class="mt-6">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium block">UX Researcher & Analyst • 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte & Solution</h4>
+                                        <p data-key="p_agirc_context_desc">Pour réussir la refonte d'un portail aussi
+                                            complexe, l'intuition ne suffisait pas. Mon rôle a été d'apporter une
+                                            validation factuelle.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_agirc_achievements">• Recrutement et tests avec experts<br>
+                                            • Analyse comportementale<br>
+                                            • Consolidation des données</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
+                                            <a href="https://kciope.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">K-CIOPÉ</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.agirc-arrco.fr/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">AGIRC-ARRCO</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom: Visual -->
+                            <div class="visual-side">
+                                <img src="Img-inside-AGIRC-ARRCO.png" alt="Agirc Arrco UI Design">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. ALTAREA -->
+                <div class="project-grid-cell" data-project="modal-altarea">
+                    <div class="modal-window">
+                        <!-- SPLIT LAYOUT -->
+                        <div class="modal-content-wrapper layout-split">
+                            <!-- Left: Text -->
+                            <div class="text-side">
+                                <div class="header-group">
+                                    <span class="modal-meta-compact" data-key="p_altarea_subtitle">Urbanisme &
+                                        Adaptation Climatique</span>
+                                    <h2 class="modal-title-compact" data-key="p_altarea_title_full">ALTAREA</h2>
+                                    <p class="text-sm text-dynamic-sub mt-2 mb-2 leading-tight"
+                                        data-key="p_altarea_main_desc">
+                                        Développement d'une solution systémique pour atténuer les îlots de chaleur
+                                        urbains (ICU). En combinant canopée végétale et structure innovante, le projet
+                                        collecte l'eau de pluie et génère une ombre salvatrice.</p>
+                                </div>
+
+                                <div class="modal-points-grid mt-4">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte</h4>
+                                        <p data-key="p_altarea_context_desc">Les canicules rendent les espaces ouverts
+                                            invivables...</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_altarea_achievements">• Recherche et analyse du microclimat
+                                            urbain<br>
+                                            • Stratégie UX pour espaces en conditions extrêmes</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-auto pt-6 border-t border-gray-400 dark:border-white/5 flex justify-between items-baseline">
+                                    <div class="block">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium" data-key="p_altarea_desc">Global Designer -
+                                            2024</span>
+                                    </div>
+                                    <div class="block text-right">
+                                        <span
+                                            class="text-[10px] uppercase text-dynamic-sub block mb-1 opacity-0">Spacer</span>
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap mt-2">
+                                            <a href="https://www.cy-ecolededesign.fr/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">CY
+                                                Design</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.altarea.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">Altarea</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right: Visual -->
+                            <div class="visual-side" id="visual-altarea"
+                                style="display: block; overflow-y: auto; padding: 0; background: #f5f5f7; position: relative; scroll-behavior: smooth;">
+                                <img src="Cover-ALTAREA-1.png" alt="Altarea Project 1"
+                                    style="width: 100%; height: auto; display: block;">
+                                <img src="Cover-ALTAREA-2.png" alt="Altarea Project 2"
+                                    style="width: 100%; height: auto; display: block;">
+
+                                <!-- Scroll Indicator -->
+                                <div class="scroll-indicator-overlay">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7 10L12 15L17 10" stroke="white" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 3 -->
+                <!-- 7. REYOU -->
+                <div class="project-grid-cell" data-project="modal-reyou">
+                    <div class="modal-window">
+                        <!-- SPLIT LAYOUT -->
+                        <div class="modal-content-wrapper layout-split">
+                            <!-- Left: Text -->
+                            <div class="text-side">
+                                <span class="modal-meta-compact" data-key="p_reyou_subtitle">CIRCULAR ECONOMY &
+                                    DIGITAL RETAIL</span>
+                                <h2 class="modal-title-compact mb-6" data-key="p_reyou_title_full">REYOU</h2>
+                                <p class="text-sm text-dynamic-sub mb-2 leading-relaxed" data-key="p_reyou_main_desc">
+                                    Sviluppo di uno showroom interattivo digitale per la valorizzazione del mobilio
+                                    d'ufficio di seconda mano.</p>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte</h4>
+                                        <p data-key="p_reyou_context_desc">Le marché du réemploi souffre d'un déficit
+                                            d'image. L'objectif était de sublimer l'offre par une mise en situation
+                                            virtuelle désirable.</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_reyou_achievements">• Stratégie Phygital<br>
+                                            • UX/UI Immersif<br>
+                                            • Rendu 3D Premium</p>
+                                    </div>
+
+                                    <div class="point-item">
+                                        <h4 data-key="nav_complete_title">Navigation Complète</h4>
+                                        <p><span data-key="nav_complete_reyou">Explorez le site →</span> <a
+                                                href="https://reyou-portfolio-client.netlify.app/" target="_blank"
+                                                class="border-b border-transparent hover:border-current transition font-medium text-blue-600 font-bold">reyou.netlify.app
+                                                ↗</a></p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-auto pt-6 border-t border-gray-400 dark:border-white/5 flex justify-between items-baseline">
+                                    <div class="block">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium" data-key="p_reyou_desc">Global Designer •
+                                            2026</span>
+                                    </div>
+                                    <div class="block text-right">
+                                        <span
+                                            class="text-[10px] uppercase text-dynamic-sub block mb-1 opacity-0">Spacer</span>
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap mt-2">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
+                                            <span class="text-dynamic-main underline">CY Design</span>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.re-you.fr/" target="_blank"
+                                                class="hover:text-dynamic-main transition-colors underline">REYOU</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Visual -->
+                            <div class="visual-side"
+                                style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <div class="relative flex items-center justify-center w-full h-full">
+                                    <!-- Interactive Badge -->
+                                    <div class="prototype-badge badge-yellow" data-key="preview_label">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                            <line x1="12" y1="19" x2="12" y2="22" />
+                                        </svg>
+                                        <span>Clicca per interagire</span>
+                                    </div>
+                                    <iframe src="https://reyou-portfolio-client.netlify.app/" allow="fullscreen"
+                                        loading="lazy" class="reyou-iframe"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. ALTAREA -->
+                <!-- 8. ELBA (Moved) -->
+                <div class="project-grid-cell" data-project="modal-elba">
+                    <div class="modal-window">
+                        <!-- STACKED LAYOUT -->
+                        <div class="modal-content-wrapper layout-split">
+                            <!-- Left: Text -->
+                            <div class="text-side">
+                                <span class="modal-meta-compact" data-key="p_elba_subtitle">LUXURY PACKAGING &
+                                    ECO-DESIGN</span>
+                                <h2 class="modal-title-compact mb-6" data-key="p_elba_title">Helena Rubinstein</h2>
+                                <p class="text-sm text-dynamic-sub mb-2 leading-relaxed" data-key="p_elba_main_desc">
+                                    Développement d'une édition limitée pour le marché chinois de l'iconique crème
+                                    Re-Plasty, à l'occasion du Nouvel An Lunaire. Le projet résout le paradoxe entre
+                                    luxe célébratif et responsabilité environnementale, transformant un produit
+                                    saisonnier en un objet durable.</p>
+
+                                <div class="modal-points-grid">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte & Solution</h4>
+                                        <p data-key="p_elba_context_desc">Le Nouvel An Lunaire est la période
+                                            commerciale la plus critique pour le marché chinois, dominé par des
+                                            packagings cérémoniels "jetables".</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_elba_achievements">• Analyse sémiotique des codes culturels<br>
+                                            • Éco-conception du sistema "Refill"<br>
+                                            • Développement graphique et matière</p>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-12 pt-6 border-t border-gray-400 dark:border-white/5 flex justify-between items-baseline">
+                                    <div class="block">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium" data-key="p_elba_desc">Global Designer •
+                                            2023</span>
+                                    </div>
+                                    <div class="block text-right">
+                                        <span
+                                            class="text-[10px] uppercase text-dynamic-sub block mb-1 opacity-0">Spacer</span>
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub whitespace-nowrap mt-2">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
+                                                href="https://www.cy-ecolededesign.fr/" target="_blank"
+                                                class="hover:text-dynamic-main transition-colors underline">CY
+                                                Design</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.helenarubinstein.fr/" target="_blank"
+                                                class="hover:text-dynamic-main transition-colors underline">HELENA
+                                                RUBINSTEIN</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right: Visual -->
+                            <div class="visual-side">
+                                <img src="elba-project-2.png" alt="Helena Rubinstein Project">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. INTEROP -->
+                <div class="project-grid-cell" data-project="modal-interop">
+                    <div class="modal-window">
+                        <!-- STACKED LAYOUT -->
+                        <div class="modal-content-wrapper layout-stacked">
+                            <!-- Top: Text -->
+                            <div class="text-side">
+                                <div class="header-group">
+                                    <span class="modal-meta-compact" data-key="p_interop_subtitle">Référentiel
+                                        Interopérabilité</span>
+                                    <h2 class="modal-title-compact" data-key="p_interop_title_full">Groupe Atlantic</h2>
+
+                                    <p class="text-sm text-dynamic-sub mt-2 leading-tight"
+                                        data-key="p_interop_main_desc">
+                                        Conception d'un outil interne de vérification d'interopérabilité des produits
+                                        connectés.
+                                    </p>
+
+                                    <div class="mt-4">
+                                        <h4 class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="nav_complete_title">Navigation Complète</h4>
+                                        <p class="text-xs">
+                                            <span data-key="nav_complete_interop">Explorez le prototype →</span>
+                                            <a href="https://referentiel-interoperativite.figma.site/" target="_blank"
+                                                class="border-b border-transparent hover:border-current transition font-medium whitespace-nowrap text-blue-600 font-bold">referentiel-interop.figma.site
+                                                ↗</a>
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <span class="text-[10px] uppercase text-dynamic-sub block mb-1"
+                                            data-key="label_role_date">Role & Date</span>
+                                        <span class="text-xs font-medium block" data-key="p_interop_desc">UX/UI Designer
+                                            - 2025</span>
+                                    </div>
+                                </div>
+
+                                <div class="modal-points-grid mt-4">
+                                    <div class="point-item">
+                                        <h4 data-key="label_context">Contexte & Solution</h4>
+                                        <p data-key="p_interop_context_desc">Face à la complexité croissante des
+                                            écosystèmes connectés...</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <h4 data-key="label_achievements">Réalisations</h4>
+                                        <p data-key="p_interop_achievements">• Recherche utilisateur (Besoin
+                                            Support)<br>• UI Design & Système visuel</p>
+                                    </div>
+                                    <div class="point-item">
+                                        <div
+                                            class="text-xs uppercase tracking-wider font-medium text-dynamic-sub mt-1 whitespace-nowrap">
+                                            <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
+                                            <a href="https://kciope.com/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">K-ciopé</a>
+                                            <span class="opacity-50 mx-1">x</span>
+                                            <a href="https://www.groupe-atlantic.fr/" target="_blank"
+                                                class="text-dynamic-main underline transition-colors">Groupe
+                                                Atlantic</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Bottom: Visual -->
+                            <div class="visual-side" style="background: #f5f5f5; position: relative; overflow: hidden;">
+                                <!-- Interactive Badge -->
+                                <div class="prototype-badge badge-yellow" data-key="preview_label">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="shrink-0"
+                                        stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                        <line x1="12" y1="19" x2="12" y2="22" />
+                                    </svg>
+                                    <span>Clicca per interagire</span>
+                                </div>
+                                <iframe src="https://referentiel-interoperativite.figma.site/" allow="fullscreen"
+                                    loading="lazy"
+                                    style="position: absolute; left: 50%; top: 0; width: 181.81%; height: 181.81%; border: none; transform: translateX(-50%) scale(0.55); transform-origin: top center;"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 4 -->
+                <!-- 10. MAKE REMOVED -->
+
+                <!-- Empty cells to fill the row if needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Separate References Modal -->
+    <!-- CONTACT MODAL -->
+    <div id="modal-contact" class="modal-backdrop" onclick="closeModal(event)" role="dialog" aria-modal="true"
+        aria-label="Contact">
+        <div class="modal-window max-w-lg h-auto max-h-[90vh]">
+            <button type="button" class="close-modal-btn" onclick="closeModalForce()"
+                aria-label="Close Modal">✕</button>
+
+            <!-- Form State -->
+            <div id="contact-form-container" class="p-8 pt-16">
+                <div class="mb-6 text-center">
+                    <span class="text-[10px] uppercase tracking-widest text-dynamic-sub mb-2 block"
+                        data-key="contact_reach_out">Reach Out</span>
+                    <h2 class="text-2xl font-bold text-dynamic-main" data-key="contact_title">Let's talk innovation.
+                    </h2>
+                </div>
+
+                <form class="space-y-4" onsubmit="handleContactSubmit(event)">
+                    <div>
+                        <input type="text" data-key="contact_placeholder_name" placeholder="Name" required
+                            class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-3 text-sm text-dynamic-main placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <input type="text" data-key="contact_placeholder_company" placeholder="Company" required
+                            class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-3 text-sm text-dynamic-main placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <input type="text" data-key="contact_placeholder_role" placeholder="Role" required
+                            class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-3 text-sm text-dynamic-main placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+                    <div>
+                        <input type="email" data-key="contact_placeholder_email" placeholder="Email" required
+                            class="w-full bg-transparent border-b border-gray-300 dark:border-gray-700 py-3 text-sm text-dynamic-main placeholder-gray-500 focus:outline-none focus:border-blue-500 transition-colors">
+                    </div>
+
+                    <div class="pt-6">
+                        <button type="submit"
+                            class="w-full bg-dynamic-main text-bg-color py-3 px-6 rounded-lg text-xs font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
+                            <span data-key="contact_send_btn">Send Message</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Success State (Hidden by default) -->
+            <div id="contact-success-message"
+                class="hidden p-12 pt-20 text-center flex-col items-center justify-center h-full min-h-[400px]">
+                <div
+                    class="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center mb-6 text-green-500">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-dynamic-main mb-2" data-key="contact_success_title">Message Sent!</h3>
+                <p class="text-dynamic-sub text-sm max-w-xs mx-auto leading-relaxed" data-key="contact_success_desc">
+                    Thank you for reaching out. I'll get back to you regarding your inquiry as soon as possible.
+                </p>
+
+            </div>
+        </div>
+    </div>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+        class="fixed bottom-8 right-8 z-50 p-3 bg-black dark:bg-white text-white dark:text-black rounded-full shadow-xl transition-all duration-500 opacity-0 translate-y-10 hover:scale-110 pointer-events-none"
+        aria-label="Back to Top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+
+    <script src="script.js?v=2"></script>
+    <script src="script_contact.js"></script>
+</body>
+
+</html>
