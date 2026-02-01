@@ -14,7 +14,12 @@ function renderMethodologyTimeline() {
     // Each phase is a block of fixed width (e.g., 600px).
     // Total Width = numPhases * phaseWidth.
 
-    const phaseWidth = 600; // px
+    // Adaptive Phase Width based on Screen
+    const windowWidth = window.innerWidth;
+    let phaseWidth = 600; 
+    if (windowWidth < 1440) phaseWidth = 500;
+    if (windowWidth < 1024) phaseWidth = 400;
+    if (windowWidth < 768) phaseWidth = 350;
     const h = 400; // Visual Height
 
     methodologyPhases.forEach((phase, index) => {

@@ -1,43 +1,50 @@
-
 // --- CONTACT FORM LOGIC ---
-function handleContactSubmit(event) {
-    event.preventDefault(); // Stop default form handling
+// --- CONTACT FORM LOGIC ---
+// --- CONTACT FORM LOGIC (Iframe Submission - The most reliable method) ---
 
-    // Get input values
+// 1. Handle the "Loading" state when the user clicks Send
+function handleFormLoading(event) {
     const form = event.target;
-    // We assume the inputs are in order: Name, Company, Role, Email
-    // Best practice: add IDs/Names to inputs, but based on previous HTML they just had basic attributes.
-    // Let's grab them by index or query selector for robustness if I can't change HTML now.
-    // I previously replaced the HTML, let's assume I can querySelect inside the form.
-    const inputs = form.querySelectorAll('input');
-    const name = inputs[0].value;
-    const company = inputs[1].value;
-    const role = inputs[2].value;
-    const email = inputs[3].value;
+    const submitBtn = form.querySelector('button[type="submit"]');
 
-    // Construct Email Body
-    // Using encodeURIComponent to ensure special characters work in mailto
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name} (${company})`);
-    const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Company: ${company}\n` +
-        `Role: ${role}\n` +
-        `Email: ${email}\n\n` +
-        `Hi Andrea,\n\nI'm interested in discussing...`
-    );
+    // Immediate feedback
+    submitBtn.disabled = true;
+    submitBtn.dataset.originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<span class="opacity-40 tracking-widest">...</span>';
 
-    // Trigger Mailto
-    window.location.href = `mailto:andreamoncada1405@gmail.com?subject=${subject}&body=${body}`;
+    // Optimistic UI: Trigger success after a tiny "think" delay
+    // This removes all perceived lag and makes the form feel extremely fast.
+    setTimeout(() => {
+        handleFormSuccess();
+    }, 600);
+}
 
-    // Show Success UI (Opt-in: user still has to press send in their mail app, but this confirms the site did its part)
+// 2. Handle the "Success" UI when the hidden iframe finishes loading
+function handleFormSuccess() {
+    if (!window.submitted) return;
+
     const formContainer = document.getElementById('contact-form-container');
     const successMessage = document.getElementById('contact-success-message');
+    const form = formContainer ? formContainer.querySelector('form') : null;
 
     if (formContainer && successMessage) {
         formContainer.classList.add('hidden');
         successMessage.classList.remove('hidden');
         successMessage.classList.add('flex');
     }
+
+    if (form) {
+        form.reset();
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = submitBtn.dataset.originalText || 'Send Message';
+        }
+    }
+
+    // Reset state
+    window.submitted = false;
+    clearTimeout(window.contactTimeout);
 }
 
 // Reset form when opening the contact modal

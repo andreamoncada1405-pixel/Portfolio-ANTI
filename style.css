@@ -165,24 +165,28 @@ h3 {
 .modal-window {
     background: var(--modal-bg);
     width: 90vw;
-    height: 90vh;
-    max-width: 1400px;
+    max-height: 85vh;
+    /* Prevents being cut off by taskbars */
     border-radius: 24px;
     border: 1px solid var(--card-border);
     box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.2);
-    /* Ombra più leggera */
     position: relative;
     transform: scale(0.96);
     opacity: 0;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow-y: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    overflow: hidden;
+    /* Changed from scroll to contain internal scroll */
     color: var(--text-main);
+    display: flex;
+    flex-direction: column;
 }
 
-.modal-window::-webkit-scrollbar {
-    display: none;
+/* Modal sizing for low height screens */
+@media (max-height: 800px) {
+    .modal-window {
+        height: 95vh;
+        max-height: 95vh;
+    }
 }
 
 .modal-backdrop.active .modal-window {
@@ -294,6 +298,29 @@ h3 {
     border: none;
 }
 
+.method-mask {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+        linear-gradient(to right, transparent 0%, transparent 22%, black 32%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+        linear-gradient(to right, transparent 0%, transparent 22%, black 32%, black 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+@media (max-width: 1024px) {
+    .method-mask {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+            linear-gradient(to right, transparent 0%, transparent 35%, black 45%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+            linear-gradient(to right, transparent 0%, transparent 35%, black 45%, black 100%);
+    }
+}
+
 /* --- ABOUT SECTION 3D HOVER --- */
 .about-container {
     perspective: 2000px;
@@ -338,6 +365,34 @@ h3 {
 .about-container:hover .about-photo-card .client-logo {
     filter: grayscale(0);
     opacity: 1;
+}
+
+.info-chip {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.about-photo-card:hover .info-chip {
+    opacity: 1;
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .info-chip {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Dark mode logo visibility: Invert dark logos to light */
@@ -992,6 +1047,95 @@ h3 {
     /* Ensure snap always centers this cell */
 }
 
+/* Overrides for ALR3, Colas, & Altarea Layout */
+[data-project="modal-kciope"] .modal-content-wrapper,
+[data-project="modal-rockease"] .modal-content-wrapper,
+[data-project="modal-altarea"] .modal-content-wrapper,
+[data-project="modal-reyou"] .modal-content-wrapper,
+[data-project="modal-elba"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    /* Crucial for flex contraction */
+    display: flex;
+    /* Ensure it keeps flex behavior */
+    flex-direction: row;
+    /* Split layout */
+}
+
+[data-project="modal-kciope"] .visual-side,
+[data-project="modal-rockease"] .visual-side,
+[data-project="modal-altarea"] .visual-side,
+[data-project="modal-reyou"] .visual-side,
+[data-project="modal-elba"] .visual-side {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    /* Prevent iframe from forcing height */
+}
+
+[data-project="modal-kciope"] .text-side,
+[data-project="modal-rockease"] .text-side,
+[data-project="modal-altarea"] .text-side,
+[data-project="modal-reyou"] .text-side,
+[data-project="modal-elba"] .text-side {
+    overflow-y: scroll;
+    /* Force scroll but hide bar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    min-height: 0;
+    /* Allow shrinking */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+[data-project="modal-kciope"] .text-side::-webkit-scrollbar,
+[data-project="modal-rockease"] .text-side::-webkit-scrollbar,
+[data-project="modal-altarea"] .text-side::-webkit-scrollbar,
+[data-project="modal-reyou"] .text-side::-webkit-scrollbar,
+[data-project="modal-elba"] .text-side::-webkit-scrollbar {
+    display: none;
+}
+
+/* Disable vertical scroll entirely for Synergie, Vamos & Agirc */
+[data-project="modal-synergie"] .modal-content-wrapper,
+[data-project="modal-vamos"] .modal-content-wrapper,
+[data-project="modal-agirc"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    /* ABSOLUTE REMOVAL OF SCROLL */
+}
+
+/* Maintain scrollable but hidden-bar logic for Interop and others */
+[data-project="modal-interop"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera (Stacked) */
+[data-project="modal-interop"] .modal-content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+[data-project="modal-synergie"] .visual-side,
+[data-project="modal-vamos"] .visual-side,
+[data-project="modal-agirc"] .visual-side,
+[data-project="modal-interop"] .visual-side {
+    height: auto;
+    min-height: 0;
+}
+
 /* Inner modal-like window inside the grid cell */
 .project-grid-cell .modal-window {
     width: 100%;
@@ -1024,15 +1168,43 @@ h3 {
 
 .layout-split .text-side {
     width: 50%;
-    /* Widened from 45% */
     padding: 6vh 5vw;
-    /* Reduced from 8vh to bring content closer to top */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* Changed from center to prevent floating space */
     position: relative;
     z-index: 20;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.has-mask-v {
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.has-mask-h {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.layout-split .text-side:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbar for side-scrolling text */
+.layout-split .text-side::-webkit-scrollbar {
+    width: 4px;
+}
+
+.layout-split .text-side::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.layout-split .text-side::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    /* Slightly visible as hint */
+    border-radius: 10px;
 }
 
 
@@ -1064,11 +1236,15 @@ h3 {
 .layout-stacked .text-side {
     height: auto;
     flex: 0 0 auto;
-    padding: 5.5vh 4vw;
+    padding: 5.5vh 4vw 7vh 4vw;
+    /* Added bottom padding to avoid touching image */
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+    gap: 2rem;
+    /* Reduced from 4rem to fit content better */
+    /* Ensure gap between header and points */
     border-bottom: 1px solid var(--card-border);
     position: relative;
     z-index: 20;
@@ -1080,11 +1256,25 @@ h3 {
     flex: 0 0 auto;
     position: relative;
     background: #f5f5f7;
-    /* overflow: hidden; Removed for sticky chip */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Align to top as requested */
+    padding-top: 0;
 }
 
 .layout-stacked .visual-side img {
     height: auto;
+    width: 100%;
+    /* Fill width */
+    height: 100%;
+    /* Fill height */
+    object-fit: cover;
+    /* Zoom to cover space without distortion */
+    object-position: top center;
+    /* Keep top aligned while zooming */
+    display: block;
 }
 
 [data-theme="dark"] .layout-stacked .visual-side {
@@ -1117,15 +1307,91 @@ h3 {
 }
 
 .layout-stacked .modal-points-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    margin-top: 1.5rem;
-    width: 65%;
-    padding-bottom: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Dynamic columns that grow to fill space */
+    gap: 2rem;
+    /* Balanced gap */
+    margin-top: 5.25rem;
+    /* Increased to align with main title */
+    flex: 1;
+    /* Take all available space in the row */
+    padding-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.layout-stacked .point-item {
+    /* Reset for desktop */
+    width: auto;
+    flex: initial;
+}
+
+/* Hide scrollbar but keep functionality for grid or use subtle one */
+.layout-stacked .modal-points-grid::-webkit-scrollbar {
+    height: 3px;
+}
+
+.layout-stacked .modal-points-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+/* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
+/* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
+@media (max-width: 1600px),
+(max-height: 900px) {
+    .layout-stacked .text-side {
+        flex-direction: row;
+        /* Keep it horizontal */
+        padding: 2.5vh 4vw 6vh 4vw;
+        /* SIGNIFICANT bottom padding to avoid touching image */
+        /* Less top, MORE bottom to avoid touching image */
+        max-height: 48vh;
+        /* Relaxed limit to fit content */
+        overflow-y: auto;
+        /* Scroll enabled (safety) */
+        gap: 1rem;
+    }
+
+    .layout-stacked .header-group {
+        width: 85%;
+        /* Make it VERY WIDE as requested */
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
+
+    /* Compact typography for description to save vertical space */
+    .layout-stacked .header-group p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .layout-stacked .modal-points-grid {
+        display: flex;
+        /* Enforce flexbox for horizontal scrolling on laptop/mobile */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: auto;
+        flex: 1;
+        margin-top: 5.25rem;
+        gap: 1.5rem;
+        padding-left: 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .layout-stacked .point-item {
+        flex: 0 0 320px;
+        /* Force wide columns on reduced screens */
+        width: 320px;
+        min-width: 320px;
+    }
 }
 
 .layout-stacked .header-group {
-    width: 30%;
+    width: 35%;
+    /* Testing 35% width for more detail space */
+    flex-shrink: 0;
 }
 
 .point-item h4 {
@@ -1201,54 +1467,144 @@ h3 {
     transform: scale(0.8);
 }
 
-/* Custom scaler for Figma iframes to prevent cropping */
+/* Custom scaler for Figma iframes - Adaptable Scale */
 .scale-iframe-content {
     width: 500px !important;
     height: 2000px !important;
     min-height: 2000px;
     min-width: 500px;
-    transform: scale(0.72) translateY(380px);
-    transform-origin: top center;
+    transform: translate(-50%, -50%) scale(0.65);
+    transform-origin: center center;
     border-radius: 12px;
     box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
     z-index: 10;
-    position: relative;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
     border: none;
     display: block;
+    transition: transform 0.3s ease;
 }
 
 .rockease-iframe {
     width: 1600px !important;
-    height: 2400px !important;
-    min-height: 2400px;
+    height: 250% !important;
+    /* 100% / 0.4 scale */
+    min-height: 0;
     min-width: 1600px;
-    transform: scale(0.5) translateY(1625px);
+    transform: translate(-50%, 0) scale(0.4);
     transform-origin: top center;
     border-radius: 12px;
     box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
     z-index: 10;
-    position: relative;
-    margin: 0 auto;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin: 0;
     border: none;
     display: block;
+    transition: transform 0.3s ease;
 }
+
+/* Hide Scrollbar for Altarea Visual Side */
+[data-project="modal-altarea"] .visual-side {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+[data-project="modal-altarea"] .visual-side::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+
 
 .reyou-iframe {
     width: 1538px !important;
     height: 1000px !important;
     min-height: 1000px;
     min-width: 1538px;
-    transform: scale(0.48);
+    transform: translate(-50%, -50%) scale(0.48);
     transform-origin: center center;
     border-radius: 12px;
     box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    position: relative;
-    margin: auto;
-    margin-top: -80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
     border: none;
     display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Responsiveness: Scale adjustment for smaller screens */
+@media (max-width: 1500px) {
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.35);
+        height: 285% !important;
+        /* 100% / 0.35 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.55);
+    }
+}
+
+@media (max-width: 1280px) {
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.3);
+        height: 333% !important;
+        /* 100% / 0.3 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.35);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    .layout-split .text-side {
+        width: 55%;
+    }
+
+    .layout-split .visual-side {
+        width: 45%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .modal-window {
+        width: 95vw;
+        height: 85vh;
+    }
+
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.25);
+        height: 400% !important;
+        /* 100% / 0.25 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    .modal-title-compact {
+        font-size: 1.8rem;
+    }
 }
 
 /* Interactive Prototype Badge - Soap Bubble */
@@ -1490,14 +1846,6 @@ h3 {
 /* GROUPE ATLANTIC (Interop) Specific Overrides */
 [data-project="modal-interop"] .layout-stacked .text-side {
     padding: 3vh 4vw;
-    /* Reduced from 5.5vh to reclaim space */
-}
-
-[data-project="modal-interop"] .layout-stacked .modal-points-grid {
-    /* Three column layout with auto-sizing for the collaboration part to prevent wrap */
-    grid-template-columns: 1.2fr 1fr auto;
-    gap: 1.5rem;
-    align-items: flex-start;
 }
 
 [data-project="modal-interop"] .layout-stacked .visual-side iframe {
@@ -1522,6 +1870,159 @@ h3 {
     z-index: 1;
 }
 
-[data-project="modal-vamos"] .layout-stacked .modal-points-grid {
-    grid-template-columns: 1.2fr 1.0fr 0.8fr;
+/* --- SCROLL INDICATORS --- */
+.modal-content-wrapper {
+    position: relative;
+}
+
+/* Base Style */
+.scroll-indicator {
+    position: absolute;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+    /* Hidden by default */
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    /* JS controls visibility via class */
+    display: block;
+}
+
+/* SVG Styling */
+.scroll-indicator svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-sub);
+    stroke-width: 2;
+    fill: none;
+}
+
+/* --- VERTICAL INDICATOR (For Text Column) --- */
+.scroll-indicator-vertical {
+    animation: bounce-vertical 2s infinite;
+    /* Default for SPLIT layout (Desktop > 1280px): Text is 50%, so center is 25% */
+    bottom: 2rem;
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+/* --- HORIZONTAL INDICATOR (For Points Grid) --- */
+.scroll-indicator-horizontal {
+    animation: bounce-horizontal 2s infinite;
+    /* Positioned ABSOLUTE inside .modal-content-wrapper */
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+@keyframes bounce-vertical {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    40% {
+        transform: translate(-50%, -5px);
+    }
+
+    60% {
+        transform: translate(-50%, -3px);
+    }
+}
+
+@keyframes bounce-horizontal {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%);
+    }
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    60% {
+        transform: translateX(-45%);
+    }
+}
+
+/* Reduced Screen Logic */
+@media (max-width: 1600px),
+(max-height: 900px) {
+
+    /* Ensure indicators can be seen */
+    .scroll-indicator {
+        display: block;
+        /* But hidden by opacity until 'visible' added */
+        opacity: 0;
+    }
+
+    .scroll-indicator.visible {
+        opacity: 0.8;
+    }
+
+    /* Stacked (Mobile) Adjustments */
+    .layout-stacked .scroll-indicator-vertical {
+        /* In stacked, appended to text-side. Relative to text-side */
+        /* Acts as "Read More" at bottom of text block */
+        bottom: 1rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .layout-stacked .scroll-indicator-horizontal {
+        /* Horizontal: In text-side. Relative to text-side */
+        /* Positioned on the RIGHT edge to indicate "Scroll Right" */
+        bottom: auto;
+        top: 50%;
+        right: 1rem;
+        /* Suggesting rightward movement */
+        left: auto;
+        transform: translateY(-50%);
+    }
+}
+
+/* --- STATIC FOOTER (Flex Column Layout) --- */
+
+.modal-footer-static {
+    width: 100%;
+    flex: 0 0 auto;
+    /* Don't shrink/grow */
+    background: var(--bg-card);
+    /* Use variable if available, else #fff */
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    min-height: 50px;
+    z-index: 60;
+    position: relative;
+    border-radius: 0 0 24px 24px;
+    /* Match modal rounded corners at bottom */
+}
+
+[data-theme="dark"] .modal-footer-static {
+    background: #111;
+}
+
+/* Responsive Adjustment for Methodology Timeline on Small Heights */
+@media screen and (max-height: 800px) {
+    .responsive-decision-content {
+        padding-top: 2rem !important;
+        /* Pull content up over the schema when vertical space is tight */
+    }
 }

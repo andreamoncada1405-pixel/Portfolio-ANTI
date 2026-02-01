@@ -228,21 +228,25 @@ const methodologyPhases = [
 
 const translations = {
     'fr': {
-        'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact',
+        'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact', 'nav_method': 'Méthode', 'nav_cv': 'CV',
+        'nav_logo_title': 'Designer Systémique & Stratégiste de l\'Innovation',
         'meta_at': 'chez',
         'hero_title': 'Innovation<br>Systémique.',
-        'hero_subtitle': 'Le pont entre Design & Business Strategy',
-        'story_text': 'Je transforme l\'esthétique en strategy. En tant que Systemic Designer, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href=\"https://em-lyon.com/\" target=\"_blank\" class=\"underline hover:opacity-70 transition\">EM Lyon</a>, je recherche une alternance pour structurer vos projets complexes.',
+        'hero_subtitle': 'La rencontre entre Design & Business Strategy',
+        'story_text': 'Je transforme la complexité en opportunité stratégique. En tant que Systemic Designer, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, je recherche une alternance pour structurer vos projets complexes.',
         'section_work': 'Projets Sélectionnés',
         'label_problem': 'La Problématique', 'label_goal': 'L\'Objectif', 'label_solution': 'La Solution',
         'about_education': 'Éducation', 'about_current': 'Poste Actuel', 'about_focus': 'Expertise', 'about_frameworks': 'Frameworks',
+        'about_focus_1': 'Mngmt de l\'Innovation', 'about_focus_2': 'Design Systémique',
+        'about_frameworks_1': 'Méthodes UX', 'about_frameworks_2': 'Design Thinking',
 
         // MODAL UI
         'preview_label': 'Explorez le prototype',
+        'click_to_interact': 'Cliquez pour interagir',
         'preview_label_interactive': 'Aperçu Interactif',
         'preview_label_platform': 'Aperçu Plateforme Live',
         'preview_label_prototype': 'Prototype Interactif',
-        'preview_label_presentation': 'Présentation Interactive',
+        'preview_label_presentation': 'Présentation Interactif',
         'open_site_label': 'Ouvrir le site ↗',
         'open_fullscreen_label': 'Ouvrir en plein écran ↗',
 
@@ -250,7 +254,7 @@ const translations = {
         'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe', 'p0_problem': 'Moderniser la gestion des incidents (voirie, propreté) pour les agents de terrain et les citoyens, remplaçant des processus obsolètes.', 'p0_goal': 'Fluidifier la remontée d\'information et optimiser l\'intervention des services publics via une UX mobile-first.', 'p0_solution': 'Prototypage haute-fidélité pour validation rapide par les parties prenantes avant développement (Agile).',
         'p0_main_desc': 'Vecteur clé de la transition écologique, l\'application devait dépasser sa fonction utilitaire pour devenir un véritable moteur d\'engagement. Cette refonte a métamorphosé un outil technique complexe en un compagnon du quotidien, fluide et intuitif, démocratisant l\'accès aux éco-gestes pour l\'ensemble des habitants de la Métropole.',
         'p0_achievements': '• Audit UX et analyse des usages (Analytics)<br>• Animation d\'ateliers de co-conception métier<br>• Refonte de l\'architecture de l\'information<br>• Création du système visuel et UI Design<br>• Prototypage interactif haute-fidélité (Figma)',
-        'p0_context_desc': 'Navigation complexe et faible adoption. Transformation d\'un outil administratif en expérience citoyenne fluide, alignant service public et standards UX modernes.',
+        'p0_context_desc': 'Navigation complexe and faible adoption. Transformation d\'un outil administratif en expérience citoyenne fluide, alignant service public et standards UX modernes.',
 
         'nav_complete_title': 'Navigation Complète',
         'nav_complete_alr3': 'Explorez le prototype →',
@@ -267,9 +271,11 @@ const translations = {
         'contact_placeholder_company': 'Entreprise',
         'contact_placeholder_role': 'Rôle',
         'contact_placeholder_email': 'Email',
+        'contact_placeholder_message': 'Votre Message',
         'contact_send_btn': 'Envoyer le Message',
-        'contact_success_title': 'Message Envoyé !',
-        'contact_success_desc': 'Merci de m\'avoir contacté. Je reviendrai vers vous concernant votre demande dès que possible.',
+        'contact_success_label': 'MESSAGE REÇU',
+        'contact_success_title': 'Merci !',
+        'contact_success_desc': 'Votre message a bien été reçu. Je reviendrai vers vous très prochainement.',
 
         // SYNERGIE
         'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Transformation Digitale', 'p_synergie_desc': 'UX/UI Designer • 2025', 'p_synergie_title_full': 'Synergie',
@@ -311,29 +317,29 @@ const translations = {
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
         'p_elba_subtitle': 'LUXURY PACKAGING & ECO-DESIGN',
-        'p_elba_desc': 'Designer • 2023',
+        'p_elba_desc': 'Systemic Product Designer • 2023',
         'p_elba_main_desc': 'Développement d\'une édition limitée pour le marché chinois de l\'iconique crème Re-Plasty, à l\'occasion du Nouvel An Lunaire. Le projet résout le paradoxe entre luxe célébratif et responsabilité environnementale, transformant un produit saisonnier en un objet durable.',
         'p_elba_achievements': '• Analyse sémiotique des codes culturels chinois et des rituels du luxe<br>• Éco-conception du système "Refill" pour prolonger le cycle de vie du packaging<br>• Développement graphique et matière (finition or) cohérent avec l\'héritage de la marque<br>• Rendu 3D photoréaliste pour la valorisation du concept',
         'p_elba_context_desc': 'Le Nouvel An Lunaire est la période commerciale la plus critique pour le marché chinois, dominé par des packagings cérémoniels "jetables". Cette solution de recharge éco-responsable permet de respecter la tradition du don tout en introduisant un nouveau standard de durabilité.',
 
         // REYOU
-        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Designer • 2026', 'p_reyou_title_full': 'REYOU',
+        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
         'p_reyou_subtitle': 'ÉCONOMIE CIRCULAIRE & RETAIL DIGITAL',
         'p_reyou_main_desc': 'Développement d\'un showroom numérique interactif pour valoriser le mobilier de bureau de seconde main (réemploi). Le projet digitalise l\'espace physique (Coworking "Le Périscope"), permettant aux clients B2B d\'explorer et d\'acheter le stock directement dans un contexte d\'usage réel. Une solution qui lève les freins psychologiques liés à l\'occasion, transformant un inventaire statique en expérience immersive.',
         'p_reyou_achievements': '• Conception de la stratégie "Phygital"<br>• UX/UI Design de l\'interface interactive<br>• Modélisation et rendu stratégique<br>• Intégration de la génération de leads',
-        'p_reyou_context_desc': 'Le marché du mobilier reconditionné souffre souvent d\'un déficit d\'image. Le défi était de prouver que le mobilier de réemploi peut soutenir des espaces de travail modernes et premium. L\'intuition a été de ne pas vendre la pièce seule, mais le "set" contextualisé.',
+        'p_reyou_context_desc': 'Le marché du mobilier reconditionné souffre souvent d\'un déficit d\'image. Le défi était de prouver que le mobilier de réemploi peut soutenir des espaces de travail modernes et premium. L\'intuition a été de ne pas vendre la pièce seule, mais le \"set\" contextualisé.',
 
         // AI EXPERTISE
         'section_ai_expertise': 'Expertise IA',
-        'ai_expertise_title': 'DesignOps & Automatisation',
+        'ai_expertise_title': 'Workflow IA & Automatisation',
         'ai_expertise_desc': 'Optimisation des flux créatifs par l\'IA. Je conçois des systèmes qui automatisent les tâches répétitives pour libérer le potentiel créatif des équipes.',
 
 
         // ALTAREA
-        'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Designer - 2024',
+        'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanisme & Adaptation Climatique',
-        'p_altarea_main_desc': 'Développement d\'une solution systémique pour atténuer les îlots de chaleur urbains (ICU). En combinant canopée végétale et structure innovante, le projet collecte l\'eau de pluie et génère une ombre salvatrice, transformant la place publique en un refuge climatique actif ed poétique.',
+        'p_altarea_main_desc': 'Développement d\'une solution systémique pour atténuer les îlots de chaleur urbains (ICU). En combinant canopée végétale et structure innovante, le projet collecte l\'eau de pluie et génère une ombre salvatrice, transformant la place publique en un refuge climatique actif et poétique.',
         'p_altarea_achievements': '• Recherche et analyse du microclimat urbain<br>• Stratégie UX pour espaces en conditions extrêmes<br>• Conception intégrale du système (mobilier urbain)<br>• Modélisation 3D et rendu photoréaliste',
         'p_altarea_context_desc': 'Les canicules rendent les espaces ouverts invivables. L\'approche traditionnelle du mobilier urbain est insuffisante face à l\'urgence climatique. Le défi : dépasser le "verdissement" esthétique pour une solution fonctionnelle qui réduit la température ressentie et préserve la vie sociale.',
 
@@ -345,20 +351,19 @@ const translations = {
         'p_interop_main_desc': 'Conception d\'un outil interne de vérification d\'interopérabilité des produits connectés. Simplification d\'une base de données technique complexe pour la rendre exploitable par les équipes support.',
         'p_interop_achievements': '• Recherche utilisateur (Besoin Support)<br>• UI Design & Système visuel<br>• Simplification de données complexes<br>• Conception du moteur de recherche<br>• Prototypage haute-fidélité',
         'p_interop_context_desc': 'Face à la complexité croissante des écosystèmes connectés, les équipes support ont besoin de réponses immédiates. Ce projet a consisté à dompter une base de données technique aride pour en faire un outil de consultation intuitif.',
-        'preview_label_interop': 'Referentiel Preview',
-
-
+        'preview_label_interop': 'Aperçu Référentiel',
 
         'footer_desc': 'Disponible pour l\'alternance', 'cta_talk': 'Me Contacter',
         // Methodology
+        'method_scroll_explore': 'Défilez pour explorer',
         'method_process': 'Processus',
         'method_title': 'Design & Decide',
-        'method_intro_1': 'De l\'anticipation au déploiement',
-        'method_intro_2': 'Un processus rigoureux pour conduire l\'innovation',
-        'method_intro_3': 'Issu de l\'expertise <strong>CY École de Design</strong>, ce framework me permet de transformer une problématique abstraite en une solution de marché viable...',
+        'method_intro_1': 'Diverger pour explorer. Converger pour décider.',
+        'method_intro_2': 'Le passage du besoin initial au résultat final ne doit pas être laissé au hasard. Ce cadre systémique alterne créativité et rigueur analytique.',
+        'method_intro_3': 'Le résultat : nous éliminons les suppositions. Rien n\'est développé sans avoir été préalablement validé par les données et l\'expérience utilisateur. C\'est le pont entre l\'intuition et la faisabilité.',
         'method_cdc': 'CdC',
         'method_prob': 'problématique',
-        'method_decision': 'DÉCISION',
+        'method_decision': 'Outil de Décision',
         'methodology': [
             {
                 title: "Anticipation", label: "Sécuriser", category: "méthodologie",
@@ -368,48 +373,59 @@ const translations = {
             {
                 title: "Intuitions", label: "Découvertes", category: "enquête terrain",
                 content: ["Interview", "Ethnographie / Observation", "Documentation / data", "État de l'art"],
-                decision: ["Définir les critères de succès <br>& mesures du projet", "Elargir le sujet", "Expliciter la méthode", "Le risque à ne pas faire le projet", "ROI", "Cartographie des acteurs / parties prenantes", "Ecosystème projet"]
+                decision: ["Définir les critères de succès <br>& mesures du projet", "Élargir le sujet", "Expliciter la méthode", "ROI", "Cartographie des acteurs / parties prenantes", "Écosystème projet"]
             },
             {
                 title: "Nouveau CdC", label: "Audace", category: "création",
-                content: ["Co-création / workshop", "Créativité / variation", "Justesse du dosage creatif", "Portefeuille d'idée"],
-                decision: ["Nouveau critère dans le CdC = qualité et innovation", "Poser les Symptômes et les causes racines", "Rapport d'étonnement", "Cartographie d'expérience usager / collaborateur", "Veille chiffrée / Data & évolution", "Veille tendance / évolution chiffrée"]
+                content: ["Co-création / workshop", "Créativité / variation", "Justesse du dosage créatif", "Portefeuille d'idée"],
+                decision: ["Nouveau critère dans le CdC = qualité et innovation", "Poser les symptômes et les causes racines", "Rapport d'étonnement", "Cartographie d'expérience usager / collaborateur", "Veille chiffrée / Data & évolution", "Veille tendance / évolution chiffrée"]
             },
             {
                 title: "Certitudes", label: "Mesurer", category: "tests/POC",
-                content: ["Def Zones d'incertitude des AVP", "Variations / nuances", "Audace / Agilité / Adaptabilité", "Portefeuille d'idées"],
-                decision: ["Hiérarchiser les idées ou AVP based on critères", "Zone de risque tech / Commercial / Marketing / Social", "Définir les critères de performance pour POC", "Business model", "Carto d'impacts", "Story-Board", "Sketch / 3D / Motion"]
+                content: ["Déf Zones d'incertitude des AVP", "Variations / nuances", "Audace / Agilité / Adaptabilité", "Portefeuille d'idées"],
+                decision: ["Hiérarchiser les idées ou AVP basés sur des critères", "Zone de risque tech / Commercial / Marketing / Social", "Définir les critères de performance pour le POC", "Business model", "Carto d'impacts", "Story-Board", "Sketch / 3D / motion"]
             },
             {
                 title: "Faisabilité", label: "Convergence", category: "finalisation",
-                content: ["Compromis qualité", "Technique / Economique / Process / Marketing", "Portefeuille d'idée"],
-                decision: ["Mesure objective de la performance des tests", "Comparaison des variations", "Pousser l'exploration et accueillir l'imprévu", "Data-vision de comparaison des tests (araignée de performance, etc...)"]
+                content: ["Compromis qualité", "Technique/Économique/Process/Marketing", "Portefeuille d'idées"],
+                decision: [
+                    "Mesure objective de la performance des tests",
+                    "Comparaison des variations",
+                    "Pousser l'exploration et accueillir l'imprévu",
+                    "Data-vision de comparaison des tests (araignée de performance, etc...)"
+                ]
             },
             {
                 title: "Succès", label: "Aboutir", category: "concrétiser",
                 content: ["Lancement industriel", "Lancement Marketing", "Diffusion culturelle"],
-                decision: ["Maitrise des coûts", "Maitrise du planning", "Data-vision de comparaison", "RACI"]
+                decision: ["Maîtrise des coûts", "Maîtrise du planning", "Data-vision de comparaison", "RACI"]
             }
         ]
     },
     'en': {
-        'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact',
+        'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact', 'nav_method': 'Method', 'nav_cv': 'CV',
+        'nav_logo_title': 'Systemic Designer & Innovation Strategist',
         'meta_at': 'at',
         'hero_title': 'Systemic<br>Innovation.',
-        'hero_subtitle': 'Bridging Design & Business Strategy',
-        'story_text': 'Turning aesthetics into strategy. As a Systemic Designer, I build ecosystems where creativity becomes a lever for value production. Joining <a href=\"https://em-lyon.com/\" target=\"_blank\" class=\"underline hover:opacity-70 transition\">EM Lyon</a> to bridge the gap between design intelligence and business strategy.',
+        'hero_subtitle': 'Where Design meets Business Strategy',
+        'story_text': 'I transform complexity into strategic opportunity. As a Systemic Designer, I build ecosystems where creativity becomes a lever for value production. Joining <a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a> to bridge the gap between design intelligence and business strategy.',
         'section_work': 'Selected Works',
         'label_problem': 'The Problem', 'label_goal': 'The Goal', 'label_solution': 'The Solution',
         'about_education': 'Education', 'about_current': 'Current Position', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
+        'about_focus_1': 'Innovation Mgmt', 'about_focus_2': 'Systemic Design',
+        'about_frameworks_1': 'UX Methods', 'about_frameworks_2': 'Design Thinking',
 
         // MODAL UI
         'preview_label': 'Explore prototype',
+        'click_to_interact': 'Click to interact',
         'preview_label_interactive': 'Interactive Preview',
         'preview_label_platform': 'Live Platform Preview',
         'preview_label_prototype': 'Interactive Prototype',
         'preview_label_presentation': 'Interactive Presentation',
         'open_site_label': 'Open Site ↗',
         'open_fullscreen_label': 'Open Fullscreen ↗',
+
+        // K-CIOPE
         'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
         'p0_problem': 'Modernizing incident management (roads, waste) for field agents, replacing obsolete processes.', 'p0_goal': 'Streamline information flow and optimize public service interventions.', 'p0_solution': 'High-fidelity prototyping for rapid stakeholder validation before development (Agile).',
         'p0_main_desc': 'A key driver of ecological transition, the app needed to exceed its utilitarian function to become a true engine of engagement. This redesign transformed a complex technical tool into a daily companion, fluid and intuitive, democratizing access to eco-gestures for all residents of the Metropolis.',
@@ -431,9 +447,11 @@ const translations = {
         'contact_placeholder_company': 'Company',
         'contact_placeholder_role': 'Role',
         'contact_placeholder_email': 'Email',
+        'contact_placeholder_message': 'Your Message',
         'contact_send_btn': 'Send Message',
-        'contact_success_title': 'Message Sent!',
-        'contact_success_desc': 'Thank you for reaching out. I\'ll get back to you regarding your inquiry as soon as possible.',
+        'contact_success_label': 'MESSAGE RECEIVED',
+        'contact_success_title': 'Thank you!',
+        'contact_success_desc': 'Your message has been received. I\'ll get back to you very soon.',
 
         // SYNERGIE
         'p_synergie_title': 'Synergie',
@@ -442,16 +460,16 @@ const translations = {
         'p_synergie_title_full': 'Synergie',
         'p_synergie_main_desc': 'In a competitive talent war, digital experience is the first window of the employer brand. This project aimed to radically streamline the registration journey to maximize conversion.',
         'p_synergie_achievements': '• User Flow Scenarios<br>• Progressive Onboarding Design<br>• Candidate Dashboard Modeling<br>• Unified Design System Creation',
-        'p_synergie_context_desc': 'International network (17 countries). Project "Apollo": designing a progressive acquisition tunnel to reduce drop-off and centralize applications.',
-        'p_make_title': 'DesignOps Automation & AI', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Workflow Optimization with AI & No-Code',
-        'p_make_problem': 'Creative teams spend too much time on repetitive, low-value tasks.', 'p_make_goal': 'Implement "No-Code" workflows (Make) connected to AI agents.', 'p_make_solution': 'Creation of intelligent connectors between design tools and AI.',
+        'p_synergie_context_desc': 'International network (17 countries). Project \"Apollo\": designing a progressive acquisition tunnel to reduce drop-off and centralize applications.',
+        'p_make_title': 'DesignOps Automation & IA', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Workflow Optimization with AI & No-Code',
+        'p_make_problem': 'Creative teams spend too much time on repetitive, low-value tasks.', 'p_make_goal': 'Implement \"No-Code\" workflows (Make) connected to AI agents.', 'p_make_solution': 'Creation of intelligent connectors between design tools and IA.',
         // VAMOS
         'p_vamos_title': 'Vamos Bikes',
         'p_vamos_subtitle': 'B2B Marketplace',
         'p_vamos_desc': 'UX/UI Designer • 2024',
         'p_vamos_title_full': 'Vamos Bikes',
         'p_vamos_main_desc': 'More than a showcase, the site is the primary salesperson. This end-to-end redesign merges lifestyle immersion with technical clarity. The goal: reassure the user about this premium product and streamline the journey, from emotional discovery to confident purchase.',
-        'p_vamos_achievements': '• UX Audit & E-commerce Strategy<br>• Visual Identity Redesign (UI) & Branding<br>• "Mobile First" & Responsive Design<br>• Purchase Funnel Optimization<br>• High-Fidelity Prototyping',
+        'p_vamos_achievements': '• UX Audit & E-commerce Strategy<br>• Visual Identity Redesign (UI) & Branding<br>• \"Mobile First\" & Responsive Design<br>• Purchase Funnel Optimization<br>• High-Fidelity Prototyping',
         'p_vamos_context_desc': 'An aging existing site that did not reflect the premium quality of the bikes, creating a psychological barrier to purchase in a competitive market. Solution: A modern shopping experience that highlights the product.',
         'p3_title': 'Luxury Strategy & 3D', 'p3_desc': 'Creation Phase • Digital Twin',
 
@@ -461,45 +479,45 @@ const translations = {
         'p_rockease_problem_desc': 'Optimizing aggregate procurement for construction sites, a traditionally manual and fragmented process.',
         'p_rockease_strategy_desc': 'Designing an intuitive B2B marketplace to order and track deliveries in real-time.',
         'p_rockease_result_desc': 'A centralized platform that reduces logistical costs and simplifies the work of site managers.',
-        'p_rockease_main_desc': 'Within the Digital Factory, the challenge was to reduce "Time-to-Market" without sacrificing visual quality. My hybrid role bridged the gap between design and development. By directly translating graphic concepts into modular Webflow solutions, we created a robust, scalable platform perfectly faithful to the group\'s brand identity.',
+        'p_rockease_main_desc': 'Within the Digital Factory, the challenge was to reduce \"Time-to-Market\" without sacrificing visual quality. My hybrid role bridged the gap between design and development. By directly translating graphic concepts into modular Webflow solutions, we created a robust, scalable platform perfectly faithful to the group\'s brand identity.',
         'p_rockease_achievements': '• Interface Co-design<br>• Webflow Development & Integration<br>• CMS Architecture & Collections<br>• Responsive Design Management',
-        'p_rockease_context_desc': 'B2B Marketplace for ordering construction materials. Reducing "Time-to-Market" while maintaining premium visual quality and perfect fidelity to Colas brand identity.',
+        'p_rockease_context_desc': 'B2B Marketplace for ordering construction materials. Reducing \"Time-to-Market\" while maintaining premium visual quality and perfect fidelity to Colas brand identity.',
 
         // AGIRC
         'p_agirc_title': 'Agirc-Arrco', 'p_agirc_desc': 'UX Researcher & Analyst • 2025',
         'p_agirc_title_full': 'Agirc-Arrco',
-        'p_agirc_main_desc': 'Intervention ciblée pour valider la refonte de l\'espace B2B Agirc-Arrco. Mise à l\'épreuve des nouveaux parcours via des tests utilisateurs en situation réelle et analyse des données de navigation pour identifier objectivement les bloquants.',
-        'p_agirc_achievements': '• Recrutement et tests avec experts (RH/Paie)<br>• Analyse comportementale en situation<br>• Consolidation des données<br>• Rapport de recommandations UX',
-        'p_agirc_context_desc': 'Pour réussir la refonte d\'un portail aussi complexe, l\'intuition ne suffisait pas. Mon rôle a été d\'apporter une validation factuelle en confrontant les maquettes à la réalité du terrain.',
+        'p_agirc_main_desc': 'Targeted intervention to validate the redesign of the B2B Agirc-Arrco space. Putting new journeys to the test through real-world user tests and analyzing navigation data to objectively identify blockers.',
+        'p_agirc_achievements': '• Recruitment and testing with experts (HR / Payroll)<br>• Behavioral analysis in situ<br>• Data consolidation<br>• UX recommendation report',
+        'p_agirc_context_desc': 'To succeed in the redesign of such a complex portal, intuition was not enough. My role was to provide factual validation by confronting the mockups with reality on the ground.',
 
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
         'p_elba_subtitle': 'LUXURY PACKAGING & ECO-DESIGN',
-        'p_elba_desc': 'Global Designer • 2023',
+        'p_elba_desc': 'Systemic Product Designer • 2023',
         'p_elba_main_desc': 'Development of a limited edition for the Chinese market of the iconic Re-Plasty cream, for the Lunar New Year. The project resolves the paradox between celebratory luxury and environmental responsibility, transforming a seasonal product into a long-lasting object.',
-        'p_elba_achievements': '• Semiotic analysis of Chinese cultural codes and luxury rituals<br>• Eco-design of the "Refill" system to extend the packaging life cycle<br>• Graphic and material development (gold finishing) consistent with brand heritage<br>• Photorealistic 3D rendering for concept enhancement',
-        'p_elba_context_desc': 'Lunar New Year is the most critical commercial moment for the Chinese market, dominated by "disposable" ceremonial packaging. This eco-responsible refill solution respects the tradition of gift-giving while introducing a new standard of durable sustainability.',
+        'p_elba_achievements': '• Semiotic analysis of Chinese cultural codes and luxury rituals<br>• Eco-design of the \"Refill\" system to extend the packaging life cycle<br>• Graphic and material development (gold finishing) consistent with brand heritage<br>• Photorealistic 3D rendering for concept enhancement',
+        'p_elba_context_desc': 'Lunar New Year is the most critical commercial moment for the Chinese market, dominated by \"disposable\" ceremonial packaging. This eco-responsible refill solution respects the tradition of gift-giving while introducing a new standard of durable sustainability.',
 
         // REYOU
-        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Global Designer • 2026', 'p_reyou_title_full': 'REYOU',
+        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
         'p_reyou_subtitle': 'CIRCULAR ECONOMY & DIGITAL RETAIL',
-        'p_reyou_main_desc': 'Development of an interactive digital showroom to showcase second-hand office furniture. The project digitizes the physical space (Coworking "Le Périscope"), allowing B2B clients to explore and purchase stock directly from a real-use context. A solution that removes the psychological barrier of used goods, transforming a static inventory into an immersive experience.',
+        'p_reyou_main_desc': 'Development of an interactive digital showroom to showcase second-hand office furniture. The project digitizes the physical space (Coworking \"Le Périscope\"), allowing B2B clients to explore and purchase stock directly from a real-use context. A solution that removes the psychological barrier of used goods, transforming a static inventory into an immersive experience.',
         'p_reyou_achievements': '• Phygital Strategy Conception<br>• UX/UI Design of interactive interface<br>• Strategic modeling and rendering<br>• Integrated lead generation',
-        'p_reyou_context_desc': 'The refurbished furniture market often suffers from an image deficit. The challenge was to demonstrate that reclaimed furniture can support modern, premium workspaces. The insight was not to sell the single piece, but the contextualized "set".',
+        'p_reyou_context_desc': 'The refurbished furniture market often suffers from an image deficit. The challenge was to demonstrate that reclaimed furniture can support modern, premium workspaces. The insight was not to sell the single piece, but the contextualized \"set\".',
 
         // AI EXPERTISE
         'section_ai_expertise': 'AI Expertise',
-        'ai_expertise_title': 'DesignOps & Automation',
+        'ai_expertise_title': 'AI Workflow & Automation',
         'ai_expertise_desc': 'Optimizing creative workflows with AI. I design systems that automate repetitive tasks to unlock the creative potential of teams.',
 
 
         // ALTAREA
-        'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Global Designer - 2024',
+        'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanism & Climate Adaptation',
         'p_altarea_main_desc': 'Development of a systemic solution to mitigate Urban Heat Islands (UHI). By combining a green canopy with an innovative structure, the project collects rainwater and provides much-needed shade, transforming the city square into an active and poetic climate shelter.',
         'p_altarea_achievements': '• Urban microclimate research & analysis<br>• UX strategy for extreme environments<br>• Integral system design (urban furniture)<br>• 3D modeling & photorealistic rendering',
-        'p_altarea_context_desc': 'Heatwaves make open spaces unlivable. Traditional urban furniture is insufficient in the face of the climate emergency. The challenge: going beyond aesthetic "greening" to design a functional solution that lowers perceived temperature and ensures social continuity.',
+        'p_altarea_context_desc': 'Heatwaves make open spaces unlivable. Traditional urban furniture is insufficient in the face of the climate emergency. The challenge: going beyond aesthetic \"greening\" to design a functional solution that lowers perceived temperature and ensures social continuity.',
 
         // GROUP ATLANTIC
         'p_interop_title': 'Groupe Atlantic',
@@ -511,18 +529,17 @@ const translations = {
         'p_interop_context_desc': 'Faced with the increasing complexity of connected ecosystems, support teams need immediate answers. This project involved taming a dry technical database to turn it into an intuitive consultation tool.',
         'preview_label_interop': 'Repository Preview',
 
-
-
         'footer_desc': 'Open to Opportunities', 'cta_talk': 'Get in Touch',
         // Methodology
+        'method_scroll_explore': 'Scroll to Explore',
         'method_process': 'Process',
         'method_title': 'Design & Decide',
-        'method_intro_1': 'From anticipation to deployment',
-        'method_intro_2': 'A rigorous process to drive innovation',
-        'method_intro_3': 'Based on <strong>CY École de Design</strong> expertise, this framework allows me to transform an abstract problem into a viable market solution...',
+        'method_intro_1': 'Diverge to explore. Converge to decide.',
+        'method_intro_2': 'The journey from initial need to final result must not be left to chance. This systemic framework alternates between creativity and analytical rigor.',
+        'method_intro_3': 'The result: we eliminate guesswork. Nothing is built without first being validated by data and user experience. It is the bridge between intuition and feasibility.',
         'method_cdc': 'Brief',
         'method_prob': 'problem statement',
-        'method_decision': 'DECISION',
+        'method_decision': 'Decision Tool',
         'methodology': [
             {
                 title: "Anticipation", label: "Secure", category: "methodology",
@@ -532,7 +549,7 @@ const translations = {
             {
                 title: "Intuitions", label: "Discoveries", category: "field research",
                 content: ["Interviews", "Ethnography / Observation", "Documentation / Data", "State of the art"],
-                decision: ["Define success criteria <br>& project metrics", "Broaden the subject", "Define the method", "Risk analysis (not doing the project)", "ROI", "Stakeholder mapping", "Project ecosystem"]
+                decision: ["Define success criteria <br>& project metrics", "Broaden the subject", "Define the method", "ROI", "Stakeholder mapping", "Project ecosystem"]
             },
             {
                 title: "New Brief", label: "Audacity", category: "creation",
@@ -545,7 +562,7 @@ const translations = {
                 decision: ["Prioritize ideas or AVP based on criteria", "Risk zones (Tech / Commercial / Marketing / Social)", "Define performance criteria for POC", "Business model", "Impact mapping", "Storyboarding", "Sketch / 3D / Motion"]
             },
             {
-                title: "Feasibility", label: "Convergence", category: "finalization",
+                title: "Feasibility", label: "Convergence", category: "finalisation",
                 content: ["Quality compromise", "Technical / Economic / Process / Marketing", "Idea portfolio"],
                 decision: ["Objective performance measurement (tests)", "Comparison of variations", "Encourage exploration & welcome the unexpected", "Data-vision / Test comparison (Spider chart, etc...)"]
             },
@@ -557,27 +574,33 @@ const translations = {
         ]
     },
     'it': {
-        'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti',
+        'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti', 'nav_method': 'Metodo', 'nav_cv': 'CV',
+        'nav_logo_title': 'Systemic Designer & Strategist dell\'Innovazione',
         'meta_at': 'presso',
         'hero_title': 'Innovazione<br>Sistemica.',
-        'hero_subtitle': 'Il ponte tra Design & Business Strategy',
-        'story_text': 'Trasformo l\'estetica in strategia. Come Systemic Designer, concepisco interi ecosistemi dove la creatività diventa un asset strategico d\'impresa. Prossimo specializzando all\'<a href=\"https://em-lyon.com/\" target=\"_blank\" class=\"underline hover:opacity-70 transition\">EM Lyon</a> in gestione strategica dell\'innovazione.',
+        'hero_subtitle': 'L\'incontro tra Design & Business Strategy',
+        'story_text': 'Trasformo la complessità in opportunità strategica. Come Systemic Designer, concepisco interi ecosistemi dove la creatività diventa un asset strategico d\'impresa. Prossimo specializzando all\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a> in gestione strategica dell\'innovazione, cerco un\'alternanza per strutturare i vostri progetti complessi.',
         'section_work': 'Progetti Selezionati',
         'label_problem': 'La Domanda', 'label_goal': 'L\'Obiettivo', 'label_solution': 'La Soluzione',
         'about_education': 'Educazione', 'about_current': 'Posizione Attuale', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
+        'about_focus_1': 'Mngmt Innovazione', 'about_focus_2': 'Design Sistemico',
+        'about_frameworks_1': 'Metodi UX', 'about_frameworks_2': 'Design Thinking',
 
         // MODAL UI
         'preview_label': 'Esplora il prototipo',
+        'click_to_interact': 'Clicca per interagire',
         'preview_label_interactive': 'Anteprima Interattiva',
         'preview_label_platform': 'Anteprima Piattaforma Live',
         'preview_label_prototype': 'Prototipo Interattivo',
         'preview_label_presentation': 'Presentazione Interattiva',
         'open_site_label': 'Apri il sito ↗',
         'open_fullscreen_label': 'Apri a tutto schermo ↗',
+
+        // K-CIOPE
         'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
-        'p0_problem': 'Modernizzare la gestione degli incidenti per gli agenti sul campo.', 'p0_goal': 'Fluidificare il flusso di informazioni e ottimizzare gli interventi.', 'p0_solution': 'Prototipazione ad alta fedeltà per validazione rapida.',
+        'p0_problem': 'Modernizzare la gestione degli incidenti per gli agenti sul campo.', 'p0_goal': 'Fluidificare il flusso di informazioni e ottimizzare gli interventi.', 'p0_solution': 'Prototypazione ad alta fedeltà per validazione rapida.',
         'p0_main_desc': 'Vettore chiave della transizione ecologica, l\'applicazione doveva superare la sua funzione utilitaristica per diventare un vero motore di coinvolgimento. Questo restyling ha trasformato un complesso strumento tecnico in un compagno quotidiano, fluido e intuitivo, democratizzando l\'accesso agli eco-gesti per tutti i residenti della Metropoli.',
-        'p0_achievements': '• Audit UX e analisi degli usi (Analytics)<br>• Facilitazione di workshop di co-design<br>• Riprogettazione dell\'architettura dell\'informazione<br>• Creazione del sistema visivo e UI Design<br>• Prototipazione interattiva ad alta fedeltà (Figma)',
+        'p0_achievements': '• Audit UX e analisi degli usi (Analytics)<br>• Facilitazione di workshop di co-design<br>• Riprogettazione dell\'architettura dell\'informazione<br>• Creazione del sistema visivo e UI Design<br>• Prototypazione interattiva ad alta fedeltà (Figma)',
         'p0_context_desc': 'Navigazione complessa e bassa adozione. Trasformazione di uno strumento amministrativo in un\'esperienza cittadina fluida, allineando il servizio pubblico agli standard UX moderni.',
 
         'nav_complete_title': 'Navigazione Completa',
@@ -595,13 +618,15 @@ const translations = {
         'contact_placeholder_company': 'Azienda',
         'contact_placeholder_role': 'Ruolo',
         'contact_placeholder_email': 'Email',
+        'contact_placeholder_message': 'Il Tuo Messaggio',
         'contact_send_btn': 'Invia Messaggio',
-        'contact_success_title': 'Messaggio Inviato!',
-        'contact_success_desc': 'Grazie per avermi contattato. Ti risponderò riguardo alla tua richiesta il prima possibile.',
+        'contact_success_label': 'MESSAGGIO RICEVUTO',
+        'contact_success_title': 'Grazie!',
+        'contact_success_desc': 'Il tuo messaggio è stato ricevuto. Ti risponderò molto presto.',
 
         // SYNERGIE
         'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Trasformazione Digitale', 'p_synergie_desc': 'UX/UI Designer • 2025', 'p_synergie_title_full': 'Synergie',
-        'p_synergie_main_desc': 'In una guerra competitiva di talenti, l\'esperienza digitale è la prima vetrina del brand datore di lavoro. Questo progetto mirava a fluidificare radicalmente il percorso di iscrizione per massimizzare la conversione.',
+        'p_synergie_main_desc': 'Nel contesto della "War for Talent", l\'esperienza digitale è diventare il primo biglietto da visita dell\'Employer Brand. Questo progetto mirava a fluidificare radicalmente il percorso di iscrizione per massimizzare la conversione.',
         'p_synergie_achievements': '• Scenarizzazione dei percorsi (User Flows)<br>• Design dell\'Onboarding progressivo<br>• Modellazione della Dashboard Candidato<br>• Creazione di un Design System unificato',
         'p_synergie_context_desc': 'Rete internazionale (17 paesi). Progetto "Apollo": progettazione di un tunnel di acquisizione progressivo per ridurre l\'abbandono e centralizzare le candidature.',
         'p_make_title': 'Automazione DesignOps & IA', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Ottimizzazione Workflow con IA e No-Code',
@@ -610,61 +635,58 @@ const translations = {
         'p_vamos_title': 'Vamos Bikes', 'p_vamos_subtitle': 'Marketplace B2B', 'p_vamos_desc': 'UX/UI Designer • 2024',
         'p_vamos_title_full': 'Vamos Bikes',
         'p_vamos_main_desc': 'Riprogettazione End-to-End che fonde immersione lifestyle e chiarezza tecnica. L\'obiettivo: fluidificare il percorso, dalla scoperta emotiva all\'acquisto fiducioso.',
-        'p_vamos_achievements': '• Audit UX e strategia e-commerce<br>• Redesign dell\'identità visiva (UI) & Branding<br>• Progettazione "Mobile First" e Responsive<br>• Ottimizzazione del tunnel di acquisto<br>• Prototipazione ad alta fedeltà completa',
+        'p_vamos_achievements': '• Audit UX e strategia e-commerce<br>• Redesign dell\'identità visiva (UI) & Branding<br>• Progettazione "Mobile First" e Responsive<br>• Ottimizzazione del tunnel di acquisto<br>• Prototypazione ad alta fedeltà completa',
         'p_vamos_context_desc': 'Un sito esistente invecchiato che non rifletteva la qualità premium delle bici, creando un freno psicologico all\'acquisto in un mercato competitivo. Soluzione: Un\'esperienza di acquisto moderna che valorizza il prodotto.',
         'p3_title': 'Strategia Luxury & 3D', 'p3_desc': 'Fase Creazione • Gemello Digitale',
 
         // ROCKEASE
         'p_rockease_title': 'Rockease', 'p_rockease_desc': 'UI Designer • 2025',
         'p_rockease_title_full': 'Rockease',
-        'p_rockease_title_full': 'Rockease',
         'p_rockease_problem_desc': 'Ottimizzare l\'approvvigionamento di inerti per i cantieri, un processo tradizionalmente manuale e frammentato.',
         'p_rockease_strategy_desc': 'Progettazione di un marketplace B2B intuitivo che consente di ordinare e tracciare le consegne in tempo reale.',
         'p_rockease_result_desc': 'Una piattaforma centralizzata che riduce i costi logistici e semplifica la vita dei direttori di cantiere.',
         'p_rockease_main_desc': 'All\'interno della Digital Factory, la sfida era ridurre il "Time-to-Market" senza sacrificare la qualità visiva. Il mio ruolo ibrido ha colmato il divario tra design e sviluppo. Traducendo direttamente i concetti grafici in soluzioni Webflow modulari, abbiamo creato una piattaforma robusta, scalabile e perfettamente fedele all\'identità del brand.',
-        'p_rockease_achievements': '• Co-design dell\'interfaccia<br>• Sviluppo e integrazione Webflow<br>• Architettura CMS & Collections<br>• Gestione del Responsive Design<br>• QA Visivo (Pixel Perfect)',
+        'p_rockease_achievements': '• Co-design dell\'interfaccia<br>• Sviluppo e integrazione Webflow<br>• Architettura CMS & Collections<br>• Gestione del Responsive Design',
         'p_rockease_context_desc': 'Marketplace B2B per l\'ordine di materiali da costruzione. Riduzione del "Time-to-Market" mantenendo una qualità visiva premium e una fedeltà perfetta all\'identità del marchio Colas.',
 
         // AGIRC
-        'p_agirc_title': 'Agirc-Arrco',
-        'p_agirc_desc': 'UX Researcher & Analyst • 2025',
+        'p_agirc_title': 'Agirc-Arrco', 'p_agirc_desc': 'UX Researcher & Analyst • 2025',
         'p_agirc_title_full': 'Agirc-Arrco',
-        'p_agirc_subtitle': 'Retraite Complémentaire B2B',
-        'p_agirc_main_desc': 'Intervention ciblée pour valider la refonte de l\'espace B2B Agirc-Arrco. Mise à l\'épreuve des nouveaux parcours via des tests utilisateurs en situation réelle et analyse des données de navigation pour identifier objectivement les bloquants.',
-        'p_agirc_achievements': '• Recrutement et tests avec experts (RH/Paie)<br>• Analyse comportementale en situation<br>• Consolidation des données<br>• Rapport de recommandations UX',
-        'p_agirc_context_desc': 'Pour réussir la refonte d\'un portail aussi complexe, l\'intuition ne suffisait pas. Mon rôle a été d\'apporter une validation factuelle en confrontant les maquettes à la réalité du terrain.',
+        'p_agirc_main_desc': 'Intervento mirato per convalidare il redesign dell\'area B2B Agirc-Arrco. Test dei nuovi percorsi con utenti reali e analisi dei dati di navigazione per identificare oggettivamente i blocchi.',
+        'p_agirc_achievements': '• Reclutamento e test con esperti (RU/Paghe)<br>• Analisi comportamentale in loco<br>• Consolidamento dei dati<br>• Rapporto di raccomandazioni UX',
+        'p_agirc_context_desc': 'Per riuscire nel restyling di un portale così complesso, l\'intuizione non bastava. Il mio ruolo è stato quello di fornire una convalida fattuale confrontando i mockup con la realtà sul campo.',
 
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
         'p_elba_subtitle': 'LUXURY PACKAGING & ECO-DESIGN',
-        'p_elba_desc': 'Designer • 2023',
+        'p_elba_desc': 'Systemic Product Designer • 2023',
         'p_elba_main_desc': 'Sviluppo di un\'edizione limitata per il mercato cinese dell\'iconica crema Re-Plasty, in occasione del Capodanno Lunare. Il progetto risolve il paradosso tra lusso celebrativo e responsabilità ambientale, trasformando un prodotto stagionale in un oggetto duraturo.',
-        'p_elba_achievements': '• Analisi semiotica dei codici culturali cinesi e dei rituali del lusso<br>• Eco-conception del sistema "Refill" per estendere il ciclo di vita del packaging<br>• Sviluppo grafico e materico (gold finishing) coerente con il brand heritage<br>• Rendering 3D fotorealistico per la valorizzazione del concept',
+        'p_elba_achievements': '• Analisi semiotica dei codici culturali cinesi e dei rituali del lusso<br>• Eco-design del sistema "Refill" per estendere il ciclo di vita del packaging<br>• Sviluppo grafico e materico (gold finishing) coerente con il brand heritage<br>• Rendering 3D fotorealistico per la valorizzazione del concept',
         'p_elba_context_desc': 'Il Capodanno Lunare è il momento commerciale più critico per il mercato cinese, dominato da packaging cerimoniali "usa e getta". Questa ricarica eco-responsabile permette di rispettare la tradizione del dono introducendo un nuovo standard di sostenibilità.',
 
         // REYOU
-        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Designer • 2026', 'p_reyou_title_full': 'REYOU',
-        'p_reyou_subtitle': 'CIRCULAR ECONOMY & DIGITAL RETAIL',
+        'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
+        'p_reyou_subtitle': 'ECONOMIA CIRCOLARE & RETAIL DIGITALE',
         'p_reyou_main_desc': 'Showroom interattivo per il riuso di mobili d\'ufficio. Digitalizza lo spazio fisico (Coworking "Le Périscope") permettendo ai clienti B2B di acquistare lo stock in un contesto reale, superando la barriera dell\'usato tramite un\'esperienza immersiva.',
-        'p_reyou_achievements': '• Strategia Phygital: coworking come showroom vivente.<br>• UX/UI Design per la navigazione spaziale dello stock.<br>• Modellazione 3D per elevare la percezione dell\'usato.<br>• Sistema di Lead Generation integrato nella pianta.',
-        'p_reyou_context_desc': 'Superare il deficit d\'immagine dei mobili ricondizionati. Invece del singolo pezzo, abbiamo venduto il "set" contestualizzato, usando il 3D per immergere il buyer in un ufficio reale, moderno e desiderabile.',
+        'p_reyou_achievements': '• Concezione della strategia "Phygital"<br>• UX/UI Design per l\'interfaccia interattiva<br>• Modellazione e rendering strategico per elevare la percezione dell\'usato<br>• Lead generation integrata',
+        'p_reyou_context_desc': 'Il mercato dei mobili ricondizionati soffre spesso di un deficit di immagine. La sfida è stata dimostrare che gli arredi di recupero possono sostenere uffici moderni e premium. L\'intuizione è stata non vendere il singolo pezzo, ma il \"set\" contestualizzato.',
 
         // AI EXPERTISE
         'section_ai_expertise': 'Expertise IA',
-        'ai_expertise_title': 'DesignOps e Automazione',
+        'ai_expertise_title': 'Workflow IA & Automazione',
         'ai_expertise_desc': 'Ottimizzazione dei flussi creativi tramite l\'IA. Progetto sistemi che automatizzano i compiti ripetitivi per liberare il potenziale creativo dei team.',
 
 
         // ALTAREA
-        'p_altarea_title': 'Urbanistica & Adattamento Climatico', 'p_altarea_desc': 'Designer - 2024',
+        'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanistica & Adattamento Climatico',
-        'p_altarea_main_desc': 'Sviluppo di una soluzione sistemica per mitigare le isole di calore (UHI). Integrando una chioma vegetale e una struttura innovativa, il progetto raccoglie l\'acqua piovana e offre un\'ombra vitale, trasformando la piazza in un rifugio climatico attivo e poetico.',
-        'p_altarea_achievements': '• Ricerca e analisi del microclima urbano e dei flussi comportamentali<br>• Strategia UX per la fruizione degli spazi in condizioni estreme<br>• Concezione integrale del sistema (strutture/arredo urbano)<br>• Modellazione 3D e rendering fotorealistici per la validazione visiva',
-        'p_altarea_context_desc': 'Le ondate di calore rendono sempre più spesso gli spazi aperti invivibili. L\'approccio tradizionale all\'arredo urbano si è rivelato insufficiente di fronte all\'emergenza climatica attuale. La sfida consisteva nel superare il concetto estetico di "verde" per progettare una soluzione funzionale che abbattesse le temperature percepita, garantendo la continuità della vita sociale anche durante i picchi termici.',
+        'p_altarea_main_desc': 'Sviluppo di una soluzione sistemica per mitigare le isole di calore urbane (ICU). Integrando una chioma vegetale e una struttura innovativa, il progetto raccoglie l\'acqua piovana e genera un\'ombra salvifica, trasformando la piazza pubblica in un rifugio climatico attivo e poetico.',
+        'p_altarea_achievements': '• Ricerca e analisi del microclima urbano<br>• Strategia UX per spazi in condizioni estreme<br>• Concezione integrale del sistema (arredo urbano)<br>• Modellazione 3D e rendering fotorealistico',
+        'p_altarea_context_desc': 'Le ondate di calore rendono gli spazi aperti invivibili. L\'approccio tradizionale all\'arredo urbano è insufficiente di fronte all\'emergenza climatica. La sfida: superare il "verdismo" estetico per una soluzione funzionale che riduca la temperatura percepita e preservi la vita sociale.',
 
         // GROUP ATLANTIC
-        'p_interop_title': 'Referenziale Interoperabilità',
+        'p_interop_title': 'Groupe Atlantic',
         'p_interop_subtitle': 'Referenziale Interoperabilità',
         'p_interop_desc': 'UX/UI Designer - 2025',
         'p_interop_title_full': 'Groupe Atlantic',
@@ -673,18 +695,17 @@ const translations = {
         'p_interop_context_desc': 'Di fronte alla crescente complessità degli ecosistemi connessi, i team di supporto hanno bisogno di risposte immediate. Questo progetto ha consistito nel domare un database tecnico arido per trasformarlo in uno strumento di consultazione intuitivo.',
         'preview_label_interop': 'Anteprima Referenziale',
 
-
-
-        'footer_desc': 'Disponibile per nuove sfide', 'cta_talk': 'Contattami',
+        'footer_desc': 'Parliamo insieme', 'cta_talk': 'Contattami',
         // Methodology
+        'method_scroll_explore': 'Scorri per esplorare',
         'method_process': 'Processo',
         'method_title': 'Design & Decide',
-        'method_intro_1': 'Dall\'anticipazione al dispiegamento',
-        'method_intro_2': 'Un processo rigoroso per guidare l\'innovazione',
-        'method_intro_3': 'Sulla base dell\'esperienza di <strong>CY École de Design</strong>, questo framework mi permette di trasformare una problematica astratta in una soluzione di mercato vitale...',
+        'method_intro_1': 'Divergere per esplorare. Convergere per decidere.',
+        'method_intro_2': 'Il passaggio dal bisogno iniziale al risultato finale non deve essere lasciato al caso. Questo framework sistemico alterna creatività e rigore analitico.',
+        'method_intro_3': 'Il risultato: eliminiamo le supposizioni. Niente viene sviluppato senza essere stato prima validato dai dati e dall\'esperienza utente. È il ponte tra intuizione e fattibilità.',
         'method_cdc': 'Brief',
         'method_prob': 'problematica',
-        'method_decision': 'DECISIONE',
+        'method_decision': 'Strumento Decisionale',
         'methodology': [
             {
                 title: "Anticipazione", label: "Mettere in sicurezza", category: "metodologia",
@@ -694,12 +715,12 @@ const translations = {
             {
                 title: "Intuizioni", label: "Scoperte", category: "indagine sul campo",
                 content: ["Interviste", "Etnografia / Osservazione", "Documentazione / Data", "Stato dell'arte"],
-                decision: ["Definire i criteri di successo <br>& misure del progetto", "Allargare il soggetto", "Esplicitare il metodo", "Il rischio nel non fare il progetto", "ROI", "Mappatura degli stakeholder", "Ecosistema progetto"]
+                decision: ["Definire i criteri di successo <br>& misure del progetto", "Espandere il soggetto", "Esplicitare il metodo", "ROI", "Mappatura degli stakeholder", "Ecosistema progetto"]
             },
             {
-                title: "Nuovo Brief", label: "Audacia", category: "creazione",
-                content: ["Co-creazione / workshop", "Creatività / variazione", "Giustezza del dosaggio creativo", "Portafoglio di idee"],
-                decision: ["Nuovo criterio nel Brief = qualità e innovazione", "Definire i sintomi e le cause profonde", "Report di stupore", "Mappatura dell'esperienza utente / collaboratore", "Monitoraggio dati ed evoluzione", "Analisi trend / evoluzione quantitativa"]
+                title: "Riformulazione Problematica", label: "Audacia", category: "creazione",
+                content: ["Co-creazione / workshop", "Creatività / variazione", "Equilibrio del dosaggio creativo", "Portafoglio di idee"],
+                decision: ["Nuovo criterio nella problematica = qualità e innovazione", "Definire i sintomi e le cause profonde", "Report di stupore", "Mappatura esperienza utente / collaboratore", "Monitoraggio dati ed evoluzione", "Analisi trend / evoluzione quantitativa"]
             },
             {
                 title: "Certezze", label: "Misurare", category: "test / POC",
@@ -709,7 +730,12 @@ const translations = {
             {
                 title: "Fattibilità", label: "Convergenza", category: "finalizzazione",
                 content: ["Compromesso qualità", "Tecnico / Economico / Processo / Marketing", "Portafoglio di idee"],
-                decision: ["Misura obiettiva della performance dei test", "Confronto delle variazioni", "Incoraggiare l'esplorazione e accogliere l'imprevisto", "Data-vision di confronto dei test (spider chart, ecc...)"]
+                decision: [
+                    "Misura obiettiva della performance dei test",
+                    "Confronto delle variazioni",
+                    "Incoraggiare l'esplorazione e accogliere l'imprevisto",
+                    "Data-vision di confronto dei test (spider chart, ecc...)"
+                ]
             },
             {
                 title: "Successo", label: "Raggiungere", category: "concretizzare",
@@ -962,7 +988,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- HORIZONTAL RULER (SCROLLYTELLING) RENDERER ---
 function renderMethodologyTimeline(lang = 'fr') {
     const track = document.getElementById('methodology-track');
-    const scrollerSection = document.getElementById('method-scroller');
+    const scrollerSection = document.getElementById('method');
 
     if (!track || !scrollerSection) return;
 
@@ -975,7 +1001,13 @@ function renderMethodologyTimeline(lang = 'fr') {
     }));
 
     // Config
-    const phaseWidth = 600; // px
+    // Adaptive Phase Width based on Screen
+    const windowWidth = window.innerWidth;
+    let phaseWidth = 600;
+    if (windowWidth < 1440) phaseWidth = 500;
+    if (windowWidth < 1024) phaseWidth = 400;
+    if (windowWidth < 768) phaseWidth = 350;
+
     const h = 400; // Visual Height
 
     // Store block references to update them efficiently
@@ -1110,9 +1142,9 @@ function renderMethodologyTimeline(lang = 'fr') {
             const titleOffset = isWide ? 170 : 50;
 
             bottomContent.innerHTML = `
-                <div class="border-l-2 border-red-500 dark:border-red-400 pl-6" 
+                <div class="border-l-2 border-red-500 dark:border-red-400 pl-6 responsive-decision-content" 
                      style="margin-left: -1px; padding-top: ${titleOffset}px;">
-                    <div class="max-w-[220px]">
+                    <div class="max-w-[280px]">
                         <h4 class="text-[10px] uppercase font-bold text-red-500 mb-2 tracking-widest">${translations[lang].method_decision}</h4>
                         <ul class="space-y-1">
                             ${phase.decision.map(d => `
@@ -1194,13 +1226,16 @@ function renderMethodologyTimeline(lang = 'fr') {
         // 2. Content Pins.
         // 3. Cursor moves from Center (50vw) to Screen Right (100vw).
 
-        const trackWidth = methodologyPhases.length * phaseWidth; // 3600px
+        const trackWidth = methodologyPhases.length * phaseWidth;
 
         // --- TWO-PHASE SCROLL SYSTEM (SCAN THEN WALL) ---
         // 1. PHASE 1: Scan Content (Cursor pinned at 50vw, Content translates)
         // 2. PHASE 2: Scan Wall (Content pinned at max, Cursor moves to right edge)
 
-        // Max translation to bring content end to 100vw: (60vw + trackWidth) - 100vw = trackWidth - 40vw
+        // Offset starting point to account for pl-[10vw] (0.1 * windowWidth)
+        const contentStartOffset = window.innerWidth * 0.1;
+
+        // Max translation to bring content end to 100vw
         const maxContentTranslate = trackWidth - (window.innerWidth * 0.4);
         const cursorTravelDist = window.innerWidth * 0.5; // From 50vw to 100vw
 
@@ -1486,3 +1521,196 @@ document.addEventListener('DOMContentLoaded', () => {
 // Also call immediately in case DOM is already ready (often the case with defer)
 initBubbleObserver();
 initMasterModalScrollLogic();
+
+// --- SCROLL INDICATOR LOGIC ---
+
+// --- DUAL SCROLL INDICATOR LOGIC ---
+function initScrollIndicators() {
+    const wrappers = document.querySelectorAll('.modal-content-wrapper');
+
+    wrappers.forEach(wrapper => {
+        const textSide = wrapper.querySelector('.text-side');
+        const isStacked = wrapper.classList.contains('layout-stacked');
+        const scrollParent = isStacked ? wrapper.closest('.modal-window') : textSide;
+
+        if (!textSide || !scrollParent) return;
+
+        // --- 1. Vertical Indicator ---
+        let vIndicator = wrapper.querySelector('.scroll-indicator-vertical');
+        if (!vIndicator) {
+            vIndicator = document.createElement('div');
+            vIndicator.className = 'scroll-indicator scroll-indicator-vertical';
+            vIndicator.innerHTML = `
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+                </svg>`;
+
+            // PLACEMENT LOGIC:
+            if (isStacked) {
+                // Stacked: Append to textSide so it sits at the bottom of the text block
+                textSide.appendChild(vIndicator);
+            } else {
+                // Split: Append to wrapper so it stays fixed relative to the screen/modal bottom
+                wrapper.appendChild(vIndicator);
+            }
+        }
+
+        // --- 2. Horizontal Indicator (for Points Grid) ---
+        let hIndicator = wrapper.querySelector('.scroll-indicator-horizontal');
+        if (!hIndicator) {
+            hIndicator = document.createElement('div');
+            hIndicator.className = 'scroll-indicator scroll-indicator-horizontal';
+            hIndicator.innerHTML = `
+                <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 7l5 5-5 5M6 7l5 5-5 5"/>
+                </svg>`;
+
+            // PLACEMENT LOGIC:
+            // Always append to textSide as it relates to the grid inside textSide
+            textSide.appendChild(hIndicator);
+        }
+
+        const pointsGrid = wrapper.querySelector('.modal-points-grid');
+
+        // CHECK FUNCTION
+        function checkScrolls() {
+            const threshold = 15; // Only show fade/indicators if actual overflow > 15px
+
+            // Current state check
+            const isScrollHidden = window.getComputedStyle(scrollParent).overflowY === 'hidden';
+
+            // 1. DYNAMIC MASKING (Fade effect)
+            // Vertical mask: Apply only if scrollable AND has meaningful overflow
+            if (!isScrollHidden && (scrollParent.scrollHeight - scrollParent.clientHeight > threshold)) {
+                textSide.classList.add('has-mask-v');
+            } else {
+                textSide.classList.remove('has-mask-v');
+            }
+
+            // Horizontal mask: Apply to points grid if horizontal overflow > threshold
+            if (pointsGrid) {
+                if (pointsGrid.scrollWidth - pointsGrid.clientWidth > threshold) {
+                    pointsGrid.classList.add('has-mask-h');
+                } else {
+                    pointsGrid.classList.remove('has-mask-h');
+                }
+            }
+
+            // 2. INDICATOR VISIBILITY (Small arrows)
+            if (isStacked) {
+                // Stacked (Synergie, Vamos, Agirc): Always hide vertical per request
+                vIndicator.classList.remove('visible');
+
+                if (pointsGrid && Math.ceil(pointsGrid.scrollWidth) > Math.ceil(pointsGrid.clientWidth) + 20) {
+                    hIndicator.classList.add('visible');
+                } else {
+                    hIndicator.classList.remove('visible');
+                }
+            } else {
+                // Split (ALR3, etc.): Show vertical only if it actually overflows
+                if (Math.ceil(scrollParent.scrollHeight) > Math.ceil(scrollParent.clientHeight) + 20) {
+                    vIndicator.classList.add('visible');
+                } else {
+                    vIndicator.classList.remove('visible');
+                }
+                hIndicator.classList.remove('visible');
+            }
+        }
+
+        // SCROLL LISTENERS
+        scrollParent.addEventListener('scroll', () => {
+            if (scrollParent.scrollTop > 30) {
+                vIndicator.classList.remove('visible');
+            }
+        });
+
+        if (pointsGrid) {
+            pointsGrid.addEventListener('scroll', () => {
+                if (pointsGrid.scrollLeft > 20) {
+                    hIndicator.classList.remove('visible');
+                }
+            });
+        }
+
+        // Initial Checks & Resize
+        setTimeout(checkScrolls, 500);
+        window.addEventListener('resize', checkScrolls);
+        document.body.addEventListener('click', () => {
+            setTimeout(checkScrolls, 300);
+            setTimeout(checkScrolls, 800);
+        });
+    });
+}
+
+
+// --- KEYBOARD NAVIGATION FOR PROJECTS ---
+const projectIds = [
+    'modal-kciope', // ALR3
+    'modal-rockease',
+    'modal-synergie',
+    'modal-vamos',
+    'modal-agirc',
+    'modal-altarea',
+    'modal-reyou',
+    'modal-elba', // Helena Rubinstein
+    'modal-interop' // Groupe Atlantic
+];
+
+let currentProjectIndex = -1;
+
+function navigateToProject(direction) {
+    const masterModal = document.getElementById('projects-master-modal');
+    if (!masterModal || !masterModal.classList.contains('active')) return;
+
+    // Find current index if not already tracked
+    if (currentProjectIndex === -1) {
+        // Find which project is currently most visible or centered? 
+        // Simple approach: find the data-project from the scroll position or keep track of the last opened
+        // For now, let's assume we start from 0 if untracked
+        currentProjectIndex = 0;
+    }
+
+    currentProjectIndex += direction;
+
+    // Loop around
+    if (currentProjectIndex < 0) currentProjectIndex = projectIds.length - 1;
+    if (currentProjectIndex >= projectIds.length) currentProjectIndex = 0;
+
+    const nextProjectId = projectIds[currentProjectIndex];
+    openModal(nextProjectId);
+}
+
+// Global Keyboard Listener
+window.addEventListener('keydown', (e) => {
+    const masterModal = document.getElementById('projects-master-modal');
+    if (!masterModal || !masterModal.classList.contains('active')) return;
+
+    const COLS = 3; // The project grid has 3 columns
+
+    if (e.key === 'ArrowRight') {
+        navigateToProject(1);
+    } else if (e.key === 'ArrowLeft') {
+        navigateToProject(-1);
+    } else if (e.key === 'ArrowDown') {
+        navigateToProject(COLS); // Physically below
+    } else if (e.key === 'ArrowUp') {
+        navigateToProject(-COLS); // Physically above
+    } else if (e.key === 'Escape') {
+        closeModalForce();
+    }
+});
+
+// Update current index whenever a modal is opened normally (by click)
+const originalOpenModal = openModal;
+window.openModal = function (modalId) {
+    const idx = projectIds.indexOf(modalId);
+    if (idx !== -1) {
+        currentProjectIndex = idx;
+    }
+    originalOpenModal(modalId);
+};
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    initScrollIndicators();
+});
