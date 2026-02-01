@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="light">
+<html lang="fr" data-theme="light" class="loading">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andrea Moncada</title>
     <meta property="og:title" content="Andrea Moncada">
+    <meta property="og:site_name" content="Andrea Moncada">
     <meta property="og:description" content="Systemic Designer & Innovation Strategist">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Andrea Moncada">
+    <meta name="twitter:description" content="Systemic Designer & Innovation Strategist">
+    <meta itemprop="name" content="Andrea Moncada">
+    <meta property="og:image" content="https://andrea-moncada.me/favicon-am.png">
+    <meta name="twitter:image" content="https://andrea-moncada.me/favicon-am.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon-am.png">
+    <link rel="icon" type="image/png" href="assets/favicon-am.png">
 </head>
 
 <body class="antialiased selection:bg-blue-500 selection:text-white">
@@ -33,7 +40,6 @@
                 <a href="#work" class="hover-underline" data-key="nav_work">Work</a>
                 <a href="https://www.linkedin.com/in/andrea-moncada1405/" target="_blank"
                     class="hover-underline">LinkedIn</a>
-                <a href="CV.pdf" target="_blank" class="hover-underline" data-key="nav_cv">CV</a>
             </div>
 
             <div class="h-4 w-px bg-current opacity-20 hidden md:block"></div>
@@ -138,7 +144,7 @@
                             <div class="info-chip">🇮🇹</div>
                         </div>
 
-                        <img id="profile-img" src="Photo-profil.jpg" alt="Andrea Moncada"
+                        <img id="profile-img" src="assets/Photo-profil.jpg" alt="Andrea Moncada"
                             class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
                             style="transform: scale(1.15);">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -153,27 +159,29 @@
                     <div class="marquee-container overflow-hidden">
                         <div class="marquee-content flex items-center">
                             <!-- Duplicate once for infinite effect -->
-                            <img src="MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
-                            <img src="Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
-                            <img src="Agirc-arrco-l.png" alt="Agirc-arrco"
+                            <img src="assets/MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
+                            <img src="assets/Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
+                            <img src="assets/Agirc-arrco-l.png" alt="Agirc-arrco"
                                 class="client-logo h-20 w-auto object-contain">
-                            <img src="OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
-                            <img src="Synergie-l.png" alt="Synergie" class="client-logo h-14 w-auto object-contain">
-                            <img src="Vamos bike - l.png" alt="Vamos Bikes"
+                            <img src="assets/OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
+                            <img src="assets/Synergie-l.png" alt="Synergie"
                                 class="client-logo h-14 w-auto object-contain">
-                            <img src="Groupe Atlantis-l.png" alt="Groupe Atlantis"
+                            <img src="assets/Vamos bike - l.png" alt="Vamos Bikes"
+                                class="client-logo h-14 w-auto object-contain">
+                            <img src="assets/Groupe Atlantis-l.png" alt="Groupe Atlantis"
                                 class="client-logo h-14 w-auto object-contain">
 
                             <!-- Duplicated items -->
-                            <img src="MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
-                            <img src="Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
-                            <img src="Agirc-arrco-l.png" alt="Agirc-arrco"
+                            <img src="assets/MAMP-l.png" alt="MAMP" class="client-logo h-20 w-auto object-contain">
+                            <img src="assets/Colas-l.png" alt="Colas" class="client-logo h-14 w-auto object-contain">
+                            <img src="assets/Agirc-arrco-l.png" alt="Agirc-arrco"
                                 class="client-logo h-20 w-auto object-contain">
-                            <img src="OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
-                            <img src="Synergie-l.png" alt="Synergie" class="client-logo h-14 w-auto object-contain">
-                            <img src="Vamos bike - l.png" alt="Vamos Bikes"
+                            <img src="assets/OPPBTP-l.png" alt="OPPBTP" class="client-logo h-20 w-auto object-contain">
+                            <img src="assets/Synergie-l.png" alt="Synergie"
                                 class="client-logo h-14 w-auto object-contain">
-                            <img src="Groupe Atlantis-l.png" alt="Groupe Atlantis"
+                            <img src="assets/Vamos bike - l.png" alt="Vamos Bikes"
+                                class="client-logo h-14 w-auto object-contain">
+                            <img src="assets/Groupe Atlantis-l.png" alt="Groupe Atlantis"
                                 class="client-logo h-14 w-auto object-contain">
                         </div>
                     </div>
@@ -267,83 +275,83 @@
                     <div class="project-marquee-wall">
                         <!-- Column 1 (Focus: C1, C2) -->
                         <div class="marquee-col col-up">
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
                             <!-- Duplicate for infinite loop -->
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
                         </div>
                         <!-- Column 2 (Focus: C3, C4) -->
                         <div class="marquee-col col-down">
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
-                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
+                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
                             <!-- Duplicate for infinite loop -->
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
-                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
+                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
                         </div>
                         <!-- Column 3 (Focus: C1, C2, C3, C4 Mixed) -->
                         <div class="marquee-col col-up">
-                            <img src="C1.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
                             <!-- Duplicate for infinite loop -->
-                            <img src="C1.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C1.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C4.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
                         </div>
                         <!-- Column 4 (Focus: C1, C2) -->
                         <div class="marquee-col col-down">
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
-                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
+                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
                             <!-- Duplicate for infinite loop -->
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C8.png" alt="UI Screen"><img src="C7.png" alt="UI Screen">
-                            <img src="C6.png" alt="UI Screen"><img src="C5.png" alt="UI Screen">
-                            <img src="C2.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
+                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
+                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
                         </div>
                         <!-- Column 5 (Focus: C3, C4) -->
                         <div class="marquee-col col-up">
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
                             <!-- Duplicate for infinite loop -->
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C1.png" alt="UI Screen">
-                            <img src="C3.png" alt="UI Screen"><img src="C2.png" alt="UI Screen">
-                            <img src="C5.png" alt="UI Screen"><img src="C6.png" alt="UI Screen">
-                            <img src="C7.png" alt="UI Screen"><img src="C8.png" alt="UI Screen">
-                            <img src="C4.png" alt="UI Screen"><img src="C3.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
+                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
+                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
+                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
+                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
                         </div>
                     </div>
 
@@ -373,7 +381,7 @@
                 <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
                     onclick="openModal('modal-rockease')" role="button" tabindex="0">
                     <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
-                        <source src="Video-rockease-cover.mp4" type="video/mp4">
+                        <source src="assets/Video-rockease-cover.mp4" type="video/mp4">
                     </video>
                     <div
                         class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
@@ -405,63 +413,63 @@
                     <div class="project-marquee-wall">
                         <!-- Column 1 -->
                         <div class="marquee-col col-up">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
                             <!-- Duplicate -->
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
                         </div>
                         <!-- Column 2 -->
                         <div class="marquee-col col-down">
-                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
-                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
+                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
                             <!-- Duplicate -->
-                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
-                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A7.png" alt="Synergie UI"><img src="A6.png" alt="Synergie UI">
+                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
+                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
                         </div>
                         <!-- Column 3 (Focus: A1 centered) -->
                         <div class="marquee-col col-up">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
                             <!-- Duplicate -->
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A1.png" alt="Synergie UI"><img src="A2.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
                         </div>
                         <!-- Column 4 -->
                         <div class="marquee-col col-down">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
                             <!-- Duplicate -->
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A3.png" alt="Synergie UI"><img src="A4.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
                         </div>
                         <!-- Column 5 -->
                         <div class="marquee-col col-up">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
                             <!-- Duplicate -->
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
-                            <img src="A2.png" alt="Synergie UI"><img src="A1.png" alt="Synergie UI">
-                            <img src="A4.png" alt="Synergie UI"><img src="A3.png" alt="Synergie UI">
-                            <img src="A6.png" alt="Synergie UI"><img src="A7.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
+                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
+                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
                         </div>
                     </div>
 
@@ -492,7 +500,7 @@
                 <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
                     onclick="openModal('modal-vamos')" role="button" tabindex="0">
                     <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
-                        <source src="Video-vamos-cover.mp4" type="video/mp4">
+                        <source src="assets/Video-vamos-cover.mp4" type="video/mp4">
                     </video>
                     <div
                         class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
@@ -525,43 +533,43 @@
                     <div class="project-marquee-wall">
                         <!-- Column 1 -->
                         <div class="marquee-col col-desktop col-up">
-                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
                             <!-- Duplicate -->
-                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
                         </div>
                         <!-- Column 2 -->
                         <div class="marquee-col col-desktop col-down">
-                            <img src="B7.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
                             <!-- Duplicate -->
-                            <img src="B7.png" alt="Agirc-Arrco UI"><img src="B6.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B2.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
                         </div>
                         <!-- Column 3 (Focus: B1) -->
                         <div class="marquee-col col-desktop col-up">
-                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B3.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B7.png" alt="Agirc-Arrco UI">
-                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
                             <!-- Duplicate -->
-                            <img src="B1.png" alt="Agirc-Arrco UI"><img src="B3.png" alt="Agirc-Arrco UI">
-                            <img src="B5.png" alt="Agirc-Arrco UI"><img src="B7.png" alt="Agirc-Arrco UI">
-                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
                         </div>
                         <!-- Column 4 -->
                         <div class="marquee-col col-desktop col-down">
-                            <img src="B6.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B1.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B5.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png" alt="Agirc-Arrco UI">
                             <!-- Duplicate -->
-                            <img src="B6.png" alt="Agirc-Arrco UI"><img src="B4.png" alt="Agirc-Arrco UI">
-                            <img src="B2.png" alt="Agirc-Arrco UI"><img src="B1.png" alt="Agirc-Arrco UI">
-                            <img src="B3.png" alt="Agirc-Arrco UI"><img src="B5.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png" alt="Agirc-Arrco UI">
+                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png" alt="Agirc-Arrco UI">
                         </div>
                     </div>
                     <div
@@ -589,7 +597,7 @@
             <div class="group flex flex-col gap-3">
                 <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
                     onclick="openModal('modal-altarea')" role="button" tabindex="0">
-                    <img src="Cover-ALTAREA.png" alt="Altarea" class="object-cover w-full h-full opacity-90">
+                    <img src="assets/Cover-ALTAREA.png" alt="Altarea" class="object-cover w-full h-full opacity-90">
 
                     <!-- Rain Effect Container -->
                     <div class="rain-container">
@@ -741,7 +749,7 @@
                         </svg>
                         <div class="hr-gloss-overlay absolute inset-0 pointer-events-none"></div>
                         <div class="hr-logo-wrapper">
-                            <img src="Logo-HR.png" alt="Helena Rubinstein" class="hr-logo">
+                            <img src="assets/Logo-HR.png" alt="Helena Rubinstein" class="hr-logo">
                         </div>
                     </div>
                     <div
@@ -772,51 +780,51 @@
                     <div class="project-marquee-wall">
                         <!-- Column 1 -->
                         <div class="marquee-col col-wide col-up">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
                             <!-- Duplicate -->
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
                         </div>
                         <!-- Column 2 -->
                         <div class="marquee-col col-wide col-down">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
                             <!-- Duplicate -->
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
                         </div>
                         <!-- Column 3 -->
                         <div class="marquee-col col-wide col-up">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
                             <!-- Duplicate -->
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
                         </div>
                         <!-- Column 4 -->
                         <div class="marquee-col col-wide col-down">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
                             <!-- Duplicate -->
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="3.png" alt="Interop UI">
-                            <img src="D2.png" alt="Interop UI">
-                            <img src="D1.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/3.png" alt="Interop UI">
+                            <img src="assets/D2.png" alt="Interop UI">
+                            <img src="assets/D1.png" alt="Interop UI">
                         </div>
                     </div>
 
@@ -1098,7 +1106,7 @@
                             </div>
                             <!-- Bottom: Visual -->
                             <div class="visual-side">
-                                <img src="Img-inside-Synergie.png" alt="Synergie UI Design">
+                                <img src="assets/Img-inside-Synergie.png" alt="Synergie UI Design">
                             </div>
                         </div>
 
@@ -1153,7 +1161,7 @@
                             </div>
                             <!-- Bottom: Visual -->
                             <div class="visual-side" style="position: relative;">
-                                <img src="Img-inside-VAMOS.png" alt="Vamos Bikes UI">
+                                <img src="assets/Img-inside-VAMOS.png" alt="Vamos Bikes UI">
                                 <a href="https://vamosbikes.com.au/" target="_blank" class="visit-site-chip">
                                     <span data-key="open_site_label">Visit Website ↗</span>
                                 </a>
@@ -1214,7 +1222,7 @@
                             </div>
                             <!-- Bottom: Visual -->
                             <div class="visual-side">
-                                <img src="Img-inside-AGIRC-ARRCO.png" alt="Agirc Arrco UI Design">
+                                <img src="assets/Img-inside-AGIRC-ARRCO.png" alt="Agirc Arrco UI Design">
                             </div>
                         </div>
 
@@ -1275,9 +1283,9 @@
                             <!-- Right: Visual -->
                             <div class="visual-side" id="visual-altarea"
                                 style="display: block; overflow-y: auto; padding: 0; background: #f5f5f7; position: relative; scroll-behavior: smooth;">
-                                <img src="Cover-ALTAREA-1.png" alt="Altarea Project 1"
+                                <img src="assets/Cover-ALTAREA-1.png" alt="Altarea Project 1"
                                     style="width: 100%; height: auto; display: block;">
-                                <img src="Cover-ALTAREA-2.png" alt="Altarea Project 2"
+                                <img src="assets/Cover-ALTAREA-2.png" alt="Altarea Project 2"
                                     style="width: 100%; height: auto; display: block;">
 
                                 <!-- Scroll Indicator -->
@@ -1429,7 +1437,7 @@
                             </div>
                             <!-- Right: Visual -->
                             <div class="visual-side">
-                                <img src="elba-project-2.png" alt="Helena Rubinstein Project">
+                                <img src="assets/elba-project-2.png" alt="Helena Rubinstein Project">
                             </div>
                         </div>
 

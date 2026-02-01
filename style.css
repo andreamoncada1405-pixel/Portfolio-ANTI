@@ -583,7 +583,7 @@ h3 {
 .reyou-blueprint {
     position: absolute;
     inset: 0;
-    background-image: url('reyou-blueprint.png');
+    background-image: url('assets/reyou-blueprint.png');
     background-size: cover;
     /* Using cover as the user has already added padding to the image itself */
     background-repeat: no-repeat;
@@ -665,7 +665,7 @@ h3 {
     height: 130px;
     top: 10%;
     left: 10%;
-    background-image: url('reyou-chair-wf.png');
+    background-image: url('assets/reyou-chair-wf.png');
 }
 
 .item-desk {
@@ -673,7 +673,7 @@ h3 {
     height: 100px;
     top: 45%;
     right: 8%;
-    background-image: url('reyou-desk-wf.png');
+    background-image: url('assets/reyou-desk-wf.png');
     background-size: 85%;
 }
 
@@ -682,7 +682,7 @@ h3 {
     height: 90px;
     top: 10%;
     right: 10%;
-    background-image: url('reyou-table-wf.png');
+    background-image: url('assets/reyou-table-wf.png');
 }
 
 /* Hover Activations - Sequential Logic */
@@ -2026,3 +2026,6 @@ h3 {
         /* Pull content up over the schema when vertical space is tight */
     }
 }
+/* --- FOUC PRELOADER corrected --- */
+html.loading body { opacity: 0; pointer-events: none; }
+body { transition: background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease; }

@@ -228,7 +228,7 @@ const methodologyPhases = [
 
 const translations = {
     'fr': {
-        'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact', 'nav_method': 'Méthode', 'nav_cv': 'CV',
+        'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact', 'nav_method': 'Méthode',
         'nav_logo_title': 'Designer Systémique & Stratégiste de l\'Innovation',
         'meta_at': 'chez',
         'hero_title': 'Innovation<br>Systémique.',
@@ -403,7 +403,7 @@ const translations = {
         ]
     },
     'en': {
-        'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact', 'nav_method': 'Method', 'nav_cv': 'CV',
+        'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact', 'nav_method': 'Method',
         'nav_logo_title': 'Systemic Designer & Innovation Strategist',
         'meta_at': 'at',
         'hero_title': 'Systemic<br>Innovation.',
@@ -574,7 +574,7 @@ const translations = {
         ]
     },
     'it': {
-        'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti', 'nav_method': 'Metodo', 'nav_cv': 'CV',
+        'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti', 'nav_method': 'Metodo',
         'nav_logo_title': 'Systemic Designer & Strategist dell\'Innovazione',
         'meta_at': 'presso',
         'hero_title': 'Innovazione<br>Sistemica.',
@@ -1713,4 +1713,11 @@ window.openModal = function (modalId) {
 // Initialize on load
 document.addEventListener('DOMContentLoaded', () => {
     initScrollIndicators();
+});
+
+// --- FOUC FIX ---
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.documentElement.classList.remove('loading');
+    }, 100);
 });
