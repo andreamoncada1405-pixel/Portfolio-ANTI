@@ -1197,15 +1197,7 @@ h3 {
     width: 4px;
 }
 
-.layout-split .text-side::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.layout-split .text-side::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    /* Slightly visible as hint */
-    border-radius: 10px;
-}
+/* Scrollbar removed per user request - finding cleaner solution */
 
 
 .layout-split .visual-side {
@@ -1327,14 +1319,22 @@ h3 {
 }
 
 /* Hide scrollbar but keep functionality for grid or use subtle one */
+/* Hide scrollbar but keep functionality for grid or use subtle one */
 .layout-stacked .modal-points-grid::-webkit-scrollbar {
-    height: 3px;
+    height: 0px;
+    background: transparent;
 }
 
+/*
 .layout-stacked .modal-points-grid::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     border-radius: 10px;
 }
+
+[data-theme="dark"] .layout-stacked .modal-points-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+*/
 
 /* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
 /* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
@@ -1343,8 +1343,8 @@ h3 {
     .layout-stacked .text-side {
         flex-direction: row;
         /* Keep it horizontal */
-        padding: 2.5vh 4vw 6vh 4vw;
-        /* SIGNIFICANT bottom padding to avoid touching image */
+        padding: 2.5vh 4vw 2rem 4vw;
+        /* SIGNIFICANT bottom padding reduced to avoid phantom scroll */
         /* Less top, MORE bottom to avoid touching image */
         max-height: 48vh;
         /* Relaxed limit to fit content */
@@ -1352,6 +1352,8 @@ h3 {
         /* Scroll enabled (safety) */
         gap: 1rem;
     }
+
+    /* Scrollbar removed from media query as well */
 
     .layout-stacked .header-group {
         width: 85%;
@@ -2026,6 +2028,13 @@ h3 {
         /* Pull content up over the schema when vertical space is tight */
     }
 }
+
 /* --- FOUC PRELOADER corrected --- */
-html.loading body { opacity: 0; pointer-events: none; }
-body { transition: background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease; }
+html.loading body {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}

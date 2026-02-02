@@ -237,8 +237,9 @@ const translations = {
         'section_work': 'Projets Sélectionnés',
         'label_problem': 'La Problématique', 'label_goal': 'L\'Objectif', 'label_solution': 'La Solution',
         'about_education': 'Éducation', 'about_current': 'Poste Actuel', 'about_focus': 'Expertise', 'about_frameworks': 'Frameworks',
-        'about_focus_1': 'Mngmt de l\'Innovation', 'about_focus_2': 'Design Systémique',
+        'about_focus_1': 'Management de l\'Innovation', 'about_focus_2': 'Design Systémique',
         'about_frameworks_1': 'Méthodes UX', 'about_frameworks_2': 'Design Thinking',
+        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
 
         // MODAL UI
         'preview_label': 'Explorez le prototype',
@@ -357,11 +358,14 @@ const translations = {
         // Methodology
         'method_scroll_explore': 'Défilez pour explorer',
         'method_process': 'Processus',
-        'method_title': 'Design & Decide',
-        'method_intro_1': 'Diverger pour explorer. Converger pour décider.',
-        'method_intro_2': 'Le passage du besoin initial au résultat final ne doit pas être laissé au hasard. Ce cadre systémique alterne créativité et rigueur analytique.',
-        'method_intro_3': 'Le résultat : nous éliminons les suppositions. Rien n\'est développé sans avoir été préalablement validé par les données et l\'expérience utilisateur. C\'est le pont entre l\'intuition et la faisabilité.',
+        'method_title': 'UX Recherche <br class="md:hidden"> & Stratégie',
+        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_intro_1': 'Un cadre méthodologique opérant une évolution stratégique du Double Diamant par l\'intégration d\'une gestion rigoureuse du risque créatif.',
+        'method_intro_2': 'Cette approche systémique structure l\'incertitude inhérente à l\'innovation : elle alterne exploration créative et validation analytique pour transformer de simples suppositions en preuves tangibles. C\'est le pont concret qui relie l\'intuition du designer à la faisabilité économique du projet.',
+        'method_intro_3': '',
+        'method_intro_3': '',
         'method_cdc': 'CdC',
+        'projects_hover_anim': 'Survolez pour voir l\'animation',
         'method_prob': 'problématique',
         'method_decision': 'Outil de Décision',
         'methodology': [
@@ -412,8 +416,10 @@ const translations = {
         'section_work': 'Selected Works',
         'label_problem': 'The Problem', 'label_goal': 'The Goal', 'label_solution': 'The Solution',
         'about_education': 'Education', 'about_current': 'Current Position', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
-        'about_focus_1': 'Innovation Mgmt', 'about_focus_2': 'Systemic Design',
+        'about_focus_1': 'Innovation Management', 'about_focus_2': 'Systemic Design',
         'about_frameworks_1': 'UX Methods', 'about_frameworks_2': 'Design Thinking',
+        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
+
 
         // MODAL UI
         'preview_label': 'Explore prototype',
@@ -533,11 +539,14 @@ const translations = {
         // Methodology
         'method_scroll_explore': 'Scroll to Explore',
         'method_process': 'Process',
-        'method_title': 'Design & Decide',
-        'method_intro_1': 'Diverge to explore. Converge to decide.',
-        'method_intro_2': 'The journey from initial need to final result must not be left to chance. This systemic framework alternates between creativity and analytical rigor.',
-        'method_intro_3': 'The result: we eliminate guesswork. Nothing is built without first being validated by data and user experience. It is the bridge between intuition and feasibility.',
+        'method_title': 'UX Research <br class="md:hidden"> & Strategy',
+        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_intro_1': 'A methodological framework representing a strategic evolution of the Double Diamond, integrated with rigorous creative risk management.',
+        'method_intro_2': 'This systemic approach structures the uncertainty inherent in innovation: alternating between creative exploration and analytical validation to turn assumptions into tangible evidence. It serves as the concrete bridge connecting design intuition with business feasibility.',
+        'method_intro_3': '',
+        'method_intro_3': '',
         'method_cdc': 'Brief',
+        'projects_hover_anim': 'Hover to see animation',
         'method_prob': 'problem statement',
         'method_decision': 'Decision Tool',
         'methodology': [
@@ -583,8 +592,10 @@ const translations = {
         'section_work': 'Progetti Selezionati',
         'label_problem': 'La Domanda', 'label_goal': 'L\'Obiettivo', 'label_solution': 'La Soluzione',
         'about_education': 'Educazione', 'about_current': 'Posizione Attuale', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
-        'about_focus_1': 'Mngmt Innovazione', 'about_focus_2': 'Design Sistemico',
+        'about_focus_1': 'Management dell\'Innovazione', 'about_focus_2': 'Design Sistemico',
         'about_frameworks_1': 'Metodi UX', 'about_frameworks_2': 'Design Thinking',
+        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
+
 
         // MODAL UI
         'preview_label': 'Esplora il prototipo',
@@ -699,11 +710,14 @@ const translations = {
         // Methodology
         'method_scroll_explore': 'Scorri per esplorare',
         'method_process': 'Processo',
-        'method_title': 'Design & Decide',
-        'method_intro_1': 'Divergere per esplorare. Convergere per decidere.',
-        'method_intro_2': 'Il passaggio dal bisogno iniziale al risultato finale non deve essere lasciato al caso. Questo framework sistemico alterna creatività e rigore analitico.',
-        'method_intro_3': 'Il risultato: eliminiamo le supposizioni. Niente viene sviluppato senza essere stato prima validato dai dati e dall\'esperienza utente. È il ponte tra intuizione e fattibilità.',
+        'method_title': 'UX Research <br class="md:hidden"> & Strategia',
+        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_intro_1': 'Un quadro metodologico che attua un\'evoluzione strategica del Double Diamond tramite l\'integrazione di una rigorosa gestione del rischio creativo.',
+        'method_intro_2': 'Questo approccio sistemico struttura l\'incertezza intrinseca all\'innovazione: alterna esplorazione creativa e validazione analitica per trasformare semplici supposizioni in prove tangibili. È il ponte concreto che collega l\'intuizione del design alla fattibilità economica del progetto.',
+        'method_intro_3': '',
+        'method_intro_3': '',
         'method_cdc': 'Brief',
+        'projects_hover_anim': 'Passa il mouse per vedere l\'animazione',
         'method_prob': 'problematica',
         'method_decision': 'Strumento Decisionale',
         'methodology': [
@@ -1579,8 +1593,9 @@ function initScrollIndicators() {
             // Current state check
             const isScrollHidden = window.getComputedStyle(scrollParent).overflowY === 'hidden';
 
-            // 1. DYNAMIC MASKING (Fade effect)
+            // 1. DYNAMIC MASKING (Fade effect) - DISABLED PER USER REQUEST
             // Vertical mask: Apply only if scrollable AND has meaningful overflow
+            /*
             if (!isScrollHidden && (scrollParent.scrollHeight - scrollParent.clientHeight > threshold)) {
                 textSide.classList.add('has-mask-v');
             } else {
@@ -1595,20 +1610,27 @@ function initScrollIndicators() {
                     pointsGrid.classList.remove('has-mask-h');
                 }
             }
+            */
+            // Ensure masks are removed if they were previously added
+            textSide.classList.remove('has-mask-v');
+            if (pointsGrid) pointsGrid.classList.remove('has-mask-h');
+
 
             // 2. INDICATOR VISIBILITY (Small arrows)
+            const indicatorThreshold = 40; // Reduced to 40px to effectively show arrow when content is cut off
+
             if (isStacked) {
                 // Stacked (Synergie, Vamos, Agirc): Always hide vertical per request
                 vIndicator.classList.remove('visible');
 
-                if (pointsGrid && Math.ceil(pointsGrid.scrollWidth) > Math.ceil(pointsGrid.clientWidth) + 20) {
+                if (pointsGrid && Math.ceil(pointsGrid.scrollWidth) > Math.ceil(pointsGrid.clientWidth) + indicatorThreshold) {
                     hIndicator.classList.add('visible');
                 } else {
                     hIndicator.classList.remove('visible');
                 }
             } else {
                 // Split (ALR3, etc.): Show vertical only if it actually overflows
-                if (Math.ceil(scrollParent.scrollHeight) > Math.ceil(scrollParent.clientHeight) + 20) {
+                if (Math.ceil(scrollParent.scrollHeight) > Math.ceil(scrollParent.clientHeight) + indicatorThreshold) {
                     vIndicator.classList.add('visible');
                 } else {
                     vIndicator.classList.remove('visible');
@@ -1631,6 +1653,17 @@ function initScrollIndicators() {
                 }
             });
         }
+
+        // CLICK LISTENERS FOR ARROWS
+        vIndicator.addEventListener('click', (e) => {
+            e.stopPropagation();
+            scrollParent.scrollBy({ top: 150, behavior: 'smooth' });
+        });
+
+        hIndicator.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (pointsGrid) pointsGrid.scrollBy({ left: 150, behavior: 'smooth' });
+        });
 
         // Initial Checks & Resize
         setTimeout(checkScrolls, 500);
