@@ -229,11 +229,11 @@ const methodologyPhases = [
 const translations = {
     'fr': {
         'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact', 'nav_method': 'Méthode',
-        'nav_logo_title': 'Designer Systémique & Stratégiste de l\'Innovation',
+        'nav_logo_title': 'Innovation Project Manager & Stratégiste',
         'meta_at': 'chez',
         'hero_title': 'Innovation<br>Systémique.',
-        'hero_subtitle': 'La rencontre entre Design & Business Strategy',
-        'story_text': 'Je transforme la complexité en opportunité stratégique. En tant que Systemic Designer, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, je recherche une alternance dès 09/2026 pour structurer vos projets complexes.',
+        'hero_subtitle': 'Stratégie & Innovation Project Management',
+        'story_text': 'Je transforme la complexité en opportunité stratégique. En tant que futur Innovation Project Manager, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, je recherche une alternance dès 09/2026 pour structurer vos projets complexes.',
         'section_work': 'Projets Sélectionnés',
         'label_problem': 'La Problématique', 'label_goal': 'L\'Objectif', 'label_solution': 'La Solution',
         'about_education': 'Éducation', 'about_current': 'Poste Actuel', 'about_focus': 'Expertise', 'about_frameworks': 'Frameworks',
@@ -252,10 +252,10 @@ const translations = {
         'open_fullscreen_label': 'Ouvrir en plein écran ↗',
 
         // K-CIOPE
-        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe', 'p0_problem': 'Moderniser la gestion des incidents (voirie, propreté) pour les agents de terrain et les citoyens, remplaçant des processus obsolètes.', 'p0_goal': 'Fluidifier la remontée d\'information et optimiser l\'intervention des services publics via une UX mobile-first.', 'p0_solution': 'Prototypage haute-fidélité pour validation rapide par les parties prenantes avant développement (Agile).',
-        'p0_main_desc': 'Vecteur clé de la transition écologique, l\'application devait dépasser sa fonction utilitaire pour devenir un véritable moteur d\'engagement. Cette refonte a métamorphosé un outil technique complexe en un compagnon du quotidien, fluide et intuitif, démocratisant l\'accès aux éco-gestes pour l\'ensemble des habitants de la Métropole.',
-        'p0_achievements': '• Audit UX et analyse des usages (Analytics)<br>• Animation d\'ateliers de co-conception métier<br>• Refonte de l\'architecture de l\'information<br>• Création du système visuel et UI Design<br>• Prototypage interactif haute-fidélité (Figma)',
-        'p0_context_desc': 'Navigation complexe and faible adoption. Transformation d\'un outil administratif en expérience citoyenne fluide, alignant service public et standards UX modernes.',
+        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_subtitle': 'Strategie Innovation & Civic Tech', 'p0_desc': 'UX Lead (Projet) & Strategist • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe', 'p0_problem': 'Moderniser la gestion des incidents (voirie, propreté) per les agents de terrain et les citoyens.', 'p0_goal': 'Fluidifier la remontée d\'information et optimiser l\'intervention des services publics.', 'p0_solution': 'Prototypage haute-fidélité per validation rapide par les parties prenantes avant développement.',
+        'p0_main_desc': 'Modernisation de l\'écosystème citoyen "Adoptez le R3flexe" per maximiser l\'engagement usager et l\'efficacité des services publics.',
+        'p0_achievements': '• Audit UX & Data (Analytics) : Identification dei leviers d\'innovation et frictions.<br>• Facilitation & Cadrage : Alignement de la vision produit sur les objectifs politiques.<br>• Architecture & Design : Restructuration de l\'information per transformer les contraintes.<br>• Innovation Ops : Utilisation de l\'IA (Figma Make) per accélérer l\'itération et la faisabilité.',
+        'p0_context_desc': 'Transformation d\'un outil administratif en expérience citoyenne fluide, alignant service public et standards UX modernes.',
 
         'nav_complete_title': 'Navigation Complète',
         'nav_complete_alr3': 'Explorez le prototype →',
@@ -279,10 +279,10 @@ const translations = {
         'contact_success_desc': 'Votre message a bien été reçu. Je reviendrai vers vous très prochainement.',
 
         // SYNERGIE
-        'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Transformation Digitale', 'p_synergie_desc': 'UX/UI Designer • 2025', 'p_synergie_title_full': 'Synergie',
-        'p_synergie_main_desc': 'Dans une guerre des talents compétitive, l\'expérience numérique est la première vitrine de la marque employeur. Ce projet visait à fluidifier radicalement le parcours d\'inscription pour maximiser la conversion.',
-        'p_synergie_achievements': '• Scénarisation des parcours (User Flows)<br>• Design de l\'Onboarding progressif<br>• Modélisation du Dashboard Candidat<br>• Création d\'un Design System unifié',
-        'p_synergie_context_desc': 'Réseau international (17 pays). Projet "Apollo" : conception d\'un tunnel d\'acquisition progressif pour réduire l\'abandon et centraliser les candidatures.',
+        'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Transformation Digitale', 'p_synergie_desc': 'Product Designer & Strategist • 2025', 'p_synergie_title_full': 'Synergie',
+        'p_synergie_main_desc': 'Optimisation du projet stratégique "Apollo" pour fluidifier l\'expérience candidat et maximiser la conversion.',
+        'p_synergie_achievements': '• Benchmark HR Tech : Analyse des tendances per définir i standards d\'innovation.<br>• Design de Conversion : Optimisation dei parcours d\'inscription per soutenir la croissance.<br>• Data Visualization : Modélisation dei dashboards per le pilotage opérationnel.<br>• Stratégie Flows : Alignement dei solutions techniques sur i obiettivi business.',
+        'p_synergie_context_desc': 'Conception d\'un tunnel d\'acquisition progressif per réduire l\'abandon et centraliser i candidatures.',
 
         // MAKE / AI
         'p_make_title': 'Automatisation & IA DesignOps', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Optimisation des Flux avec l\'IA et le No-Code',
@@ -291,29 +291,29 @@ const translations = {
         'p_make_solution': 'Création de connecteurs intelligents entre outils design (Figma), bases de données (Airtable) et IA pour une génération et organisation automatisée.',
 
         // VAMOS
-        'p_vamos_title': 'Vamos Bikes', 'p_vamos_subtitle': 'Marketplace B2B', 'p_vamos_desc': 'UX/UI Designer • 2024',
+        'p_vamos_title': 'Vamos Bikes', 'p_vamos_subtitle': 'Marketplace B2B', 'p_vamos_desc': 'Chef de Projet UX/UI • 2024',
         'p_vamos_title_full': 'Vamos Bikes',
-        'p_vamos_main_desc': 'Plus qu\'une vitrine, le site est ici le premier vendeur. Cette refonte intégrale (End-to-End) fusionne immersion lifestyle et clarté technique. L\'objectif : rassurer l\'utilisateur sur ce produit premium et fluidifier le parcours, de la découverte émotionnelle jusqu\'à l\'achat confiant.',
-        'p_vamos_achievements': '• Audit UX et stratégie e-commerce<br>• Refonte de l\'identité visuelle (UI) & Branding<br>• Conception "Mobile First" et Responsive<br>• Optimisation du tunnel d\'achat<br>• Prototypage haute-fidélité complet',
-        'p_vamos_context_desc': 'Un site existant vieillissant qui ne reflétait pas la qualité premium des vélos, créant un frein psychologique à l\'achat sur un marché concurrentiel. Solution : Une expérience d\'achat moderne qui valorise le produit.',
+        'p_vamos_main_desc': 'Refonte intégrale de la marketplace B2B : modernisation de l\'identité et optimisation du tunnel d\'achat.',
+        'p_vamos_achievements': '• Audit & Stratégie : Restructuration de l\'information per simplifier le tunnel d\'achat.<br>• Design Immersif : Interface moderne valorisant l\'expertise technique et l\'univers de marque.<br>• Validation UX : Réalisation dei prototypes haute-fidélité per sécuriser l\'expérience.',
+        'p_vamos_context_desc': 'Une expérience d\'achat moderne qui valorise le prodotto premium sur un marché concurrentiel.',
         'p3_title': 'Stratégie Luxe & 3D', 'p3_desc': 'Phase Création • Jumeau Numérique',
 
         // ROCKEASE
-        'p_rockease_title': 'Rockease', 'p_rockease_desc': 'UI Designer • 2025',
+        'p_rockease_title': 'Rockease', 'p_rockease_subtitle': 'Marketplace B2B & Digital Factory', 'p_rockease_desc': 'Product Designer • 2025',
         'p_rockease_title_full': 'Rockease',
-        'p_rockease_problem_desc': 'Optimiser l\'approvisionnement en granulats pour les chantiers, un processus traditionnellement manuel et fragmenté.',
-        'p_rockease_strategy_desc': 'Conception d\'une marketplace B2B intuitive permettant de commander et suivre les livraisons en temps réel.',
-        'p_rockease_result_desc': 'Une plateforme centralisée qui réduit les coûts logistiques et simplifie la vie des conducteurs de travaux.',
-        'p_rockease_main_desc': 'Au sein de la Digital Factory, l\'enjeu était de réduire le "Time-to-Market" sans sacrifier la qualité visuelle. Mon rôle hybride a permis de combler le fossé entre design et développement. En traduisant directement les concepts graphiques en solutions Webflow modulaires, nous avons créé une plateforme robuste, évolutive et parfaitement fidèle à l\'identité de marque du groupe.',
-        'p_rockease_achievements': '• Co-conception des interfaces<br>• Développement et intégration Webflow<br>• Architecture CMS & Collections<br>• Gestion du Responsive Design',
-        'p_rockease_context_desc': 'Marketplace B2B pour la commande de matériaux de construction. Réduction du "Time-to-Market" tout en maintenant une qualité visuelle premium et une fidélité parfaite à l\'identité de marque Colas.',
+        'p_rockease_problem_desc': 'Optimiser l\'approvisionnement en granulats per i chantiers via une marketplace B2B.',
+        'p_rockease_strategy_desc': 'Accompagnement stratégique et déploiement de la marketplace au sein de la Digital Factory Colas.',
+        'p_rockease_result_desc': 'Une plateforme centralisée qui réduit i coûts logistiques et simplifie le pilotage.',
+        'p_rockease_main_desc': 'Support opérationnel et déploiement de la marketplace B2B Rockease au sein della filiale digitale du groupe Colas.',
+        'p_rockease_achievements': '• Déploiement Agile : Migration della marketplace via Webflow (Time-to-Market optimisé).<br>• Design System Web : Création dei templates modulaires assurant cohérence et scalabilité.<br>• Optimization B2B : Structuration du CMS per une expérience utilisateur haute performance.',
+        'p_rockease_context_desc': 'Marketplace B2B per la commande de matériaux. Réduction du "Time-to-Market" via Webflow.',
 
         // AGIRC
         'p_agirc_title': 'Agirc-Arrco', 'p_agirc_desc': 'UX Researcher & Analyst • 2025',
         'p_agirc_title_full': 'Agirc-Arrco',
-        'p_agirc_main_desc': 'Intervention ciblée pour valider la refonte de l\'espace B2B Agirc-Arrco. Mise à l\'épreuve des nouveaux parcours via des tests utilisateurs en situation réelle et analyse des données de navigation pour identifier objectivement les bloquants.',
-        'p_agirc_achievements': '• Recrutement et tests avec experts (RH/Paie)<br>• Analyse comportementale en situation<br>• Consolidation des données<br>• Rapport de recommandations UX',
-        'p_agirc_context_desc': 'Pour réussir la refonte d\'un portail aussi complexe, l\'intuition ne suffisait pas. Mon rôle a été d\'apporter une validation factuelle en confrontant les maquettes à la réalité du terrain.',
+        'p_agirc_main_desc': 'Validation stratégique della refonte de l\'espace B2B via tests usagers réels et analyse d\'usage quantitative.',
+        'p_agirc_achievements': '• Confrontation Terrain : Validation dei parcours auprès dei gestionnaires de paie.<br>• Analyse de Friction : Consolidation structurée dei observations per prioriser i focus.<br>• Pilotage Produit : Transformation dei insights en recommandations per orienter i équipes.',
+        'p_agirc_context_desc': 'Apporter une validation factuelle en confrontant i maquettes à la réalité du terrain et processus RH/Paie.',
 
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
@@ -326,9 +326,9 @@ const translations = {
         // REYOU
         'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
         'p_reyou_subtitle': 'ÉCONOMIE CIRCULAIRE & RETAIL DIGITAL',
-        'p_reyou_main_desc': 'Développement d\'un showroom numérique interactif pour valoriser le mobilier de bureau de seconde main (réemploi). Le projet digitalise l\'espace physique (Coworking "Le Périscope"), permettant aux clients B2B d\'explorer et d\'acheter le stock directement dans un contexte d\'usage réel. Une solution qui lève les freins psychologiques liés à l\'occasion, transformant un inventaire statique en expérience immersive.',
-        'p_reyou_achievements': '• Conception de la stratégie "Phygital"<br>• UX/UI Design de l\'interface interactive<br>• Modélisation et rendu stratégique<br>• Intégration de la génération de leads',
-        'p_reyou_context_desc': 'Le marché du mobilier reconditionné souffre souvent d\'un déficit d\'image. Le défi était de prouver que le mobilier de réemploi peut soutenir des espaces de travail modernes et premium. L\'intuition a été de ne pas vendre la pièce seule, mais le \"set\" contextualisé.',
+        'p_reyou_main_desc': 'Showroom numérique interactif dédié au réemploi de mobilier de bureau, levant i freins du marché via l\'immersion.',
+        'p_reyou_achievements': '• Conception de la stratégie "Phygital"<br>• UX/UI Design de l\'interface interactive<br>• Modélisation et rendu stratégique<br>• Intégration della génération de leads',
+        'p_reyou_context_desc': 'Démontrer que le mobilier de réemploi peut soutenir dei espaces de travail modernes et premium.',
 
         // AI EXPERTISE
         'section_ai_expertise': 'Expertise IA',
@@ -340,18 +340,18 @@ const translations = {
         'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanisme & Adaptation Climatique',
-        'p_altarea_main_desc': 'Développement d\'une solution systémique pour atténuer les îlots de chaleur urbains (ICU). En combinant canopée végétale et structure innovante, le projet collecte l\'eau de pluie et génère une ombre salvatrice, transformant la place publique en un refuge climatique actif et poétique.',
-        'p_altarea_achievements': '• Recherche et analyse du microclimat urbain<br>• Stratégie UX pour espaces en conditions extrêmes<br>• Conception intégrale du système (mobilier urbain)<br>• Modélisation 3D et rendu photoréaliste',
-        'p_altarea_context_desc': 'Les canicules rendent les espaces ouverts invivables. L\'approche traditionnelle du mobilier urbain est insuffisante face à l\'urgence climatique. Le défi : dépasser le "verdissement" esthétique pour une solution fonctionnelle qui réduit la température ressentie et préserve la vie sociale.',
+        'p_altarea_main_desc': 'Dispositif systémique d\'atténuation dei îlots de chaleur urbains, alliant canopée végétale et structure hydraulique.',
+        'p_altarea_achievements': '• Recherche et analyse du microclimat urbain<br>• Stratégie UX per espaces en conditions extrêmes<br>• Conception intégrale du système (mobilier urbain)<br>• Modélisation 3D et rendu haute performance',
+        'p_altarea_context_desc': 'Dépasser le "verdissement" esthétique per une solution fonctionnelle qui préserve la vie sociale urbaine.',
 
         // GROUP ATLANTIC
         'p_interop_title': 'Groupe Atlantic',
         'p_interop_subtitle': 'Référentiel Interopérabilité',
-        'p_interop_desc': 'UX/UI Designer - 2025',
+        'p_interop_desc': 'Product Designer & Data Strategist • 2025',
         'p_interop_title_full': 'Groupe Atlantic',
-        'p_interop_main_desc': 'Conception d\'un outil interne de vérification d\'interopérabilité des produits connectés. Simplification d\'une base de données technique complexe pour la rendre exploitable par les équipes support.',
-        'p_interop_achievements': '• Recherche utilisateur (Besoin Support)<br>• UI Design & Système visuel<br>• Simplification de données complexes<br>• Conception du moteur de recherche<br>• Prototypage haute-fidélité',
-        'p_interop_context_desc': 'Face à la complexité croissante des écosystèmes connectés, les équipes support ont besoin de réponses immédiates. Ce projet a consisté à dompter une base de données technique aride pour en faire un outil de consultation intuitif.',
+        'p_interop_main_desc': 'Digitalisation d\'un référentiel technique complexe d\'interopérabilité per i prodotti IoT et connectés.',
+        'p_interop_achievements': '• Data Design : Conception dei dashboards synthétiques per le pilotage sécurité.<br>• Structuration : Simplification dei données per fluidifier la saisie et consultation.<br>• Alignment métiers : Prototypage interactif per valider la navigation.',
+        'p_interop_context_desc': 'Transformer une base de données technique aride en un outil de consultation intuitif per i équipes support.',
         'preview_label_interop': 'Aperçu Référentiel',
 
         'footer_desc': 'Disponible pour l\'alternance', 'cta_talk': 'Me Contacter',
@@ -408,11 +408,11 @@ const translations = {
     },
     'en': {
         'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact', 'nav_method': 'Method',
-        'nav_logo_title': 'Systemic Designer & Innovation Strategist',
+        'nav_logo_title': 'Innovation Project Manager & Strategist',
         'meta_at': 'at',
         'hero_title': 'Systemic<br>Innovation.',
-        'hero_subtitle': 'Where Design meets Business Strategy',
-        'story_text': 'I transform complexity into strategic opportunity. As a Systemic Designer, I build ecosystems where creativity becomes a lever for value production. Joining <a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, I am available from 09/2026 to bridge the gap between design intelligence and business strategy.',
+        'hero_subtitle': 'Strategy & Innovation Project Management',
+        'story_text': 'I transform complexity into strategic opportunity. As a future Innovation Project Manager, I build ecosystems where creativity becomes a lever for value production. Joining <a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, I am available from 09/2026 to bridge the gap between design intelligence and business strategy.',
         'section_work': 'Selected Works',
         'label_problem': 'The Problem', 'label_goal': 'The Goal', 'label_solution': 'The Solution',
         'about_education': 'Education', 'about_current': 'Current Position', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
@@ -432,11 +432,11 @@ const translations = {
         'open_fullscreen_label': 'Open Fullscreen ↗',
 
         // K-CIOPE
-        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
-        'p0_problem': 'Modernizing incident management (roads, waste) for field agents, replacing obsolete processes.', 'p0_goal': 'Streamline information flow and optimize public service interventions.', 'p0_solution': 'High-fidelity prototyping for rapid stakeholder validation before development (Agile).',
-        'p0_main_desc': 'A key driver of ecological transition, the app needed to exceed its utilitarian function to become a true engine of engagement. This redesign transformed a complex technical tool into a daily companion, fluid and intuitive, democratizing access to eco-gestures for all residents of the Metropolis.',
-        'p0_achievements': '• UX Audit and usage analysis (Analytics)<br>• Facilitation of business co-design workshops<br>• Information architecture redesign<br>• Creation of visual system and UI Design<br>• High-fidelity interactive prototyping (Figma)',
-        'p0_context_desc': 'Complex navigation and low adoption. Transforming an administrative tool into a seamless citizen experience, aligning public service with modern UX standards.',
+        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_subtitle': 'Innovation Strategy & Civic Tech', 'p0_desc': 'UX Lead (Project) & Strategist • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
+        'p0_problem': 'Modernizing incident management for field agents and citizens.', 'p0_goal': 'Streamline information flow and optimize public service intervention.', 'p0_solution': 'High-fidelity prototyping for rapid stakeholder validation before development.',
+        'p0_main_desc': 'Modernization of the "Adoptez le R3flexe" citizen ecosystem to maximize user engagement and public service efficiency.',
+        'p0_achievements': '• UX & Data Audit (Analytics): Identifying innovation levers and critical friction points.<br>• Facilitation & Scoping: Aligning product vision with political goals and user needs.<br>• Architecture & Design: Information restructuring to transform business constraints into opportunities.<br>• Innovation Ops: Leveraging AI (Figma Make) to accelerate iteration and feasibility simulation.',
+        'p0_context_desc': 'Transforming an administrative tool into a seamless citizen experience, aligning public service with modern UX standards.',
 
         'nav_complete_title': 'Full Navigation',
         'nav_complete_alr3': 'Explore the prototype →',
@@ -462,39 +462,39 @@ const translations = {
         // SYNERGIE
         'p_synergie_title': 'Synergie',
         'p_synergie_subtitle': 'Digital Transformation',
-        'p_synergie_desc': 'UX/UI Designer • 2025',
+        'p_synergie_desc': 'Product Designer & Strategist • 2025',
         'p_synergie_title_full': 'Synergie',
-        'p_synergie_main_desc': 'In a competitive talent war, digital experience is the first window of the employer brand. This project aimed to radically streamline the registration journey to maximize conversion.',
-        'p_synergie_achievements': '• User Flow Scenarios<br>• Progressive Onboarding Design<br>• Candidate Dashboard Modeling<br>• Unified Design System Creation',
-        'p_synergie_context_desc': 'International network (17 countries). Project \"Apollo\": designing a progressive acquisition tunnel to reduce drop-off and centralize applications.',
+        'p_synergie_main_desc': 'Optimization of the strategic "Apollo" project to streamline the candidate experience and maximize conversion.',
+        'p_synergie_achievements': '• HR Tech Benchmark: Trend analysis to define innovation standards.<br>• Conversion Design: Optimizing registration journeys to support B2C growth.<br>• Data Visualization: Custom dashboard modeling for operational KPI tracking.<br>• Flow Strategy: Aligning technical solutions with business financial goals.',
+        'p_synergie_context_desc': 'Designing a progressive acquisition tunnel to reduce drop-off and centralize applications.',
         'p_make_title': 'DesignOps Automation & IA', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Workflow Optimization with AI & No-Code',
         'p_make_problem': 'Creative teams spend too much time on repetitive, low-value tasks.', 'p_make_goal': 'Implement \"No-Code\" workflows (Make) connected to AI agents.', 'p_make_solution': 'Creation of intelligent connectors between design tools and IA.',
         // VAMOS
         'p_vamos_title': 'Vamos Bikes',
         'p_vamos_subtitle': 'B2B Marketplace',
-        'p_vamos_desc': 'UX/UI Designer • 2024',
+        'p_vamos_desc': 'Chef de Projet UX/UI • 2024',
         'p_vamos_title_full': 'Vamos Bikes',
-        'p_vamos_main_desc': 'More than a showcase, the site is the primary salesperson. This end-to-end redesign merges lifestyle immersion with technical clarity. The goal: reassure the user about this premium product and streamline the journey, from emotional discovery to confident purchase.',
-        'p_vamos_achievements': '• UX Audit & E-commerce Strategy<br>• Visual Identity Redesign (UI) & Branding<br>• \"Mobile First\" & Responsive Design<br>• Purchase Funnel Optimization<br>• High-Fidelity Prototyping',
-        'p_vamos_context_desc': 'An aging existing site that did not reflect the premium quality of the bikes, creating a psychological barrier to purchase in a competitive market. Solution: A modern shopping experience that highlights the product.',
+        'p_vamos_main_desc': 'Full B2B marketplace redesign: identity modernization and purchase funnel optimization.',
+        'p_vamos_achievements': '• Audit & Strategy: Information architecture restructuring to simplify the purchase funnel.<br>• Immersive Design: Modern interface highlighting technical expertise and brand universe.<br>• UX Validation: High-fidelity prototyping to secure experience before development.',
+        'p_vamos_context_desc': 'A modern shopping experience that highlights the premium product in a competitive market.',
         'p3_title': 'Luxury Strategy & 3D', 'p3_desc': 'Creation Phase • Digital Twin',
 
         // ROCKEASE
-        'p_rockease_title': 'Rockease', 'p_rockease_desc': 'UI Designer • 2025',
+        'p_rockease_title': 'Rockease', 'p_rockease_subtitle': 'B2B Marketplace & Digital Factory', 'p_rockease_desc': 'Product Designer • 2025',
         'p_rockease_title_full': 'Rockease',
-        'p_rockease_problem_desc': 'Optimizing aggregate procurement for construction sites, a traditionally manual and fragmented process.',
-        'p_rockease_strategy_desc': 'Designing an intuitive B2B marketplace to order and track deliveries in real-time.',
-        'p_rockease_result_desc': 'A centralized platform that reduces logistical costs and simplifies the work of site managers.',
-        'p_rockease_main_desc': 'Within the Digital Factory, the challenge was to reduce \"Time-to-Market\" without sacrificing visual quality. My hybrid role bridged the gap between design and development. By directly translating graphic concepts into modular Webflow solutions, we created a robust, scalable platform perfectly faithful to the group\'s brand identity.',
-        'p_rockease_achievements': '• Interface Co-design<br>• Webflow Development & Integration<br>• CMS Architecture & Collections<br>• Responsive Design Management',
-        'p_rockease_context_desc': 'B2B Marketplace for ordering construction materials. Reducing \"Time-to-Market\" while maintaining premium visual quality and perfect fidelity to Colas brand identity.',
+        'p_rockease_problem_desc': 'Optimizing aggregate procurement for construction sites via a B2B marketplace.',
+        'p_rockease_strategy_desc': 'Strategic support and marketplace deployment within the Colas Digital Factory.',
+        'p_rockease_result_desc': 'A centralized platform reducing logistical costs and simplifying operational steering.',
+        'p_rockease_main_desc': 'Operational support and deployment of the Rockease B2B marketplace within the group\'s digital subsidiary.',
+        'p_rockease_achievements': '• Agile Deployment: Marketplace migration via Webflow (Optimized Time-to-Market).<br>• Web Design System: Creating modular templates ensuring consistency and scalability.<br>• B2B Optimization: CMS and asset structuring for high-performance user experience.',
+        'p_rockease_context_desc': 'B2B Marketplace for ordering materials. Reducing Time-to-Market via Webflow.',
 
         // AGIRC
         'p_agirc_title': 'Agirc-Arrco', 'p_agirc_desc': 'UX Researcher & Analyst • 2025',
         'p_agirc_title_full': 'Agirc-Arrco',
-        'p_agirc_main_desc': 'Targeted intervention to validate the redesign of the B2B Agirc-Arrco space. Putting new journeys to the test through real-world user tests and analyzing navigation data to objectively identify blockers.',
-        'p_agirc_achievements': '• Recruitment and testing with experts (HR / Payroll)<br>• Behavioral analysis in situ<br>• Data consolidation<br>• UX recommendation report',
-        'p_agirc_context_desc': 'To succeed in the redesign of such a complex portal, intuition was not enough. My role was to provide factual validation by confronting the mockups with reality on the ground.',
+        'p_agirc_main_desc': 'Strategic validation of the B2B space redesign via real-world user tests and quantitative usage analysis.',
+        'p_agirc_achievements': '• Field Validation: Testing critical journeys with payroll managers (business processes).<br>• Friction Analysis: Structured observation consolidation to prioritize UX fixes.<br>• Product Steering: Transforming insights into concrete recommendations for teams.',
+        'p_agirc_context_desc': 'Providing factual validation by confronting mockups with field reality and HR/Payroll processes.',
 
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
@@ -507,9 +507,9 @@ const translations = {
         // REYOU
         'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
         'p_reyou_subtitle': 'CIRCULAR ECONOMY & DIGITAL RETAIL',
-        'p_reyou_main_desc': 'Development of an interactive digital showroom to showcase second-hand office furniture. The project digitizes the physical space (Coworking \"Le Périscope\"), allowing B2B clients to explore and purchase stock directly from a real-use context. A solution that removes the psychological barrier of used goods, transforming a static inventory into an immersive experience.',
+        'p_reyou_main_desc': 'Interactive digital showroom for office furniture reuse, breaking market barriers through immersion.',
         'p_reyou_achievements': '• Phygital Strategy Conception<br>• UX/UI Design of interactive interface<br>• Strategic modeling and rendering<br>• Integrated lead generation',
-        'p_reyou_context_desc': 'The refurbished furniture market often suffers from an image deficit. The challenge was to demonstrate that reclaimed furniture can support modern, premium workspaces. The insight was not to sell the single piece, but the contextualized \"set\".',
+        'p_reyou_context_desc': 'Demonstrating that reclaimed furniture can support modern, premium workspaces.',
 
         // AI EXPERTISE
         'section_ai_expertise': 'AI Expertise',
@@ -521,18 +521,18 @@ const translations = {
         'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanism & Climate Adaptation',
-        'p_altarea_main_desc': 'Development of a systemic solution to mitigate Urban Heat Islands (UHI). By combining a green canopy with an innovative structure, the project collects rainwater and provides much-needed shade, transforming the city square into an active and poetic climate shelter.',
-        'p_altarea_achievements': '• Urban microclimate research & analysis<br>• UX strategy for extreme environments<br>• Integral system design (urban furniture)<br>• 3D modeling & photorealistic rendering',
-        'p_altarea_context_desc': 'Heatwaves make open spaces unlivable. Traditional urban furniture is insufficient in the face of the climate emergency. The challenge: going beyond aesthetic \"greening\" to design a functional solution that lowers perceived temperature and ensures social continuity.',
+        'p_altarea_main_desc': 'Systemic device for urban heat island mitigation, combining green canopy and hydraulic structure.',
+        'p_altarea_achievements': '• Urban microclimate research & analysis<br>• UX strategy for extreme environment spaces<br>• Integral system design (urban furniture)<br>• 3D modeling & high-performance rendering',
+        'p_altarea_context_desc': 'Moving beyond aesthetic "greening" for a functional solution that preserves urban social life.',
 
         // GROUP ATLANTIC
         'p_interop_title': 'Groupe Atlantic',
         'p_interop_subtitle': 'Interoperability Repository',
-        'p_interop_desc': 'UX/UI Designer - 2025',
+        'p_interop_desc': 'Product Designer & Data Strategist • 2025',
         'p_interop_title_full': 'Groupe Atlantic',
-        'p_interop_main_desc': 'Design of an internal tool for verifying the interoperability of connected products. Simplification of a complex technical database to make it usable by support teams.',
-        'p_interop_achievements': '• User Research (Support Needs)<br>• UI Design & Visual System<br>• Complex Data Simplification<br>• Search Engine Design<br>• High-Fidelity Prototyping',
-        'p_interop_context_desc': 'Faced with the increasing complexity of connected ecosystems, support teams need immediate answers. This project involved taming a dry technical database to turn it into an intuitive consultation tool.',
+        'p_interop_main_desc': 'Digitalization of a complex technical interoperability repository for IoT and connected products.',
+        'p_interop_achievements': '• Data Design: Synthesis dashboard design for security plan monitoring.<br>• Structuring: Data simplification to streamline risk entry and consultation.<br>• Business Alignment: Interactive prototyping to validate navigation.',
+        'p_interop_context_desc': 'Turning a dry technical database into an intuitive consultation tool for support teams.',
         'preview_label_interop': 'Repository Preview',
 
         'footer_desc': 'Open to Opportunities', 'cta_talk': 'Get in Touch',
@@ -584,11 +584,11 @@ const translations = {
     },
     'it': {
         'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti', 'nav_method': 'Metodo',
-        'nav_logo_title': 'Systemic Designer & Strategist dell\'Innovazione',
+        'nav_logo_title': 'Innovation Project Manager & Strategist',
         'meta_at': 'presso',
         'hero_title': 'Innovazione<br>Sistemica.',
-        'hero_subtitle': 'L\'incontro tra Design & Business Strategy',
-        'story_text': 'Trasformo la complessità in opportunità strategica. Come Systemic Designer, concepisco interi ecosistemi dove la creatività diventa un asset strategico d\'impresa. Prossimo specializzando all\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a> in gestione strategica dell\'innovazione, cerco un\'alternanza dal 09/2026 per strutturare i vostri progetti complessi.',
+        'hero_subtitle': 'Strategia & Innovation Project Management',
+        'story_text': 'Trasformo la complessità in opportunità strategica. Come futuro Innovation Project Manager, concepisco interi ecosistemi dove la creatività diventa un asset strategico d\'impresa. Prossimo specializzando all\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a> in gestione strategica dell\'innovazione, cerco un\'alternanza dal 09/2026 per strutturare i vostri progetti complessi.',
         'section_work': 'Progetti Selezionati',
         'label_problem': 'La Domanda', 'label_goal': 'L\'Obiettivo', 'label_solution': 'La Soluzione',
         'about_education': 'Educazione', 'about_current': 'Posizione Attuale', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
@@ -608,11 +608,11 @@ const translations = {
         'open_fullscreen_label': 'Apri a tutto schermo ↗',
 
         // K-CIOPE
-        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_desc': 'UX/UI Designer • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
-        'p0_problem': 'Modernizzare la gestione degli incidenti per gli agenti sul campo.', 'p0_goal': 'Fluidificare il flusso di informazioni e ottimizzare gli interventi.', 'p0_solution': 'Prototypazione ad alta fedeltà per validazione rapida.',
-        'p0_main_desc': 'Vettore chiave della transizione ecologica, l\'applicazione doveva superare la sua funzione utilitaristica per diventare un vero motore di coinvolgimento. Questo restyling ha trasformato un complesso strumento tecnico in un compagno quotidiano, fluido e intuitivo, democratizzando l\'accesso agli eco-gesti per tutti i residenti della Metropoli.',
-        'p0_achievements': '• Audit UX e analisi degli usi (Analytics)<br>• Facilitazione di workshop di co-design<br>• Riprogettazione dell\'architettura dell\'informazione<br>• Creazione del sistema visivo e UI Design<br>• Prototypazione interattiva ad alta fedeltà (Figma)',
-        'p0_context_desc': 'Navigazione complessa e bassa adozione. Trasformazione di uno strumento amministrativo in un\'esperienza cittadina fluida, allineando il servizio pubblico agli standard UX moderni.',
+        'p0_title': 'ALR3 - Adoptez le R3flexe', 'p0_subtitle': 'Strategia Innovation & Civic Tech', 'p0_desc': 'UX Lead (Projet) & Strategist • 2024-2026', 'p0_title_full': 'ALR3 - Adoptez le R3flexe',
+        'p0_problem': 'Modernizzazione della gestione degli incidenti per gli agenti e i cittadini.', 'p0_goal': 'Fluidificare il flusso di informazioni e ottimizzare gli interventi pubblici.', 'p0_solution': 'Prototipazione ad alta fedeltà per validazione rapida prima dello sviluppo.',
+        'p0_main_desc': 'Modernizzazione dell\'ecosistema cittadino "Adoptez le R3flexe" per massimizzare il coinvolgimento e l\'efficienza dei servizi.',
+        'p0_achievements': '• Audit UX & Data (Analytics) : Identificazione dei driver di innovazione e punti di attrito.<br>• Facilitazione & Framing : Allineamento della visione prodotto sugli obiettivi politici.<br>• Architettura & Design : Ristrutturazione dell\'informazione per trasformare i vincoli in opportunità.<br>• Innovation Ops : Uso dell\'IA (Figma Make) per accelerare l\'iterazione e la fattibilità.',
+        'p0_context_desc': 'Trasformazione di uno strumento amministrativo in un\'esperienza cittadina fluida, allineata agli standard UX moderni.',
 
         'nav_complete_title': 'Navigazione Completa',
         'nav_complete_alr3': 'Esplora il prototipo →',
@@ -636,36 +636,36 @@ const translations = {
         'contact_success_desc': 'Il tuo messaggio è stato ricevuto. Ti risponderò molto presto.',
 
         // SYNERGIE
-        'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Trasformazione Digitale', 'p_synergie_desc': 'UX/UI Designer • 2025', 'p_synergie_title_full': 'Synergie',
-        'p_synergie_main_desc': 'Nel contesto della "War for Talent", l\'esperienza digitale è diventare il primo biglietto da visita dell\'Employer Brand. Questo progetto mirava a fluidificare radicalmente il percorso di iscrizione per massimizzare la conversione.',
-        'p_synergie_achievements': '• Scenarizzazione dei percorsi (User Flows)<br>• Design dell\'Onboarding progressivo<br>• Modellazione della Dashboard Candidato<br>• Creazione di un Design System unificato',
-        'p_synergie_context_desc': 'Rete internazionale (17 paesi). Progetto "Apollo": progettazione di un tunnel di acquisizione progressivo per ridurre l\'abbandono e centralizzare le candidature.',
+        'p_synergie_title': 'Synergie', 'p_synergie_subtitle': 'Trasformazione Digitale', 'p_synergie_desc': 'Product Designer & Strategist • 2025', 'p_synergie_title_full': 'Synergie',
+        'p_synergie_main_desc': 'Ottimizzazione del progetto strategico "Apollo" per fluidificare l\'esperienza candidato e massimizzare la conversione.',
+        'p_synergie_achievements': '• Benchmark HR Tech : Analisi dei trend per definire gli standard di innovazione del progetto.<br>• Design di Conversione : Ottimizzazione dei percorsi di iscrizione per sostenere la crescita.<br>• Data Visualization : Modellazione di dashboard personalizzate per il monitoraggio dei KPI.<br>• Strategia Flow : Allineamento delle soluzioni tecniche agli obiettivi finanziari del business.',
+        'p_synergie_context_desc': 'Progettazione di un tunnel di acquisizione progressivo per ridurre l\'abbandono e centralizzare le candidature.',
         'p_make_title': 'Automazione DesignOps & IA', 'p_make_desc': 'Make • Workflow AI', 'p_make_title_full': 'Ottimizzazione Workflow con IA e No-Code',
         'p_make_problem': 'I team creativi passano troppo tempo in attività ripetitive.', 'p_make_goal': 'Implementare flussi di lavoro "No-Code" connessi ad agenti IA.', 'p_make_solution': 'Creazione di connettori intelligenti tra strumenti di design e IA.',
         // VAMOS
-        'p_vamos_title': 'Vamos Bikes', 'p_vamos_subtitle': 'Marketplace B2B', 'p_vamos_desc': 'UX/UI Designer • 2024',
+        'p_vamos_title': 'Vamos Bikes', 'p_vamos_subtitle': 'Marketplace B2B', 'p_vamos_desc': 'Chef de Projet UX/UI • 2024',
         'p_vamos_title_full': 'Vamos Bikes',
-        'p_vamos_main_desc': 'Riprogettazione End-to-End che fonde immersione lifestyle e chiarezza tecnica. L\'obiettivo: fluidificare il percorso, dalla scoperta emotiva all\'acquisto fiducioso.',
-        'p_vamos_achievements': '• Audit UX e strategia e-commerce<br>• Redesign dell\'identità visiva (UI) & Branding<br>• Progettazione "Mobile First" e Responsive<br>• Ottimizzazione del tunnel di acquisto<br>• Prototypazione ad alta fedeltà completa',
-        'p_vamos_context_desc': 'Un sito esistente invecchiato che non rifletteva la qualità premium delle bici, creando un freno psicologico all\'acquisto in un mercato competitivo. Soluzione: Un\'esperienza di acquisto moderna che valorizza il prodotto.',
+        'p_vamos_main_desc': 'Redesign integrale del marketplace B2B: modernizzazione dell\'identità e ottimizzazione del funnel di acquisto.',
+        'p_vamos_achievements': '• Audit & Strategia : Ristrutturazione dell\'architettura dell\'informazione per semplificare l\'acquisto.<br>• Design Immersivo : Interfaccia moderna che valorizza l\'expertise tecnica e l\'universo del brand.<br>• Validazione UX : Realizzazione di prototipi ad alta fedeltà per mettere in sicurezza l\'esperienza.',
+        'p_vamos_context_desc': 'Un\'esperienza di acquisto moderna che valorizza il prodotto premium su un mercato competitivo.',
         'p3_title': 'Strategia Luxury & 3D', 'p3_desc': 'Fase Creazione • Gemello Digitale',
 
         // ROCKEASE
-        'p_rockease_title': 'Rockease', 'p_rockease_desc': 'UI Designer • 2025',
+        'p_rockease_title': 'Rockease', 'p_rockease_subtitle': 'Marketplace B2B & Digital Factory', 'p_rockease_desc': 'Product Designer • 2025',
         'p_rockease_title_full': 'Rockease',
-        'p_rockease_problem_desc': 'Ottimizzare l\'approvvigionamento di inerti per i cantieri, un processo tradizionalmente manuale e frammentato.',
-        'p_rockease_strategy_desc': 'Progettazione di un marketplace B2B intuitivo che consente di ordinare e tracciare le consegne in tempo reale.',
-        'p_rockease_result_desc': 'Una piattaforma centralizzata che riduce i costi logistici e semplifica la vita dei direttori di cantiere.',
-        'p_rockease_main_desc': 'All\'interno della Digital Factory, la sfida era ridurre il "Time-to-Market" senza sacrificare la qualità visiva. Il mio ruolo ibrido ha colmato il divario tra design e sviluppo. Traducendo direttamente i concetti grafici in soluzioni Webflow modulari, abbiamo creato una piattaforma robusta, scalabile e perfettamente fedele all\'identità del brand.',
-        'p_rockease_achievements': '• Co-design dell\'interfaccia<br>• Sviluppo e integrazione Webflow<br>• Architettura CMS & Collections<br>• Gestione del Responsive Design',
-        'p_rockease_context_desc': 'Marketplace B2B per l\'ordine di materiali da costruzione. Riduzione del "Time-to-Market" mantenendo una qualità visiva premium e una fedeltà perfetta all\'identità del marchio Colas.',
+        'p_rockease_problem_desc': 'Ottimizzare l\'approvvigionamento di inerti per i cantieri via marketplace B2B.',
+        'p_rockease_strategy_desc': 'Supporto strategico e distribuzione del marketplace all\'interno della Digital Factory Colas.',
+        'p_rockease_result_desc': 'Una piattaforma centralizzata che riduce i costi logistici e semplifica il pilotaggio digitale.',
+        'p_rockease_main_desc': 'Supporto operativo e distribuzione del marketplace B2B Rockease per la filiale digitale del gruppo Colas.',
+        'p_rockease_achievements': '• Deploy Agile : Migrazione del marketplace via Webflow (Time-to-Market ottimizzato).<br>• Web Design System : Creazione di template modulari per garantire coerenza e scalabilità.<br>• Optimization B2B : Strutturazione del CMS per un\'esperienza utente ad alte prestazioni.',
+        'p_rockease_context_desc': 'Marketplace B2B per l\'ordine di materiali. Riduzione del "Time-to-Market" tramite Webflow.',
 
         // AGIRC
         'p_agirc_title': 'Agirc-Arrco', 'p_agirc_desc': 'UX Researcher & Analyst • 2025',
         'p_agirc_title_full': 'Agirc-Arrco',
-        'p_agirc_main_desc': 'Intervento mirato per convalidare il redesign dell\'area B2B Agirc-Arrco. Test dei nuovi percorsi con utenti reali e analisi dei dati di navigazione per identificare oggettivamente i blocchi.',
-        'p_agirc_achievements': '• Reclutamento e test con esperti (RU/Paghe)<br>• Analisi comportamentale in loco<br>• Consolidamento dei dati<br>• Rapporto di raccomandazioni UX',
-        'p_agirc_context_desc': 'Per riuscire nel restyling di un portale così complesso, l\'intuizione non bastava. Il mio ruolo è stato quello di fornire una convalida fattuale confrontando i mockup con la realtà sul campo.',
+        'p_agirc_main_desc': 'Validazione strategica del redesign dell\'area B2B tramite test utenti reali e analisi d\'uso quantitativa.',
+        'p_agirc_achievements': '• Validazione sul campo : Test dei percorsi critici con i gestori paghe (processi aziendali).<br>• Analisi degli Attriti : Consolidamento osservazioni per dare priorità ai fix UX.<br>• Pilotaggio Prodotto : Trasformazione degli insight in raccomandazioni concrete per i team.',
+        'p_agirc_context_desc': 'Fornire una validazione fattuale confrontando i mockup con la realtà del campo e i processi HR/Paghe.',
 
         // ELBA / HELENA RUBINSTEIN
         'p_elba_title': 'Helena Rubinstein',
@@ -678,9 +678,9 @@ const translations = {
         // REYOU
         'p_reyou_title': 'REYOU', 'p_reyou_desc': 'Systemic & UX/UI Designer • 2026', 'p_reyou_title_full': 'REYOU',
         'p_reyou_subtitle': 'ECONOMIA CIRCOLARE & RETAIL DIGITALE',
-        'p_reyou_main_desc': 'Showroom interattivo per il riuso di mobili d\'ufficio. Digitalizza lo spazio fisico (Coworking "Le Périscope") permettendo ai clienti B2B di acquistare lo stock in un contesto reale, superando la barriera dell\'usato tramite un\'esperienza immersiva.',
-        'p_reyou_achievements': '• Concezione della strategia "Phygital"<br>• UX/UI Design per l\'interfaccia interattiva<br>• Modellazione e rendering strategico per elevare la percezione dell\'usato<br>• Lead generation integrata',
-        'p_reyou_context_desc': 'Il mercato dei mobili ricondizionati soffre spesso di un deficit di immagine. La sfida è stata dimostrare che gli arredi di recupero possono sostenere uffici moderni e premium. L\'intuizione è stata non vendere il singolo pezzo, ma il \"set\" contestualizzato.',
+        'p_reyou_main_desc': 'Showroom digitale interattivo dedicato al riuso di mobili da ufficio, superando le barriere del mercato tramite l\'immersione.',
+        'p_reyou_achievements': '• Concezione della strategia "Phygital"<br>• UX/UI Design per l\'interfaccia interattiva<br>• Modellazione e rendering strategico<br>• Lead generation integrata',
+        'p_reyou_context_desc': 'Dimostrare che gli arredi di recupero possono sostenere uffici moderni e premium.',
 
         // AI EXPERTISE
         'section_ai_expertise': 'Expertise IA',
@@ -692,18 +692,18 @@ const translations = {
         'p_altarea_title': 'ALTAREA', 'p_altarea_desc': 'Product & Systemic Designer • 2024',
         'p_altarea_title_full': 'ALTAREA',
         'p_altarea_subtitle': 'Urbanistica & Adattamento Climatico',
-        'p_altarea_main_desc': 'Sviluppo di una soluzione sistemica per mitigare le isole di calore urbane (ICU). Integrando una chioma vegetale e una struttura innovativa, il progetto raccoglie l\'acqua piovana e genera un\'ombra salvifica, trasformando la piazza pubblica in un rifugio climatico attivo e poetico.',
-        'p_altarea_achievements': '• Ricerca e analisi del microclima urbano<br>• Strategia UX per spazi in condizioni estreme<br>• Concezione integrale del sistema (arredo urbano)<br>• Modellazione 3D e rendering fotorealistico',
-        'p_altarea_context_desc': 'Le ondate di calore rendono gli spazi aperti invivibili. L\'approccio tradizionale all\'arredo urbano è insufficiente di fronte all\'emergenza climatica. La sfida: superare il "verdismo" estetico per una soluzione funzionale che riduca la temperatura percepita e preservi la vita sociale.',
+        'p_altarea_main_desc': 'Dispositivo sistemico di mitigazione delle isole di calore urbane, che unisce chioma vegetale e struttura idraulica.',
+        'p_altarea_achievements': '• Ricerca e analisi del microclima urbano<br>• Strategia UX per spazi in condizioni estreme<br>• Concezione integrale del sistema (arredo urbano)<br>• Modellazione 3D e rendering ad alte prestazioni',
+        'p_altarea_context_desc': 'Andare oltre l\'estetica del "verde" per una soluzione funzionale che preservi la vita sociale urbana.',
 
         // GROUP ATLANTIC
         'p_interop_title': 'Groupe Atlantic',
         'p_interop_subtitle': 'Referenziale Interoperabilità',
-        'p_interop_desc': 'UX/UI Designer - 2025',
+        'p_interop_desc': 'Product Designer & Data Strategist • 2025',
         'p_interop_title_full': 'Groupe Atlantic',
-        'p_interop_main_desc': 'Progettazione di uno strumento interno per la verifica dell\'interoperabilità dei prodotti connessi. Semplificazione di un database tecnico complesso per renderlo utilizzabile dai team di supporto.',
-        'p_interop_achievements': '• Ricerca Utente (Bisogni Supporto)<br>• UI Design & Sistema Visivo<br>• Semplificazione dati complessi<br>• Progettazione motore di ricerca<br>• Prototipazione ad alta fedeltà',
-        'p_interop_context_desc': 'Di fronte alla crescente complessità degli ecosistemi connessi, i team di supporto hanno bisogno di risposte immediate. Questo progetto ha consistito nel domare un database tecnico arido per trasformarlo in uno strumento di consultazione intuitivo.',
+        'p_interop_main_desc': 'Digitalizzazione di un referenziale tecnico complesso di interoperabilità per prodotti IoT e connessi.',
+        'p_interop_achievements': '• Data Design : Progettazione dashboard di sintesi per il monitoraggio dei piani d\'azione.<br>• Strutturazione : Semplificazione dei dati per fluidificare l\'inserimento e la consultazione dei rischi.<br>• Allineamento business : Prototipazione interattiva per validare la navigazione.',
+        'p_interop_context_desc': 'Trasformare un database tecnico arido in uno strumento di consultazione intuitivo per i team di supporto.',
         'preview_label_interop': 'Anteprima Referenziale',
 
         'footer_desc': 'Parliamo insieme', 'cta_talk': 'Contattami',
