@@ -16,7 +16,7 @@
     <meta property="og:image" content="https://andrea-moncada.me/favicon-am.png">
     <meta name="twitter:image" content="https://andrea-moncada.me/favicon-am.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=7">
     <link rel="icon" type="image/png" href="assets/favicon-am.png">
 </head>
 
@@ -25,16 +25,21 @@
     <!-- Absolute Nav: Scrolls away with content -->
     <nav class="absolute top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300"
         style="color: var(--text-main);">
-        <div class="text-xs font-bold tracking-widest uppercase">
+
+        <!-- LOGO -->
+        <div class="text-xs font-bold tracking-widest uppercase whitespace-nowrap">
             Andrea Moncada
-            <span class="opacity-50 mx-2">|</span>
-            <span class="font-normal opacity-70" style="color: var(--text-sub);" data-key="nav_logo_title">Systemic
+            <!-- Desktop only (≥1280px): show role separator and subtitle -->
+            <span class="opacity-50 mx-2 hidden xl:inline">|</span>
+            <span class="font-normal opacity-70 hidden xl:inline" style="color: var(--text-sub);"
+                data-key="nav_logo_title">Systemic
                 Designer & Innovation
                 Strategist</span>
         </div>
 
-        <div class="flex items-center gap-6 md:gap-8">
-            <div class="hidden md:flex gap-6 text-xs font-medium text-dynamic-sub tracking-widest uppercase">
+        <!-- DESKTOP RIGHT SIDE (hidden below 1280px, visible at xl+) -->
+        <div class="hidden xl:flex items-center gap-6 xl:gap-8">
+            <div class="flex gap-6 text-xs font-medium text-dynamic-sub tracking-widest uppercase">
                 <a href="#about" class="hover-underline" data-key="nav_profile">About</a>
                 <a href="#method" class="hover-underline" data-key="nav_method">Method</a>
                 <a href="#work" class="hover-underline" data-key="nav_work">Work</a>
@@ -44,7 +49,7 @@
                     class="hover-underline">LinkedIn</a>
             </div>
 
-            <div class="h-4 w-px bg-current opacity-20 hidden md:block"></div>
+            <div class="h-4 w-px bg-current opacity-20"></div>
 
             <div class="flex items-center gap-4">
                 <div class="flex gap-3 text-[10px] font-bold uppercase tracking-widest">
@@ -67,7 +72,66 @@
                 </button>
             </div>
         </div>
+
+        <!-- BURGER BUTTON (visible below 1280px, hidden at xl+) -->
+        <button id="burger-btn" onclick="toggleMobileMenu()" class="xl:hidden burger-btn" aria-label="Toggle Menu">
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+            <span class="burger-line"></span>
+        </button>
     </nav>
+
+    <!-- MOBILE/TABLET MENU OVERLAY (hidden at xl+) -->
+    <div id="mobile-menu" class="mobile-menu-overlay xl:hidden" aria-hidden="true">
+        <div class="mobile-menu-inner">
+
+            <!-- Close X Button -->
+            <button onclick="closeMobileMenu()" class="mobile-menu-close" aria-label="Close Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+
+            <!-- Nav Links -->
+            <nav class="mobile-menu-links">
+                <a href="#about" class="mobile-menu-link" data-key="nav_profile" onclick="closeMobileMenu()">About</a>
+                <a href="#method" class="mobile-menu-link" data-key="nav_method" onclick="closeMobileMenu()">Method</a>
+                <a href="#work" class="mobile-menu-link" data-key="nav_work" onclick="closeMobileMenu()">Work</a>
+                <a href="javascript:void(0)" onclick="openModal('modal-contact'); closeMobileMenu();"
+                    class="mobile-menu-link" data-key="nav_contact">Contact</a>
+                <a href="https://www.linkedin.com/in/andrea-moncada1405/" target="_blank" class="mobile-menu-link"
+                    onclick="closeMobileMenu()">LinkedIn</a>
+            </nav>
+
+            <!-- Divider -->
+            <div class="mobile-menu-divider"></div>
+
+            <!-- Language + Theme row -->
+            <div class="mobile-menu-bottom">
+                <div class="mobile-menu-langs">
+                    <button onclick="setLanguage('fr')" id="mob-btn-fr"
+                        class="lang-btn mobile-lang-btn active">FR</button>
+                    <button onclick="setLanguage('en')" id="mob-btn-en" class="lang-btn mobile-lang-btn">EN</button>
+                    <button onclick="setLanguage('it')" id="mob-btn-it" class="lang-btn mobile-lang-btn">IT</button>
+                </div>
+                <button onclick="toggleTheme()" class="theme-switch w-10 h-10" aria-label="Toggle Theme">
+                    <svg id="mob-icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    <svg id="mob-icon-moon" class="w-5 h-5 hidden" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <canvas id="hero-canvas"></canvas>
 
@@ -87,20 +151,20 @@
     <section id="about"
         class="min-h-[90vh] flex items-center justify-center px-6 md:px-24 py-24 relative z-20 overflow-hidden">
         <div
-            class="about-container group flex flex-col md:flex-row items-stretch justify-center gap-6 max-w-7xl mx-auto h-auto">
+            class="about-container group w-full flex flex-col xl:flex-row items-stretch justify-center gap-6 max-w-7xl mx-auto h-auto">
 
             <!-- Description Card -->
-            <div class="about-card max-w-3xl text-center md:text-left backdrop-blur-md p-8 md:p-12 rounded-2xl border shadow-2xl bg-[rgba(var(--particle-color),0.03)] border-[var(--card-border)] flex flex-col justify-between"
+            <div class="about-card w-full text-left backdrop-blur-md p-5 md:p-7 xl:p-12 rounded-2xl border shadow-2xl bg-[rgba(var(--particle-color),0.03)] border-[var(--card-border)] flex flex-col justify-between"
                 style="border-color: var(--card-border);">
                 <div>
-                    <p class="text-2xl md:text-4xl leading-tight font-normal text-dynamic-main mb-12"
+                    <p class="text-xl md:text-2xl xl:text-4xl leading-tight font-normal text-dynamic-main mb-6 xl:mb-12"
                         data-key="story_text">
                         I transform complexity into strategic opportunity. As a Systemic Designer, I build ecosystems
                         where creativity becomes a lever for value production.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 border-t pt-8 text-left"
+                <div class="grid grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-8 border-t pt-5 xl:pt-8 text-left"
                     style="border-color: var(--card-border);">
                     <div>
                         <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
@@ -108,7 +172,7 @@
                         <a href="https://em-lyon.com/" target="_blank"
                             class="block text-sm text-dynamic-main hover:opacity-70 transition">EM Lyon (MS)</a>
                         <a href="https://www.cy-ecolededesign.fr/" target="_blank"
-                            class="block text-sm text-dynamic-main hover:opacity-70 transition">CY Design</a>
+                            class="block text-sm text-dynamic-main hover:opacity-70 transition">CY École de Design</a>
                     </div>
                     <div>
                         <span class="block text-[10px] uppercase tracking-widest mb-2 text-dynamic-sub"
@@ -130,7 +194,7 @@
                             Methods</span>
                         <span class="block text-sm text-dynamic-main" data-key="about_frameworks_2">Design
                             Thinking</span>
-                        <span class="block text-sm text-dynamic-main" data-key="about_frameworks_3">UI Design</span>
+
                         <span class="block text-sm text-dynamic-main" data-key="about_frameworks_4">Agile</span>
                     </div>
                 </div>
@@ -138,9 +202,9 @@
 
             <!-- Photo & Clients Card -->
             <div
-                class="about-photo-card w-full md:w-[420px] rounded-2xl shadow-2xl flex-shrink-0 relative overflow-hidden flex flex-col">
-                <!-- Profile Photo - alignment fix (flex-1 and full stretch) -->
-                <div class="p-4 md:p-6 flex-1 flex flex-col min-h-[400px]">
+                class="about-photo-card w-full xl:w-[420px] rounded-2xl shadow-2xl flex-shrink-0 relative overflow-hidden flex flex-col">
+                <!-- Profile Photo -->
+                <div class="p-3 xl:p-6 flex flex-col" style="min-height: 420px; flex: 1 1 auto;">
                     <div class="flex-1 w-full rounded-xl overflow-hidden relative">
                         <!-- Context Chips -->
                         <div class="absolute top-4 right-4 z-30 flex flex-col gap-2 items-end">
@@ -149,8 +213,7 @@
                         </div>
 
                         <img id="profile-img" src="assets/Photo-profil.jpg" alt="Andrea Moncada"
-                            class="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                            style="transform: scale(1.15);">
+                            class="absolute inset-0 w-full h-full object-cover transition-all duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
                 </div>
@@ -196,72 +259,86 @@
     </section>
 
     <!-- SCROLLYTELLING METHODOLOGY SECTION -->
-    <!-- Height is 400vh to allow for 4 screens worth of scroll distance -->
+    <!-- Mobile: 600vh (100vh pre-scroll for description + 500vh for schema)  -->
+    <!-- Desktop: 500vh (description always visible inside sticky)             -->
     <section id="method" class="relative z-10" style="height: 500vh;">
 
-        <!-- Sticky Viewport: Stays fixed while parent scrolls -->
-        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
-
-            <!-- 1. MASKED LAYER: Background & Track -->
-            <!-- This layer fades out at top/bottom to blend with global particles -->
-            <!-- 1. MASKED LAYER: Background & Track -->
-            <!-- This layer fades out at top/bottom AND LEFT (to clear text area) -->
-            <div class="method-mask">
-                <!-- No solid background (showing global particles) -->
-
-                <!-- Horizontal Track (Rendered by JS) -->
-                <!-- Note: We move the track INSIDE this masked wrapper so it fades too -->
-                <div id="methodology-track"
-                    class="absolute left-1/2 top-0 bottom-0 flex items-center h-full will-change-transform pl-[10vw]">
-                    <!-- Rendered by script.js -->
-                </div>
-            </div>
-
-            <!-- 2. UNMASKED LAYER: UI Elements -->
-            <!-- Context Header (Fixed at top of viewport, fully opaque) -->
-            <div class="absolute top-0 left-0 w-full p-8 md:p-12 z-40 pointer-events-none">
+        <!-- ══ MOBILE ONLY: Description zone (scrolls off naturally) ══════ -->
+        <!-- This block is hidden on desktop (lg:hidden). On mobile it sits   -->
+        <!-- in normal document flow: as the user scrolls it exits the top.   -->
+        <div class="lg:hidden pointer-events-none">
+            <!-- Context Header -->
+            <div id="method-header" class="absolute top-0 left-0 w-full p-8 z-40 pointer-events-none">
                 <div class="flex justify-between items-center mb-4">
                     <span class="text-[10px] uppercase tracking-widest text-dynamic-sub"
                         data-key="method_process">Processus</span>
-                    <div class="text-right hidden md:block opacity-50">
+                </div>
+                <h2 class="font-bold text-dynamic-main" data-key="method_title"
+                    style="font-size:1.375rem;line-height:1.2;">UX Recherche</h2>
+            </div>
+            <!-- Intro paragraph — max-w-xs keeps text narrow on tablet too -->
+            <div id="method-intro" class="absolute left-8 top-36 z-50 pointer-events-none method-intro-bg py-4 pr-6"
+                style="max-width:300px;right:auto;">
+                <h3 class="text-lg font-bold text-dynamic-main mb-3" data-key="method_model_title">Design &amp;
+                    Decide<sup class="text-xs">®</sup></h3>
+                <p class="text-xs leading-relaxed text-dynamic-sub font-light mb-4" data-key="method_intro_1">Diverge to
+                    explore. Converge to decide.</p>
+                <p class="text-xs leading-relaxed text-dynamic-sub font-light" data-key="method_intro_2">The journey...
+                </p>
+            </div>
+        </div>
+
+        <!-- ══ MOBILE ONLY: spacer — 60vh pushes sticky start just past description ══ -->
+        <!-- Description content is ~60-65% of 1 viewport. By the time user        -->
+        <!-- scrolls 60vh, the description has just exited. Schema then sticks.     -->
+        <div id="method-spacer" class="lg:hidden pointer-events-none" style="height:60vh;"></div>
+
+        <!-- ══ STICKY VIEWPORT (schema) ═════════════════════════════════════ -->
+        <!-- Desktop: sticky from the very beginning                           -->
+        <!-- Mobile: sticky only after the 100vh spacer is scrolled past       -->
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex flex-col justify-center">
+
+            <!-- Masked layer: schema track -->
+            <div class="method-mask">
+                <div id="methodology-track"
+                    class="absolute left-1/2 top-0 bottom-0 flex items-center h-full will-change-transform pl-[10vw]">
+                    <!-- Rendered by methodology_ruler.js -->
+                </div>
+            </div>
+
+            <!-- ── Desktop only: description always visible inside sticky ── -->
+            <div class="absolute top-0 left-0 w-full p-8 md:p-12 z-40 pointer-events-none hidden lg:block">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-[10px] uppercase tracking-widest text-dynamic-sub"
+                        data-key="method_process">Processus</span>
+                    <div class="text-right opacity-50">
                         <p class="text-[10px] uppercase tracking-widest" data-key="method_scroll_explore">Scroll to
                             Explore</p>
                     </div>
                 </div>
-                <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold text-dynamic-main" data-key="method_title">UX
-                    Recherche</h2>
+                <h2 class="text-3xl lg:text-4xl font-bold text-dynamic-main" data-key="method_title">UX Recherche</h2>
             </div>
-
-            <!-- Intro Paragraph (Fixed, Visible) -->
-            <div id="method-intro"
-                class="absolute left-8 md:left-12 top-28 md:top-32 max-w-[280px] lg:max-w-[22vw] z-50 pointer-events-none method-intro-bg py-4 pr-6">
-
-                <!-- Added Model Title -->
-                <h3 class="text-lg md:text-xl font-bold text-dynamic-main mb-3" data-key="method_model_title">Design &
+            <div
+                class="absolute left-12 top-32 max-w-[22vw] z-50 pointer-events-none method-intro-bg py-4 pr-6 hidden lg:block">
+                <h3 class="text-xl font-bold text-dynamic-main mb-3" data-key="method_model_title">Design &amp;
                     Decide<sup class="text-xs">®</sup></h3>
-
-                <p class="text-xs md:text-sm lg:text-base leading-relaxed text-dynamic-sub font-light mb-4"
-                    data-key="method_intro_1">
-                    Diverge to explore. Converge to decide.
+                <p class="text-sm leading-relaxed text-dynamic-sub font-light mb-4" data-key="method_intro_1">Diverge to
+                    explore. Converge to decide.</p>
+                <p class="text-sm leading-relaxed text-dynamic-sub font-light" data-key="method_intro_2">The journey...
                 </p>
-                <p class="text-xs md:text-sm lg:text-base leading-relaxed text-dynamic-sub font-light"
-                    data-key="method_intro_2">
-                    The journey...
-                </p>
-
             </div>
 
             <!-- Central Cursor / "Scanner" Line -->
             <div id="timeline-cursor"
-                class="absolute left-1/2 top-0 bottom-0 w-px bg-red-500/50 z-30 pointer-events-none hidden md:block">
+                class="absolute left-1/2 top-0 bottom-0 w-px bg-red-500/50 z-30 pointer-events-none block">
                 <div
                     class="absolute top-[calc(50%+3rem)] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 border border-red-500 rounded-full">
                 </div>
             </div>
 
-
-
         </div>
+        <!-- END sticky viewport -->
+
     </section>
 
     <section id="work" class="px-4 md:px-12 pb-32 relative z-20">
@@ -274,103 +351,205 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-kciope')" role="button" tabindex="0">
+                <!-- FLIP CARD WRAPPER: ALR3 -->
+                <div class="flip-card-wrapper" id="flip-kciope">
+                    <div class="flip-card-inner">
+                        <!-- FRONT -->
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg xl:aspect-[16/10]"
+                                onclick="handleCardClick(event,'modal-kciope','flip-kciope')" role="button"
+                                tabindex="0">
+                                <!-- Infinite Marquee Wall -->
+                                <div class="project-marquee-wall">
+                                    <!-- Column 1 (Focus: C1, C2) -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <!-- Duplicate for infinite loop -->
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                    </div>
+                                    <!-- Column 2 (Focus: C3, C4) -->
+                                    <div class="marquee-col col-down">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <!-- Duplicate for infinite loop -->
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                    </div>
+                                    <!-- Column 3 (Focus: C1, C2, C3, C4 Mixed) -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                        <!-- Duplicate for infinite loop -->
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                    </div>
+                                    <!-- Column 4 (Focus: C1, C2) -->
+                                    <div class="marquee-col col-down">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <!-- Duplicate for infinite loop -->
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                    </div>
+                                    <!-- Column 5 (Focus: C3, C4) -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <!-- Duplicate for infinite loop -->
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png"
+                                            alt="UI Screen">
+                                        <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png"
+                                            alt="UI Screen">
+                                    </div>
+                                </div>
 
-                    <!-- NEW: Infinite Marquee Wall -->
-                    <div class="project-marquee-wall">
-                        <!-- Column 1 (Focus: C1, C2) -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <!-- Duplicate for infinite loop -->
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                        </div>
-                        <!-- Column 2 (Focus: C3, C4) -->
-                        <div class="marquee-col col-down">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
-                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <!-- Duplicate for infinite loop -->
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
-                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                        </div>
-                        <!-- Column 3 (Focus: C1, C2, C3, C4 Mixed) -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                            <!-- Duplicate for infinite loop -->
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C1.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C4.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                        </div>
-                        <!-- Column 4 (Focus: C1, C2) -->
-                        <div class="marquee-col col-down">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
-                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <!-- Duplicate for infinite loop -->
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C8.png" alt="UI Screen"><img src="assets/C7.png" alt="UI Screen">
-                            <img src="assets/C6.png" alt="UI Screen"><img src="assets/C5.png" alt="UI Screen">
-                            <img src="assets/C2.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                        </div>
-                        <!-- Column 5 (Focus: C3, C4) -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <!-- Duplicate for infinite loop -->
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C1.png" alt="UI Screen">
-                            <img src="assets/C3.png" alt="UI Screen"><img src="assets/C2.png" alt="UI Screen">
-                            <img src="assets/C5.png" alt="UI Screen"><img src="assets/C6.png" alt="UI Screen">
-                            <img src="assets/C7.png" alt="UI Screen"><img src="assets/C8.png" alt="UI Screen">
-                            <img src="assets/C4.png" alt="UI Screen"><img src="assets/C3.png" alt="UI Screen">
-                        </div>
-                    </div>
-
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p0_title">ALR3 - Adoptez le R3flexe
-                        </h3>
-                        <p class="text-sm text-gray-300" data-key="p0_desc">UX/UI Designer • 2024-2026</p>
-                    </div>
-                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p0_title">ALR3 - Adoptez
+                                        le R3flexe
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p0_desc">UX/UI Designer • 2024-2026</p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <!-- BACK -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-kciope')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-kciope">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p0_title">ALR3 – Adoptez le R3flexe</p>
+                                    <p class="flip-back-subtitle" data-key="p0_subtitle">Innovation · Civic Tech</p>
+                                    <p class="flip-back-desc" data-key="p0_main_desc">Modernisation de l'écosystème
+                                        citoyen pour maximiser l'engagement usager et l'efficacité des services publics.
+                                    </p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p0_context_desc">Transformation d'un outil
+                                        administratif en expérience citoyenne fluide.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p0_achievements">• Audit UX & Data · •
+                                        Facilitation & Cadrage · • Architecture & Design · • Innovation Ops (IA Figma
+                                        Make)</p>
+                                    
+                                        <a href="https://prototype-alr3.figma.site/" target="_blank" class="mt-4 inline-block px-3 py-1.5 border border-dynamic-border/50 rounded-full text-[9px] font-bold uppercase tracking-wider text-dynamic-main hover:bg-dynamic-main/5 transition-colors" data-key="open_site_label">Ouvrir le site ↗</a>
+                                        <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/ALR3.png" alt="ALR3 project" class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
+                        </div><!-- /flip-card-back -->
+                    </div><!-- /flip-card-inner -->
+                </div><!-- /flip-card-wrapper -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
@@ -381,25 +560,63 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Ville de Marseille</a>
                     </div>
                     <button onclick="openModal('modal-kciope')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-rockease')" role="button" tabindex="0">
-                    <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
-                        <source src="assets/Video-rockease-cover.mp4" type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_rockease_title">Rockease
-                        </h3>
-                        <p class="text-sm text-gray-300" data-key="p_rockease_desc">UI Designer • 2025
-                        </p>
+                <!-- FLIP CARD WRAPPER: Rockease -->
+                <div class="flip-card-wrapper" id="flip-rockease">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-rockease','flip-rockease')" role="button"
+                                tabindex="0">
+                                <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
+                                    <source src="assets/Video-rockease-cover.mp4" type="video/mp4">
+                                </video>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_rockease_title">Rockease
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p_rockease_desc">UI Designer • 2025</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-rockease')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-rockease">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_rockease_title">Rockease</p>
+                                    <p class="flip-back-subtitle" data-key="p_rockease_subtitle">B2B Marketplace ·
+                                        Digital Factory</p>
+                                    <p class="flip-back-desc" data-key="p_rockease_main_desc">Support opérationnel et
+                                        déploiement de la marketplace B2B Rockease.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_rockease_context_desc">Marketplace B2B pour
+                                        la commande de matériaux. Réduction du Time-to-Market via Webflow.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_rockease_achievements">• Déploiement
+                                        Agile via Webflow · • Design System Web · • Optimization B2B CMS</p>
+                                    
+                                        <a href="https://www.rockease.fr/" target="_blank" class="mt-4 inline-block px-3 py-1.5 border border-dynamic-border/50 rounded-full text-[9px] font-bold uppercase tracking-wider text-dynamic-main hover:bg-dynamic-main/5 transition-colors" data-key="open_site_label">Ouvrir le site ↗</a>
+                                        <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/rockease.png" alt="Rockease project" class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div><!-- /flip-rockease -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
@@ -410,86 +627,165 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Colas</a>
                     </div>
                     <button onclick="openModal('modal-rockease')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-synergie')" role="button" tabindex="0">
+                <!-- FLIP CARD WRAPPER: Synergie -->
+                <div class="flip-card-wrapper" id="flip-synergie">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-synergie','flip-synergie')" role="button"
+                                tabindex="0">
+                                <!-- Infinite Marquee Wall for Synergie -->
+                                <div class="project-marquee-wall">
+                                    <!-- Column 1 -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                    </div>
+                                    <!-- Column 2 -->
+                                    <div class="marquee-col col-down">
+                                        <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png"
+                                            alt="Synergie UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png"
+                                            alt="Synergie UI">
+                                    </div>
+                                    <!-- Column 3 (Focus: A1 centered) -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png"
+                                            alt="Synergie UI">
+                                    </div>
+                                    <!-- Column 4 -->
+                                    <div class="marquee-col col-down">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                    </div>
+                                    <!-- Column 5 -->
+                                    <div class="marquee-col col-up">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png"
+                                            alt="Synergie UI">
+                                        <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png"
+                                            alt="Synergie UI">
+                                    </div>
+                                </div>
 
-                    <!-- Infinite Marquee Wall for Synergie -->
-                    <div class="project-marquee-wall">
-                        <!-- Column 1 -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <!-- Duplicate -->
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                        </div>
-                        <!-- Column 2 -->
-                        <div class="marquee-col col-down">
-                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
-                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
-                            <!-- Duplicate -->
-                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
-                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A7.png" alt="Synergie UI"><img src="assets/A6.png" alt="Synergie UI">
-                        </div>
-                        <!-- Column 3 (Focus: A1 centered) -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <!-- Duplicate -->
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A1.png" alt="Synergie UI"><img src="assets/A2.png" alt="Synergie UI">
-                        </div>
-                        <!-- Column 4 -->
-                        <div class="marquee-col col-down">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <!-- Duplicate -->
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A3.png" alt="Synergie UI"><img src="assets/A4.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                        </div>
-                        <!-- Column 5 -->
-                        <div class="marquee-col col-up">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <!-- Duplicate -->
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
-                            <img src="assets/A2.png" alt="Synergie UI"><img src="assets/A1.png" alt="Synergie UI">
-                            <img src="assets/A4.png" alt="Synergie UI"><img src="assets/A3.png" alt="Synergie UI">
-                            <img src="assets/A6.png" alt="Synergie UI"><img src="assets/A7.png" alt="Synergie UI">
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_synergie_title">Synergie
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p_synergie_desc">UX Strategy • Digital
+                                        Transformation
+                                    </p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-synergie')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-synergie">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_synergie_title">Synergie</p>
+                                    <p class="flip-back-subtitle" data-key="p_synergie_subtitle">Transformation Digitale
+                                    </p>
+                                    <p class="flip-back-desc" data-key="p_synergie_main_desc">Optimisation du projet
+                                        Apollo pour fluidifier l'expérience candidat et maximiser la conversion.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_synergie_context_desc">Conception d'un
+                                        tunnel d'acquisition progressif pour réduire l'abandon et centraliser les
+                                        candidatures.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_synergie_achievements">• Benchmark HR
+                                        Tech · • Design de Conversion · • Data Visualization · • Stratégie Flows</p>
+                                    <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/Img-inside-Synergie.png" alt="Synergie project"
+                                        class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
                         </div>
                     </div>
-
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_synergie_title">Synergie</h3>
-                        <p class="text-sm text-gray-300" data-key="p_synergie_desc">UX Strategy • Digital Transformation
-                        </p>
-                    </div>
-                </div>
-                <!-- Updated Meta (No 'chez Kciope' redundancy if evident, but keeping format) -->
+                </div><!-- /flip-synergie -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
@@ -500,23 +796,64 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Synergie</a>
                     </div>
                     <button onclick="openModal('modal-synergie')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Read
                         Case ↗</button>
                 </div>
             </div>
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-vamos')" role="button" tabindex="0">
-                    <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
-                        <source src="assets/Video-vamos-cover.mp4" type="video/mp4">
-                    </video>
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_vamos_title">Vamos Bikes</h3>
-                        <p class="text-sm text-gray-300" data-key="p_vamos_desc">Delivery Phase • Video First UI</p>
+                <!-- FLIP CARD WRAPPER: Vamos -->
+                <div class="flip-card-wrapper" id="flip-vamos">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-vamos','flip-vamos')" role="button" tabindex="0">
+                                <video autoplay loop muted playsinline class="object-cover w-full h-full opacity-90">
+                                    <source src="assets/Video-vamos-cover.mp4" type="video/mp4">
+                                </video>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_vamos_title">Vamos Bikes
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p_vamos_desc">Delivery Phase • Video
+                                        First UI</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-vamos')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-vamos">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_vamos_title">Vamos Bikes</p>
+                                    <p class="flip-back-subtitle" data-key="p_vamos_subtitle">Marketplace B2B</p>
+                                    <p class="flip-back-desc" data-key="p_vamos_main_desc">Refonte intégrale de la
+                                        marketplace B2B : modernisation de l'identité et optimisation du tunnel d'achat.
+                                    </p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_vamos_context_desc">Une expérience d'achat
+                                        moderne qui valorise le produit premium sur un marché concurrentiel.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_vamos_achievements">• Audit &
+                                        Stratégie · • Design Immersif · • Validation UX prototypes HF</p>
+                                    
+                                        <a href="https://vamosbikes.com.au/" target="_blank" class="mt-4 inline-block px-3 py-1.5 border border-dynamic-border/50 rounded-full text-[9px] font-bold uppercase tracking-wider text-dynamic-main hover:bg-dynamic-main/5 transition-colors" data-key="open_site_label">Ouvrir le site ↗</a>
+                                        <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/Img-inside-VAMOS.png" alt="Vamos Bikes project"
+                                        class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div><!-- /flip-vamos -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
@@ -527,7 +864,7 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Vamos Bikes</a>
                     </div>
                     <button onclick="openModal('modal-vamos')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
@@ -535,59 +872,119 @@
 
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-agirc')" role="button" tabindex="0">
-
-                    <!-- Infinite Marquee Wall for Agirc-Arrco (Desktop Optimized) -->
-                    <div class="project-marquee-wall">
-                        <!-- Column 1 -->
-                        <div class="marquee-col col-desktop col-up">
-                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
-                            <!-- Duplicate -->
-                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
-                        </div>
-                        <!-- Column 2 -->
-                        <div class="marquee-col col-desktop col-down">
-                            <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
-                            <!-- Duplicate -->
-                            <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png" alt="Agirc-Arrco UI">
-                        </div>
-                        <!-- Column 3 (Focus: B1) -->
-                        <div class="marquee-col col-desktop col-up">
-                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <!-- Duplicate -->
-                            <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                        </div>
-                        <!-- Column 4 -->
-                        <div class="marquee-col col-desktop col-down">
-                            <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png" alt="Agirc-Arrco UI">
-                            <!-- Duplicate -->
-                            <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png" alt="Agirc-Arrco UI">
-                            <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png" alt="Agirc-Arrco UI">
+                <!-- FLIP CARD WRAPPER: Agirc -->
+                <div class="flip-card-wrapper" id="flip-agirc">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-agirc','flip-agirc')" role="button" tabindex="0">
+                                <!-- Infinite Marquee Wall for Agirc-Arrco -->
+                                <div class="project-marquee-wall">
+                                    <!-- Column 1 -->
+                                    <div class="marquee-col col-desktop col-up">
+                                        <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png"
+                                            alt="Agirc-Arrco UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B2.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B6.png"
+                                            alt="Agirc-Arrco UI">
+                                    </div>
+                                    <!-- Column 2 -->
+                                    <div class="marquee-col col-desktop col-down">
+                                        <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png"
+                                            alt="Agirc-Arrco UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/B7.png" alt="Agirc-Arrco UI"><img src="assets/B6.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B2.png"
+                                            alt="Agirc-Arrco UI">
+                                    </div>
+                                    <!-- Column 3 (Focus: B1) -->
+                                    <div class="marquee-col col-desktop col-up">
+                                        <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/B1.png" alt="Agirc-Arrco UI"><img src="assets/B3.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B5.png" alt="Agirc-Arrco UI"><img src="assets/B7.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                    </div>
+                                    <!-- Column 4 -->
+                                    <div class="marquee-col col-desktop col-down">
+                                        <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png"
+                                            alt="Agirc-Arrco UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/B6.png" alt="Agirc-Arrco UI"><img src="assets/B4.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B2.png" alt="Agirc-Arrco UI"><img src="assets/B1.png"
+                                            alt="Agirc-Arrco UI">
+                                        <img src="assets/B3.png" alt="Agirc-Arrco UI"><img src="assets/B5.png"
+                                            alt="Agirc-Arrco UI">
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_agirc_title">Agirc-Arrco
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p_agirc_desc">UX Researcher & Analyst •
+                                        2025</p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-agirc')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-agirc">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_agirc_title">Agirc-Arrco</p>
+                                    <p class="flip-back-subtitle" data-key="p_agirc_desc">UX Research · 2025</p>
+                                    <p class="flip-back-desc" data-key="p_agirc_main_desc">Validation stratégique de la
+                                        refonte B2B via tests usagers réels et analyse quantitative.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_agirc_context_desc">Apporter une validation
+                                        factuelle en confrontant les maquettes à la réalité terrain RH/Paie.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_agirc_achievements">• Confrontation
+                                        Terrain · • Analyse de Friction · • Pilotage Produit par insights</p>
+                                    <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/Img-inside-AGIRC-ARRCO.png" alt="Agirc-Arrco project"
+                                        class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
                         </div>
                     </div>
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_agirc_title">Agirc-Arrco
-                        </h3>
-                        <p class="text-sm text-gray-300" data-key="p_agirc_desc">UX Researcher & Analyst • 2025</p>
-                    </div>
-                </div>
+                </div><!-- /flip-agirc -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
@@ -598,251 +995,440 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Agirc-Arrco</a>
                     </div>
                     <button onclick="openModal('modal-agirc')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Read
                         Case ↗</button>
                 </div>
             </div>
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-altarea')" role="button" tabindex="0">
-                    <img src="assets/Cover-ALTAREA.png" alt="Altarea" class="object-cover w-full h-full opacity-90">
+                <!-- FLIP CARD WRAPPER: Altarea -->
+                <div class="flip-card-wrapper" id="flip-altarea">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-altarea','flip-altarea')" role="button"
+                                tabindex="0">
+                                <img src="assets/Cover-ALTAREA.png" alt="Altarea"
+                                    class="object-cover w-full h-full opacity-90">
+                                <!-- Rain Effect Container -->
+                                <div class="rain-container">
+                                    <div class="rain-drop"
+                                        style="left: 5%; animation-duration: 0.6s; animation-delay: 0.1s;"></div>
+                                    <div class="rain-drop"
+                                        style="left: 10%; animation-duration: 0.8s; animation-delay: 0.2s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 15%; animation-duration: 0.7s; animation-delay: 0.5s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 20%; animation-duration: 0.9s; animation-delay: 0.3s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 25%; animation-duration: 0.6s; animation-delay: 0.1s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 30%; animation-duration: 0.8s; animation-delay: 0.4s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 35%; animation-duration: 0.7s; animation-delay: 0.2s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 40%; animation-duration: 0.9s; animation-delay: 0.6s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 45%; animation-duration: 0.6s; animation-delay: 0.1s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 50%; animation-duration: 0.8s; animation-delay: 0.3s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 55%; animation-duration: 0.7s; animation-delay: 0.5s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 60%; animation-duration: 0.9s; animation-delay: 0.2s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 65%; animation-duration: 0.6s; animation-delay: 0.4s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 70%; animation-duration: 0.8s; animation-delay: 0.7s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 75%; animation-duration: 0.7s; animation-delay: 0.3s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 80%; animation-duration: 0.9s; animation-delay: 0.1s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 85%; animation-duration: 0.6s; animation-delay: 0.5s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 90%; animation-duration: 0.8s; animation-delay: 0.2s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 95%; animation-duration: 0.7s; animation-delay: 0.8s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 12%; animation-duration: 0.9s; animation-delay: 0.3s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 28%; animation-duration: 0.6s; animation-delay: 0.6s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 42%; animation-duration: 0.8s; animation-delay: 0.1s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 58%; animation-duration: 0.7s; animation-delay: 0.4s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 72%; animation-duration: 0.9s; animation-delay: 0.7s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 88%; animation-duration: 0.6s; animation-delay: 0.2s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 3%; animation-duration: 0.8s; animation-delay: 0.5s;"></div>
+                                    <div class="rain-drop"
+                                        style="left: 53%; animation-duration: 0.7s; animation-delay: 0.1s;">
+                                    </div>
+                                    <div class="rain-drop"
+                                        style="left: 97%; animation-duration: 0.9s; animation-delay: 0.6s;">
+                                    </div>
+                                </div>
 
-                    <!-- Rain Effect Container -->
-                    <div class="rain-container">
-                        <div class="rain-drop" style="left: 5%; animation-duration: 0.6s; animation-delay: 0.1s;"></div>
-                        <div class="rain-drop" style="left: 10%; animation-duration: 0.8s; animation-delay: 0.2s;">
-                        </div>
-                        <div class="rain-drop" style="left: 15%; animation-duration: 0.7s; animation-delay: 0.5s;">
-                        </div>
-                        <div class="rain-drop" style="left: 20%; animation-duration: 0.9s; animation-delay: 0.3s;">
-                        </div>
-                        <div class="rain-drop" style="left: 25%; animation-duration: 0.6s; animation-delay: 0.1s;">
-                        </div>
-                        <div class="rain-drop" style="left: 30%; animation-duration: 0.8s; animation-delay: 0.4s;">
-                        </div>
-                        <div class="rain-drop" style="left: 35%; animation-duration: 0.7s; animation-delay: 0.2s;">
-                        </div>
-                        <div class="rain-drop" style="left: 40%; animation-duration: 0.9s; animation-delay: 0.6s;">
-                        </div>
-                        <div class="rain-drop" style="left: 45%; animation-duration: 0.6s; animation-delay: 0.1s;">
-                        </div>
-                        <div class="rain-drop" style="left: 50%; animation-duration: 0.8s; animation-delay: 0.3s;">
-                        </div>
-                        <div class="rain-drop" style="left: 55%; animation-duration: 0.7s; animation-delay: 0.5s;">
-                        </div>
-                        <div class="rain-drop" style="left: 60%; animation-duration: 0.9s; animation-delay: 0.2s;">
-                        </div>
-                        <div class="rain-drop" style="left: 65%; animation-duration: 0.6s; animation-delay: 0.4s;">
-                        </div>
-                        <div class="rain-drop" style="left: 70%; animation-duration: 0.8s; animation-delay: 0.7s;">
-                        </div>
-                        <div class="rain-drop" style="left: 75%; animation-duration: 0.7s; animation-delay: 0.3s;">
-                        </div>
-                        <div class="rain-drop" style="left: 80%; animation-duration: 0.9s; animation-delay: 0.1s;">
-                        </div>
-                        <div class="rain-drop" style="left: 85%; animation-duration: 0.6s; animation-delay: 0.5s;">
-                        </div>
-                        <div class="rain-drop" style="left: 90%; animation-duration: 0.8s; animation-delay: 0.2s;">
-                        </div>
-                        <div class="rain-drop" style="left: 95%; animation-duration: 0.7s; animation-delay: 0.8s;">
-                        </div>
-                        <div class="rain-drop" style="left: 12%; animation-duration: 0.9s; animation-delay: 0.3s;">
-                        </div>
-                        <div class="rain-drop" style="left: 28%; animation-duration: 0.6s; animation-delay: 0.6s;">
-                        </div>
-                        <div class="rain-drop" style="left: 42%; animation-duration: 0.8s; animation-delay: 0.1s;">
-                        </div>
-                        <div class="rain-drop" style="left: 58%; animation-duration: 0.7s; animation-delay: 0.4s;">
-                        </div>
-                        <div class="rain-drop" style="left: 72%; animation-duration: 0.9s; animation-delay: 0.7s;">
-                        </div>
-                        <div class="rain-drop" style="left: 88%; animation-duration: 0.6s; animation-delay: 0.2s;">
-                        </div>
-                        <div class="rain-drop" style="left: 3%; animation-duration: 0.8s; animation-delay: 0.5s;"></div>
-                        <div class="rain-drop" style="left: 53%; animation-duration: 0.7s; animation-delay: 0.1s;">
-                        </div>
-                        <div class="rain-drop" style="left: 97%; animation-duration: 0.9s; animation-delay: 0.6s;">
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_altarea_title">ALTAREA
+                                    </h3>
+                                    <p class="text-sm text-gray-300" data-key="p_altarea_desc">Global Designer - 2024
+                                    </p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-altarea')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-altarea">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_altarea_title">ALTAREA</p>
+                                    <p class="flip-back-subtitle" data-key="p_altarea_subtitle">Urbanisme · Adaptation
+                                        Climatique</p>
+                                    <p class="flip-back-desc" data-key="p_altarea_main_desc">Dispositif systémique
+                                        d'atténuation des îlots de chaleur urbains, alliant canopée végétale et
+                                        structure hydraulique.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_altarea_context_desc">Dépasser le
+                                        verdissement esthétique pour une solution fonctionnelle qui préserve la vie
+                                        sociale urbaine.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_altarea_achievements">• Recherche
+                                        microclimat · • Stratégie UX conditions extrêmes · • Conception système · •
+                                        Modélisation 3D</p>
+                                    <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/Cover-ALTAREA.png" alt="Altarea project" class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
                         </div>
                     </div>
-
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_altarea_title">ALTAREA</h3>
-                        <p class="text-sm text-gray-300" data-key="p_altarea_desc">Global Designer - 2024</p>
-                    </div>
-                </div>
+                </div><!-- /flip-altarea -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
                             href="https://www.cy-ecolededesign.fr/" target="_blank"
-                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY École de Design</a>
                         <span class="opacity-50 mx-1">x</span>
                         <a href="https://www.altarea.com/" target="_blank"
                             class="hover:underline hover:text-dynamic-main transition-colors">Altarea</a>
                     </div>
                     <button onclick="openModal('modal-altarea')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Read
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Read
                         Case ↗</button>
                 </div>
             </div>
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-reyou')" role="button" tabindex="0">
-
-                    <div class="reyou-visual-container absolute inset-0">
-                        <div class="reyou-blueprint"></div>
-                        <div class="reyou-grid"></div>
-                        <div class="reyou-scan-beam"></div>
-                        <div class="reyou-glitch-layer">
-                            <div class="reyou-glitch-item item-chair"><span>MOD: CH-01</span></div>
-                            <div class="reyou-glitch-item item-desk"><span>MOD: DK-09</span></div>
-                            <div class="reyou-glitch-item item-table"><span>MOD: TB-04</span></div>
+                <!-- FLIP CARD WRAPPER: ReYou -->
+                <div class="flip-card-wrapper" id="flip-reyou">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-reyou','flip-reyou')" role="button" tabindex="0">
+                                <div class="reyou-visual-container absolute inset-0">
+                                    <div class="reyou-blueprint"></div>
+                                    <div class="reyou-grid"></div>
+                                    <div class="reyou-scan-beam"></div>
+                                    <div class="reyou-glitch-layer">
+                                        <div class="reyou-glitch-item item-chair"><span>MOD: CH-01</span></div>
+                                        <div class="reyou-glitch-item item-desk"><span>MOD: DK-09</span></div>
+                                        <div class="reyou-glitch-item item-table"><span>MOD: TB-04</span></div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_reyou_title">REYOU</h3>
+                                    <p class="text-sm text-gray-300" data-key="p_reyou_desc">Design Global • Showroom 3D
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-reyou')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-reyou">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_reyou_title">REYOU</p>
+                                    <p class="flip-back-subtitle" data-key="p_reyou_subtitle">Économie Circulaire ·
+                                        Retail Digital</p>
+                                    <p class="flip-back-desc" data-key="p_reyou_main_desc">Showroom numérique interactif
+                                        dédié au réemploi de mobilier de bureau, levant les freins du marché.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_reyou_context_desc">Démontrer que le
+                                        mobilier de réemploi peut soutenir des espaces de travail modernes et premium.
+                                    </p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_reyou_achievements">• Stratégie
+                                        Phygital · • UX/UI interface interactive · • Modélisation &amp; rendu · •
+                                        Génération de leads</p>
+                                    
+                                        <a href="https://reyou-portfolio-client.netlify.app/" target="_blank" class="mt-4 inline-block px-3 py-1.5 border border-dynamic-border/50 rounded-full text-[9px] font-bold uppercase tracking-wider text-dynamic-main hover:bg-dynamic-main/5 transition-colors" data-key="open_site_label">Ouvrir le site ↗</a>
+                                        <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/reyou.png" alt="ReYou project" class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
                         </div>
                     </div>
-
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_reyou_title">REYOU</h3>
-                        <p class="text-sm text-gray-300" data-key="p_reyou_desc">Design Global • Showroom 3D</p>
-                    </div>
-                </div>
+                </div><!-- /flip-reyou -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
                             href="https://www.cy-ecolededesign.fr/" target="_blank"
-                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY École de Design</a>
                         <span class="opacity-50 mx-1">x</span>
                         <a href="https://www.re-you.fr/" target="_blank"
                             class="hover:underline hover:text-dynamic-main transition-colors">REYOU</a>
                     </div>
                     <button onclick="openModal('modal-reyou')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
-                    onclick="openModal('modal-elba')" role="button" tabindex="0">
-                    <div class="hr-visual-container absolute inset-0">
-                        <svg class="hr-svg-waves" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none"
-                            shape-rendering="auto">
-                            <defs>
-                                <path id="gentle-wave"
-                                    d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-                                <linearGradient id="gloss-gold" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#2a200a;stop-opacity:1" />
-                                    <stop offset="35%" style="stop-color:#846524;stop-opacity:1" />
-                                    <stop offset="45%" style="stop-color:#e6c47b;stop-opacity:1" />
-                                    <stop offset="50%" style="stop-color:#fffbed;stop-opacity:1" />
-                                    <stop offset="55%" style="stop-color:#e6c47b;stop-opacity:1" />
-                                    <stop offset="65%" style="stop-color:#846524;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#141005;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="silk-emerald" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#000d08;stop-opacity:1" />
-                                    <stop offset="40%" style="stop-color:#004d35;stop-opacity:1" />
-                                    <stop offset="50%" style="stop-color:#1fd698;stop-opacity:1" />
-                                    <stop offset="60%" style="stop-color:#004d35;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#000d08;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <g class="parallax-waves">
-                                <use xlink:href="#gentle-wave" x="48" y="0" class="hr-wave-use wave1" />
-                                <use xlink:href="#gentle-wave" x="48" y="2" class="hr-wave-use wave2" />
-                                <use xlink:href="#gentle-wave" x="48" y="4" class="hr-wave-use wave3" />
-                                <use xlink:href="#gentle-wave" x="48" y="6" class="hr-wave-use wave4" />
-                            </g>
-                        </svg>
-                        <div class="hr-gloss-overlay absolute inset-0 pointer-events-none"></div>
-                        <div class="hr-logo-wrapper">
-                            <img src="assets/Logo-HR.png" alt="Helena Rubinstein" class="hr-logo">
+                <!-- FLIP CARD WRAPPER: Helena Rubinstein -->
+                <div class="flip-card-wrapper" id="flip-elba">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg"
+                                onclick="handleCardClick(event,'modal-elba','flip-elba')" role="button" tabindex="0">
+                                <div class="hr-visual-container absolute inset-0">
+                                    <svg class="hr-svg-waves" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28"
+                                        preserveAspectRatio="none" shape-rendering="auto">
+                                        <defs>
+                                            <path id="gentle-wave"
+                                                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                                            <linearGradient id="gloss-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#2a200a;stop-opacity:1" />
+                                                <stop offset="35%" style="stop-color:#846524;stop-opacity:1" />
+                                                <stop offset="45%" style="stop-color:#e6c47b;stop-opacity:1" />
+                                                <stop offset="50%" style="stop-color:#fffbed;stop-opacity:1" />
+                                                <stop offset="55%" style="stop-color:#e6c47b;stop-opacity:1" />
+                                                <stop offset="65%" style="stop-color:#846524;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#141005;stop-opacity:1" />
+                                            </linearGradient>
+                                            <linearGradient id="silk-emerald" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#000d08;stop-opacity:1" />
+                                                <stop offset="40%" style="stop-color:#004d35;stop-opacity:1" />
+                                                <stop offset="50%" style="stop-color:#1fd698;stop-opacity:1" />
+                                                <stop offset="60%" style="stop-color:#004d35;stop-opacity:1" />
+                                                <stop offset="100%" style="stop-color:#000d08;stop-opacity:1" />
+                                            </linearGradient>
+                                        </defs>
+                                        <g class="parallax-waves">
+                                            <use xlink:href="#gentle-wave" x="48" y="0" class="hr-wave-use wave1" />
+                                            <use xlink:href="#gentle-wave" x="48" y="2" class="hr-wave-use wave2" />
+                                            <use xlink:href="#gentle-wave" x="48" y="4" class="hr-wave-use wave3" />
+                                            <use xlink:href="#gentle-wave" x="48" y="6" class="hr-wave-use wave4" />
+                                        </g>
+                                    </svg>
+                                    <div class="hr-gloss-overlay absolute inset-0 pointer-events-none"></div>
+                                    <div class="hr-logo-wrapper">
+                                        <img src="assets/Logo-HR.png" alt="Helena Rubinstein" class="hr-logo">
+                                    </div>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_elba_title">Helena
+                                        Rubinstein</h3>
+                                    <p class="text-sm text-gray-300" data-key="p_elba_desc">Stratégie Luxe & 3D</p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-elba')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-elba">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_elba_title">Helena Rubinstein</p>
+                                    <p class="flip-back-subtitle" data-key="p_elba_subtitle">Luxury Packaging ·
+                                        Eco-Design</p>
+                                    <p class="flip-back-desc" data-key="p_elba_main_desc">Edition limitée pour le marché
+                                        chinois à l'occasion du Nouvel An Lunaire, alliant luxe et éco-conception.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_elba_context_desc">Paradoxe luxe célébratif
+                                        vs. responsabilité environnementale : un packaging rechargeable pour le marché
+                                        chinois.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_elba_achievements">• Analyse
+                                        sémiotique culturelle · • Éco-conception Refill · • Développement graphique
+                                        &amp; matière · • Rendu 3D</p>
+                                    <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/elba-project.png" alt="Helena Rubinstein project"
+                                        class="flip-back-img" style="object-fit:contain;background:#0a0a0a;">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
                         </div>
                     </div>
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_elba_title">Helena Rubinstein</h3>
-                        <p class="text-sm text-gray-300" data-key="p_elba_desc">Stratégie Luxe & 3D</p>
-                    </div>
-                </div>
+                </div><!-- /flip-elba -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a
                             href="https://www.cy-ecolededesign.fr/" target="_blank"
-                            class="hover:underline hover:text-dynamic-main transition-colors">CY Design</a>
+                            class="hover:underline hover:text-dynamic-main transition-colors">CY École de Design</a>
                         <span class="opacity-50 mx-1">x</span>
                         <a href="https://www.helenarubinstein.fr/" target="_blank"
                             class="hover:underline hover:text-dynamic-main transition-colors">H.R.</a>
                     </div>
                     <button onclick="openModal('modal-elba')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
 
             <div class="group flex flex-col gap-3">
-                <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-zinc-800"
-                    onclick="openModal('modal-interop')" role="button" tabindex="0">
-                    <!-- Marquee Wall for Interop -->
-                    <div class="project-marquee-wall">
-                        <!-- Column 1 -->
-                        <div class="marquee-col col-wide col-up">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <!-- Duplicate -->
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                        </div>
-                        <!-- Column 2 -->
-                        <div class="marquee-col col-wide col-down">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <!-- Duplicate -->
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                        </div>
-                        <!-- Column 3 -->
-                        <div class="marquee-col col-wide col-up">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <!-- Duplicate -->
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                        </div>
-                        <!-- Column 4 -->
-                        <div class="marquee-col col-wide col-down">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                            <!-- Duplicate -->
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/3.png" alt="Interop UI">
-                            <img src="assets/D2.png" alt="Interop UI">
-                            <img src="assets/D1.png" alt="Interop UI">
-                        </div>
-                    </div>
+                <!-- FLIP CARD WRAPPER: Groupe Atlantic -->
+                <div class="flip-card-wrapper" id="flip-interop">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="project-card w-full aspect-[16/10] relative rounded-2xl overflow-hidden cursor-pointer shadow-lg bg-zinc-800"
+                                onclick="handleCardClick(event,'modal-interop','flip-interop')" role="button"
+                                tabindex="0">
+                                <!-- Marquee Wall for Interop -->
+                                <div class="project-marquee-wall">
+                                    <!-- Column 1 -->
+                                    <div class="marquee-col col-wide col-up">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                    </div>
+                                    <!-- Column 2 -->
+                                    <div class="marquee-col col-wide col-down">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                    </div>
+                                    <!-- Column 3 -->
+                                    <div class="marquee-col col-wide col-up">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                    </div>
+                                    <!-- Column 4 -->
+                                    <div class="marquee-col col-wide col-down">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                        <!-- Duplicate -->
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/3.png" alt="Interop UI">
+                                        <img src="assets/D2.png" alt="Interop UI">
+                                        <img src="assets/D1.png" alt="Interop UI">
+                                    </div>
+                                </div>
 
-                    <div
-                        class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
-                        <h3 class="text-xl font-medium mb-1 text-white" data-key="p_interop_title">Groupe Atlantic</h3>
-                        <p class="text-sm text-gray-300" data-key="p_interop_desc">UX/UI Designer - 2025</p>
+                                <div
+                                    class="absolute bottom-0 left-0 w-full p-6 pt-24 flex flex-col justify-end bg-gradient-to-t from-black/90 to-transparent pointer-events-none z-10">
+                                    <h3 class="text-xl font-medium mb-1 text-white" data-key="p_interop_title">Groupe
+                                        Atlantic</h3>
+                                    <p class="text-sm text-gray-300" data-key="p_interop_desc">UX/UI Designer - 2025</p>
+                                </div>
+                            </div><!-- /project-card -->
+                        </div><!-- /flip-card-front -->
+                        <div class="flip-card-back" onclick="handleBackClick(event,'flip-interop')">
+                            <span class="flip-back-hint" data-key="flip_hint">↺ Toucher</span>
+                            <div class="flip-back-pages" id="flip-pages-interop">
+                                <div class="flip-back-page flip-back-page-desc">
+                                    <p class="flip-back-title" data-key="p_interop_title">Groupe Atlantic</p>
+                                    <p class="flip-back-subtitle" data-key="p_interop_subtitle">Référentiel
+                                        Interopérabilité</p>
+                                    <p class="flip-back-desc" data-key="p_interop_main_desc">Digitalisation d'un
+                                        référentiel technique d'interopérabilité pour les produits IoT et connectés.</p>
+                                    <p class="flip-back-label" data-key="label_context">Contexte</p>
+                                    <p class="flip-back-context" data-key="p_interop_context_desc">Transformer une base
+                                        de données technique aride en outil de consultation intuitif pour les équipes
+                                        support.</p>
+                                    <p class="flip-back-label" data-key="label_achievements">Réalisations</p>
+                                    <p class="flip-back-achievements" data-key="p_interop_achievements">• Data Design
+                                        dashboards · • Structuration données · • Prototypage interactif navigation</p>
+                                    <div class="flip-swipe-hint"><svg viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2">
+                                            <path d="M9 18l6-6-6-6" />
+                                        </svg><span data-key="swipe_hint">Glisser</span></div>
+                                </div>
+                                <div class="flip-back-page flip-back-page-img">
+                                    <img src="assets/Groupe-atlantic.png" alt="Groupe Atlantic project"
+                                        class="flip-back-img">
+                                </div>
+                            </div>
+                            <div class="flip-back-dots">
+                                <span class="flip-dot active"></span>
+                                <span class="flip-dot"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </div><!-- /flip-interop -->
                 <div class="flex justify-between items-center px-2">
                     <div class="text-xs uppercase tracking-wider font-medium text-dynamic-sub">
                         <span class="opacity-70 lowercase" data-key="meta_at">chez </span> <a href="https://kciope.com/"
@@ -853,7 +1439,7 @@
                             class="hover:underline hover:text-dynamic-main transition-colors">Groupe Atlantic</a>
                     </div>
                     <button onclick="openModal('modal-interop')"
-                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors">Interactive
+                        class="text-xs text-dynamic-main border border-dynamic-border px-3 py-1.5 rounded-full hover:bg-dynamic-border/10 transition-colors hidden lg:inline-block">Interactive
                         Case ↗</button>
                 </div>
             </div>
@@ -896,18 +1482,18 @@
                 Optimisation des flux créatifs par l'IA. Je conçois des systèmes qui automatisent les tâches
                 répétitives pour libérer le potentiel créatif des équipes.
             </p>
-            <div class="flex flex-wrap justify-center gap-3">
+            <div class="grid grid-cols-2 gap-3 max-w-fit mx-auto sm:flex sm:flex-wrap sm:justify-center">
                 <span
-                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Figma
+                    class="px-5 py-2 w-full sm:w-auto text-center bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Figma
                     Make</span>
                 <span
-                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">OpenAI
+                    class="px-5 py-2 w-full sm:w-auto text-center bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">OpenAI
                     API</span>
                 <span
-                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Design
+                    class="px-5 py-2 w-full sm:w-auto text-center bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Design
                     Ops</span>
                 <span
-                    class="px-5 py-2 bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Antigravity</span>
+                    class="px-5 py-2 w-full sm:w-auto text-center bg-dynamic-main/5 border border-dynamic-main/30 rounded-full text-[10px] uppercase tracking-widest text-dynamic-sub font-medium hover:border-dynamic-main transition-colors cursor-default">Antigravity</span>
             </div>
         </div>
     </section>
@@ -1318,7 +1904,7 @@
                                     <span class="opacity-70 lowercase" data-key="meta_at">chez </span><a
                                         href="https://www.cy-ecolededesign.fr/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">CY
-                                        Design</a>
+                                        École de Design</a>
                                     <span class="opacity-50 mx-1">x</span>
                                     <a href="https://www.altarea.com/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">Altarea</a>
@@ -1400,7 +1986,7 @@
                                     <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
                                     <a href="https://www.cy-ecolededesign.fr/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">CY
-                                        Design</a>
+                                        École de Design</a>
                                     <span class="opacity-50 mx-1">x</span>
                                     <a href="https://www.re-you.fr/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">REYOU</a>
@@ -1461,7 +2047,7 @@
                                     <span class="opacity-70 lowercase" data-key="meta_at">chez </span>
                                     <a href="https://www.cy-ecolededesign.fr/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">CY
-                                        Design</a>
+                                        École de Design</a>
                                     <span class="opacity-50 mx-1">x</span>
                                     <a href="https://www.helenarubinstein.fr/" target="_blank"
                                         class="text-inherit hover:text-blue-600 transition-colors underline decoration-transparent hover:decoration-blue-600">H.R.</a>

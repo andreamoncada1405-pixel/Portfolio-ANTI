@@ -10,15 +10,51 @@ function toggleTheme() {
 }
 
 function updateThemeIcons(theme) {
+    // Desktop icons
     const sun = document.getElementById('icon-sun');
     const moon = document.getElementById('icon-moon');
+    // Mobile menu icons
+    const mobSun = document.getElementById('mob-icon-sun');
+    const mobMoon = document.getElementById('mob-icon-moon');
+
     if (theme === 'dark') {
-        sun.classList.remove('hidden');
-        moon.classList.add('hidden');
+        if (sun) sun.classList.remove('hidden');
+        if (moon) moon.classList.add('hidden');
+        if (mobSun) mobSun.classList.remove('hidden');
+        if (mobMoon) mobMoon.classList.add('hidden');
     } else {
-        sun.classList.add('hidden');
-        moon.classList.remove('hidden');
+        if (sun) sun.classList.add('hidden');
+        if (moon) moon.classList.remove('hidden');
+        if (mobSun) mobSun.classList.add('hidden');
+        if (mobMoon) mobMoon.classList.remove('hidden');
     }
+}
+
+// --- MOBILE BURGER MENU ---
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('burger-btn');
+    if (!menu || !btn) return;
+
+    const isOpen = menu.classList.contains('is-open');
+    if (isOpen) {
+        closeMobileMenu();
+    } else {
+        menu.classList.add('is-open');
+        menu.setAttribute('aria-hidden', 'false');
+        btn.classList.add('is-open');
+        document.body.classList.add('mobile-menu-open');
+    }
+}
+
+function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('burger-btn');
+    if (!menu || !btn) return;
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    btn.classList.remove('is-open');
+    document.body.classList.remove('mobile-menu-open');
 }
 
 // Initialize Theme
@@ -113,6 +149,134 @@ function closeModalForce() {
         badge.classList.remove('pop', 'hidden');
     });
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   FLIP CARD INTERACTION — Mobile & Tablet (touch/no-hover devices)
+   Desktop (mouse): card click → openModal directly.
+   Mobile/Tablet:   card click → flip to back; back is swiped L/R.
+════════════════════════════════════════════════════════════════ */
+
+/** True on touch/tablet devices: no precise pointer or hover support */
+function _isTouch() {
+    return window.matchMedia('(hover: none), (pointer: coarse)').matches
+        || ('ontouchstart' in window)
+        || window.innerWidth <= 1024;
+}
+
+/**
+ * Wire scroll-snap observer on a flip-back-pages container so dots
+ * stay in sync with native swipe.
+ */
+function _initFlipScroll(wrapperId) {
+    const pageId = wrapperId.replace('flip-', '');
+    const pages = document.getElementById('flip-pages-' + pageId);
+    const wrapper = document.getElementById(wrapperId);
+    if (!pages || !wrapper) return;
+    if (pages._flipObserved) return; // prevent double-binding
+    pages._flipObserved = true;
+
+    pages.addEventListener('scroll', () => {
+        // Determine which page is snapped
+        const pageWidth = pages.scrollWidth / 2; // each page = half container
+        const idx = Math.round(pages.scrollLeft / pageWidth);
+        wrapper.querySelectorAll('.flip-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === idx);
+        });
+    }, { passive: true });
+}
+
+function handleCardClick(event, modalId, wrapperId) {
+    // Desktop (mouse/non-touch): open modal normally
+    if (!_isTouch()) {
+        openModal(modalId);
+        return;
+    }
+
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) { openModal(modalId); return; }
+    event.stopPropagation();
+
+    // Reset scroll to page 1 before flipping
+    const pageId = wrapperId.replace('flip-', '');
+    const pages = document.getElementById('flip-pages-' + pageId);
+    if (pages) {
+        pages.scrollLeft = 0;
+    }
+    // Reset dots to page 1
+    wrapper.querySelectorAll('.flip-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === 0);
+    });
+
+    wrapper.classList.add('is-flipped');
+
+    // Attach scroll observer (safe to call multiple times)
+    _initFlipScroll(wrapperId);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL DRAG DETECTION
+   Distinguishes between a tap/click and a swipe/scroll.
+════════════════════════════════════════════════════════════════ */
+let _flipStartX = 0;
+let _flipStartY = 0;
+let _isFlipDragging = false;
+
+document.addEventListener('touchstart', (e) => {
+    _isFlipDragging = false;
+    if (e.touches && e.touches[0]) {
+        _flipStartX = e.touches[0].clientX;
+        _flipStartY = e.touches[0].clientY;
+    }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+        const dx = Math.abs(e.touches[0].clientX - _flipStartX);
+        const dy = Math.abs(e.touches[0].clientY - _flipStartY);
+        // If finger moved more than 10px, it's a drag
+        if (dx > 10 || dy > 10) {
+            _isFlipDragging = true;
+        }
+    }
+}, { passive: true });
+
+function handleBackClick(event, wrapperId) {
+    event.stopPropagation();
+
+    // If the user was just swiping across the card, ignore the tap -> don't close it!
+    if (_isFlipDragging) {
+        // Reset flag after catching the click
+        _isFlipDragging = false;
+        return;
+    }
+
+    const wrapper = document.getElementById(wrapperId);
+    if (!wrapper) return;
+
+    // Flip back to front
+    wrapper.classList.remove('is-flipped');
+
+    // Scroll pages back to page 1
+    const pageId = wrapperId.replace('flip-', '');
+    const pages = document.getElementById('flip-pages-' + pageId);
+    if (pages) pages.scrollLeft = 0;
+
+    // Reset dots
+    wrapper.querySelectorAll('.flip-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === 0);
+    });
+}
+
+/* Legacy helper (kept for any old HTML references) */
+function flipGoPage(event, wrapperId, pageIndex) {
+    event.stopPropagation();
+    const pageId = wrapperId.replace('flip-', '');
+    const pages = document.getElementById('flip-pages-' + pageId);
+    if (!pages) return;
+    const pageWidth = pages.scrollWidth / 2;
+    pages.scrollTo({ left: pageIndex * pageWidth, behavior: 'smooth' });
+}
+
 
 /* --- FIGMA-STYLE SCALING FOR REYOU --- */
 function updateReyouScale() {
@@ -229,17 +393,18 @@ const methodologyPhases = [
 const translations = {
     'fr': {
         'nav_work': 'Projets', 'nav_profile': 'Profil', 'nav_contact': 'Contact', 'nav_method': 'Méthode',
-        'nav_logo_title': 'Innovation Project Manager & Stratégiste',
+        'nav_logo_title': 'Chef de Projet Innovation',
+        'flip_hint': '↺ Toucher', 'swipe_hint': 'Glisser',
         'meta_at': 'chez',
         'hero_title': 'Innovation<br>Systémique.',
         'hero_subtitle': 'Stratégie & Innovation Project Management',
-        'story_text': 'Je transforme la complexité en opportunité stratégique. En tant que futur Innovation Project Manager, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, je recherche une alternance dès 09/2026 pour structurer vos projets complexes.',
+        'story_text': 'Je transforme la complexité en opportunité stratégique. En tant que futur Chef de Projet Innovation, je conçois des écosystèmes complets où la créativité devient un levier de production de valeur. Admis au Mastère Spécialisé de l\'<a href="https://em-lyon.com/" target="_blank" class="underline hover:opacity-70 transition">EM Lyon</a>, je recherche une alternance dès 09/2026 pour structurer vos projets complexes.',
         'section_work': 'Projets Sélectionnés',
         'label_problem': 'La Problématique', 'label_goal': 'L\'Objectif', 'label_solution': 'La Solution',
         'about_education': 'Éducation', 'about_current': 'Poste Actuel', 'about_focus': 'Expertise', 'about_frameworks': 'Frameworks',
         'about_focus_1': 'Management de l\'Innovation', 'about_focus_2': 'Design Systémique',
         'about_frameworks_1': 'Méthodes UX', 'about_frameworks_2': 'Design Thinking',
-        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
+        'about_frameworks_4': 'Agile',
 
         // MODAL UI
         'preview_label': 'Explorez le prototype',
@@ -359,7 +524,7 @@ const translations = {
         'method_scroll_explore': 'Défilez pour explorer',
         'method_process': 'Processus',
         'method_title': 'UX Recherche <br class="md:hidden"> & Stratégie',
-        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_model_title': '<a href="https://www.cy-ecolededesign.fr/" target="_blank" class="pointer-events-auto hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 inline-flex items-center gap-1 group">Design & Decide<sup class="text-xs">®</sup><svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>',
         'method_intro_1': 'Un cadre méthodologique opérant une évolution stratégique du Double Diamant par l\'intégration d\'une gestion rigoureuse du risque créatif.',
         'method_intro_2': 'Cette approche systémique structure l\'incertitude inhérente à l\'innovation : elle alterne exploration créative et validation analytique pour transformer de simples suppositions en preuves tangibles. C\'est le pont concret qui relie l\'intuition du designer à la faisabilité économique du projet.',
         'method_intro_3': '',
@@ -408,7 +573,8 @@ const translations = {
     },
     'en': {
         'nav_work': 'Work', 'nav_profile': 'Profile', 'nav_contact': 'Contact', 'nav_method': 'Method',
-        'nav_logo_title': 'Innovation Project Manager & Strategist',
+        'nav_logo_title': 'Innovation Project Manager',
+        'flip_hint': '↺ Tap to flip', 'swipe_hint': 'Swipe',
         'meta_at': 'at',
         'hero_title': 'Systemic<br>Innovation.',
         'hero_subtitle': 'Strategy & Innovation Project Management',
@@ -418,7 +584,7 @@ const translations = {
         'about_education': 'Education', 'about_current': 'Current Position', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
         'about_focus_1': 'Innovation Management', 'about_focus_2': 'Systemic Design',
         'about_frameworks_1': 'UX Methods', 'about_frameworks_2': 'Design Thinking',
-        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
+        'about_frameworks_4': 'Agile',
 
 
         // MODAL UI
@@ -540,7 +706,7 @@ const translations = {
         'method_scroll_explore': 'Scroll to Explore',
         'method_process': 'Process',
         'method_title': 'UX Research <br class="md:hidden"> & Strategy',
-        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_model_title': '<a href="https://www.cy-ecolededesign.fr/" target="_blank" class="pointer-events-auto hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 inline-flex items-center gap-1 group">Design & Decide<sup class="text-xs">®</sup><svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>',
         'method_intro_1': 'A methodological framework representing a strategic evolution of the Double Diamond, integrated with rigorous creative risk management.',
         'method_intro_2': 'This systemic approach structures the uncertainty inherent in innovation: alternating between creative exploration and analytical validation to turn assumptions into tangible evidence. It serves as the concrete bridge connecting design intuition with business feasibility.',
         'method_intro_3': '',
@@ -585,6 +751,7 @@ const translations = {
     'it': {
         'nav_work': 'Progetti', 'nav_profile': 'Profilo', 'nav_contact': 'Contatti', 'nav_method': 'Metodo',
         'nav_logo_title': 'Innovation Project Manager & Strategist',
+        'flip_hint': '↺ Tocca per girare', 'swipe_hint': 'Scorri',
         'meta_at': 'presso',
         'hero_title': 'Innovazione<br>Sistemica.',
         'hero_subtitle': 'Strategia & Innovation Project Management',
@@ -594,7 +761,7 @@ const translations = {
         'about_education': 'Educazione', 'about_current': 'Posizione Attuale', 'about_focus': 'Focus', 'about_frameworks': 'Frameworks',
         'about_focus_1': 'Management dell\'Innovazione', 'about_focus_2': 'Design Sistemico',
         'about_frameworks_1': 'Metodi UX', 'about_frameworks_2': 'Design Thinking',
-        'about_frameworks_3': 'UI Design', 'about_frameworks_4': 'Agile',
+        'about_frameworks_4': 'Agile',
 
 
         // MODAL UI
@@ -711,7 +878,7 @@ const translations = {
         'method_scroll_explore': 'Scorri per esplorare',
         'method_process': 'Processo',
         'method_title': 'UX Research <br class="md:hidden"> & Strategia',
-        'method_model_title': 'Design & Decide<sup class="text-xs">®</sup>',
+        'method_model_title': '<a href="https://www.cy-ecolededesign.fr/" target="_blank" class="pointer-events-auto hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300 inline-flex items-center gap-1 group">Design & Decide<sup class="text-xs">®</sup><svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity -mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>',
         'method_intro_1': 'Un quadro metodologico che attua un\'evoluzione strategica del Double Diamond tramite l\'integrazione di una rigorosa gestione del rischio creativo.',
         'method_intro_2': 'Questo approccio sistemico struttura l\'incertezza intrinseca all\'innovazione: alterna esplorazione creativa e validazione analitica per trasformare semplici supposizioni in prove tangibili. È il ponte concreto che collega l\'intuizione del design alla fattibilità economica del progetto.',
         'method_intro_3': '',
@@ -772,7 +939,12 @@ function setLanguage(lang) {
         }
     });
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById(`btn-${lang}`).classList.add('active');
+    // Activate desktop lang button
+    const desktopBtn = document.getElementById(`btn-${lang}`);
+    if (desktopBtn) desktopBtn.classList.add('active');
+    // Activate mobile menu lang button
+    const mobileBtn = document.getElementById(`mob-btn-${lang}`);
+    if (mobileBtn) mobileBtn.classList.add('active');
     localStorage.setItem('preferredLang', lang);
 
     // Update methodology timeline
@@ -937,16 +1109,24 @@ function animate() {
     });
 
     projected.sort((a, b) => a.z - b.z);
+
+    // Viewport-responsive globe scale — mathematically derived.
+    // The sphere projects to max ~320px radius on screen (due to 3D perspective with fov=400).
+    // We want it to occupy at most 90% of half-screen → viewportScale = (width/2 × 0.9) / 320 = width/711
+    // This guarantees a ~5% clear margin on EACH side on any device (320px–768px+).
+    // Math.min(1) = no upscaling on desktop. Math.max(0.3) = safety floor for tiny screens ≤320px.
+    const viewportScale = Math.min(1, Math.max(0.3, width / 711));
+
     projected.forEach(p => {
         const fov = 400 + (ease * 200);
         const scale = fov / (fov + p.z);
 
         // Adaptive dot size: growing to fill gaps but reduced for sharpness
         // Matched to the grid style of the hero sphere (less blurry)
-        const currentDotSize = DOT_SIZE * scale * (1 + morphToStar * 1.8);
+        const currentDotSize = DOT_SIZE * scale * (1 + morphToStar * 1.8) * viewportScale;
 
-        const x2d = (p.x * scale * currentScale) + p.scx;
-        const y2d = (p.y * scale * currentScale) + p.scy;
+        const x2d = (p.x * scale * currentScale * viewportScale) + p.scx;
+        const y2d = (p.y * scale * currentScale * viewportScale) + p.scy;
 
         let alpha = (scale - 0.5) * 1.5 * globalAlpha;
 
@@ -1232,7 +1412,26 @@ function renderMethodologyTimeline(lang = 'fr') {
         if (progress < 0) progress = 0;
         if (progress > 1) progress = 1;
 
+        // ── MOBILE: Pre-scroll Delay ─────────────────────────────────────────
+        // On mobile, the vertical scroll first clears the description spacer (60vh).
+        // The schema perfectly centers vertically when the section has scrolled exactly 60vh.
+        // We ensure horizontal scroll stays strictly at 0 until 60vh, PLUS a 20vh dwell 
+        // so the user sees it resting in the center before it starts moving left.
+        let hScrollProgress = progress;
+        if (window.innerWidth < 1024) {
+            const viewportH = window.innerHeight;
+            const spacerH = viewportH * 0.60;   // exactly the 60vh spacer from HTML
+            const dwellH = viewportH * 0.20;    // 20vh resting time
+            const horizStart = spacerH + dwellH;
 
+            const scrolledInSec = -rect.top;
+
+            // Only progress horizontally if we've scrolled past the start point
+            const effectiveScroll = Math.max(0, scrolledInSec - horizStart);
+            const maxHorizScroll = Math.max(1, totalDist - horizStart);
+
+            hScrollProgress = Math.min(1, effectiveScroll / maxHorizScroll);
+        }
 
         // --- SCROLL LOGIC V4 (Pin & Scan) ---
         // Requirement: 
@@ -1255,7 +1454,7 @@ function renderMethodologyTimeline(lang = 'fr') {
 
         // Total Virtual Scroll
         const totalVirtualScroll = maxContentTranslate + cursorTravelDist;
-        const currentVirtualX = progress * totalVirtualScroll;
+        const currentVirtualX = hScrollProgress * totalVirtualScroll;
 
         const track = document.getElementById('methodology-track');
         const cursor = document.getElementById('timeline-cursor');
@@ -1387,25 +1586,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Video hover control for project cards
     const projectCards = document.querySelectorAll('.project-card');
+    const isMobileDevice = window.innerWidth < 1024 || ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+    if (isMobileDevice) {
+        document.body.classList.add('is-mobile-device');
+    }
+
     projectCards.forEach(card => {
         const video = card.querySelector('video');
         if (video) {
-            // Ensure video doesn't play automatically on load if not hovered
-            video.pause();
-
-            card.addEventListener('mouseenter', () => {
-                video.play().catch(e => {
-                    // Autoplay policy might block play() if no user interaction yet
-                    console.log("Video play pending interaction");
-                });
-            });
-
-            card.addEventListener('mouseleave', () => {
-                video.pause();
+            // Play all videos continuously on all devices
+            video.muted = true;
+            video.loop = true;
+            video.setAttribute('playsinline', '');
+            video.play().catch(e => {
+                console.log("Video play pending interaction", e);
             });
         }
     });
 });
+
 
 // --- ALTAREA SCROLL LOGIC ---
 function initAltareaScrollLogic() {
@@ -1754,3 +1953,31 @@ window.addEventListener('load', () => {
         document.documentElement.classList.remove('loading');
     }, 100);
 });
+
+// ─────────────────────────────────────────────────────────────────────
+// ABOUT SECTION — Scroll slide-in animation (mobile & tablet only)
+// Cards start hidden (translated outward) and slide to centre when
+// they enter the viewport. Only runs below 1280px (xl breakpoint).
+// ─────────────────────────────────────────────────────────────────────
+(function initAboutScrollAnimation() {
+    // Only run on mobile/tablet (< 1280px)
+    if (window.matchMedia('(min-width: 1280px)').matches) return;
+
+    const textCard = document.querySelector('.about-card');
+    const photoCard = document.querySelector('.about-photo-card');
+    if (!textCard || !photoCard) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Stagger: photo card animates 150ms after text card
+                if (entry.target === textCard) {
+                    textCard.classList.add('about-in-view');
+                    setTimeout(() => photoCard.classList.add('about-in-view'), 150);
+                }
+            }
+        });
+    }, { threshold: 0.15 });
+
+    observer.observe(textCard);
+})();

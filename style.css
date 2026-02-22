@@ -114,14 +114,9 @@ h3 {
     opacity: 1;
 }
 
-/* Pause animations by default, play on hover */
+/* Animations run natively by default on desktop and mobile */
 .project-card video,
 .project-card .marquee-col {
-    animation-play-state: paused !important;
-}
-
-.project-card:hover video,
-.project-card:hover .marquee-col {
     animation-play-state: running !important;
 }
 
@@ -321,6 +316,430 @@ h3 {
     }
 }
 
+/* ══════════════════════════════════════════════════════════════════
+   FLIP CARD SYSTEM — Mobile & Tablet (touch devices + ≤ 1024px)
+   Front: existing video/animation cover (full colour on touch)
+   Back: 2-page info/image panel — SWIPE to navigate pages
+════════════════════════════════════════════════════════════════ */
+
+.flip-card-wrapper {
+    width: 100%;
+    aspect-ratio: 16/10;
+    perspective: 1400px;
+    position: relative;
+}
+
+/* On tablet the card needs more height to show all content */
+@media (min-width: 600px) and (max-width: 1024px) {
+    .flip-card-wrapper {
+        aspect-ratio: 16/11;
+    }
+}
+
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    border-radius: 16px;
+}
+
+.flip-card-wrapper.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* --- FRONT face --- */
+.flip-card-front {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* --- BACK face --- */
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* --- Swipeable page container inside back --- */
+.flip-back-pages {
+    display: flex;
+    /* MUST be 100% of card — overflow-x creates the scroll area */
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.flip-back-pages::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- Individual page --- */
+/* Each page = 100% of the card (not 50% of 200%) */
+.flip-back-page {
+    width: 100%;
+    flex-shrink: 0;
+    /* prevents collapsing */
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 22px 12px;
+    /* more breathing room */
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* --- Page 1: Description + Context + Achievements --- */
+.flip-back-page-desc {
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.flip-back-page-desc::-webkit-scrollbar {
+    display: none;
+}
+
+.flip-back-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 2px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+}
+
+.flip-back-subtitle {
+    font-size: 0.52rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-sub);
+    margin: 0 0 7px;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.flip-back-desc {
+    font-size: 0.63rem;
+    line-height: 1.45;
+    color: var(--text-sub);
+    font-weight: 400;
+    margin: 0 0 6px;
+    flex-shrink: 0;
+    /* Clamp to 2 lines on small phones, more on tablet */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .flip-back-desc {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+}
+
+/* Section labels (CONTEXTE / RÉALISATIONS) */
+.flip-back-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dynamic-main);
+    margin: 12px 0 4px;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+.flip-back-context {
+    font-size: 0.6rem;
+    line-height: 1.4;
+    color: var(--text-sub);
+    margin: 0 0 4px;
+    flex-shrink: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.flip-back-achievements {
+    font-size: 0.56rem;
+    line-height: 1.5;
+    color: var(--text-sub);
+    margin: 0;
+    flex-shrink: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .flip-back-label {
+        font-size: 0.75rem;
+    }
+
+    .flip-back-context {
+        font-size: 0.65rem;
+    }
+
+    .flip-back-achievements {
+        font-size: 0.6rem;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+}
+
+/* Swipe affordance at bottom of page 1 */
+.flip-swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: auto;
+    padding-top: 6px;
+    opacity: 0.35;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.flip-swipe-hint span {
+    font-size: 0.46rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+}
+
+.flip-swipe-hint svg {
+    width: 11px;
+    height: 11px;
+    color: var(--text-sub);
+    flex-shrink: 0;
+}
+
+/* --- Page 2: Project image --- */
+.flip-back-page-img {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+/* --- Dots — visual indicators only (swipe is the UX) --- */
+.flip-back-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 7px;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.flip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-sub);
+    opacity: 0.3;
+    flex-shrink: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s;
+}
+
+.flip-dot.active {
+    opacity: 1;
+    transform: scale(1.4);
+    background: var(--text-main);
+}
+
+/* Flip-back hint */
+.flip-back-hint {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+    opacity: 0.38;
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DESKTOP (> 1024px, mouse/pointer): disable flip entirely.
+   Using (hover:hover) + (pointer:fine) to target real mice only.
+   Touch-screen laptops at > 1024px still get flip via JS detection.
+════════════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    .flip-card-wrapper {
+        aspect-ratio: unset;
+        perspective: none;
+    }
+
+    .flip-card-inner {
+        transform: none !important;
+        transition: none;
+    }
+
+    .flip-card-front {
+        position: static;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+    }
+
+    .flip-card-back {
+        display: none !important;
+    }
+
+    .flip-card-wrapper .project-card {
+        width: 100%;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROJECT CARDS — Touch Devices (No Hover)
+   Forcefully displays the "active" colored and animated state permanently
+════════════════════════════════════════════════════════════════ */
+@media (hover: none),
+(pointer: coarse),
+(max-width: 1024px) {
+
+    /* 1. Remove global grayscale and restore opacity natively */
+    .project-card img,
+    .project-card video,
+    .project-card .project-marquee-wall,
+    .project-card .reyou-visual-container,
+    .project-card .hr-visual-container {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+    }
+
+    .project-card .hr-visual-container {
+        filter: grayscale(0) brightness(1.2) !important;
+    }
+
+    /* 2. ReYou Overrides: Force active state */
+    .project-card .reyou-grid {
+        opacity: 1 !important;
+    }
+
+    .project-card .reyou-blueprint {
+        opacity: 1 !important;
+        filter: brightness(1.1) contrast(1.4) grayscale(0) saturate(1.2) !important;
+        transform: scale(1.02) !important;
+    }
+
+    .project-card .reyou-chair {
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)) !important;
+    }
+
+    /* 3. Rain Effect Overrides (Altarea) */
+    .project-card .rain-container {
+        opacity: 1 !important;
+    }
+
+    /* 4. Helena Rubinstein Overrides */
+    .project-card .hr-gloss-overlay {
+        opacity: 1 !important;
+    }
+
+    .project-card .hr-logo-wrapper {
+        transform: scale(1.1) !important;
+    }
+
+    .project-card .hr-logo {
+        opacity: 1 !important;
+        filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(189, 155, 92, 0.3)) !important;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   METHODOLOGY SECTION — Mobile & Narrow Tablet (< 1024px)
+   Vertical layout: TEXT top, SCHEMA centred in full viewport.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+
+    /* ── Section: 60vh pre-scroll + 500vh schema = 560vh ────── */
+    #method {
+        height: 560vh !important;
+    }
+
+    /* ── Mask: gentle top/bottom fade ───────────────────────── */
+    .method-mask {
+        -webkit-mask-image: linear-gradient(to bottom,
+                transparent 0%, black 8%, black 92%, transparent 100%) !important;
+        mask-image: linear-gradient(to bottom,
+                transparent 0%, black 8%, black 92%, transparent 100%) !important;
+        -webkit-mask-composite: initial !important;
+        mask-composite: initial !important;
+    }
+
+    /* ── Track: full height, centred in sticky viewport ──────── */
+    #methodology-track {
+        top: 0 !important;
+        height: 100% !important;
+        left: 50% !important;
+        padding-left: 0 !important;
+        transform-origin: left center !important;
+    }
+
+    /* ── Red cursor always visible on mobile ──────────────────── */
+    #timeline-cursor {
+        display: block !important;
+    }
+
+    /* ── Phase activation ─────────────────────────────────────── */
+    #methodology-track .opacity-40 {
+        opacity: 0.45 !important;
+        transition: opacity 0.4s ease;
+    }
+
+    #methodology-track .phase-active .opacity-40 {
+        opacity: 1 !important;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Nothing extra — structure + JS handle it all */
+}
+
+
+
+
 /* --- ABOUT SECTION 3D HOVER --- */
 .about-container {
     perspective: 2000px;
@@ -351,20 +770,47 @@ h3 {
     flex-direction: column;
 }
 
-/* Grayscale to Color transition triggered by card hover */
-.about-photo-card img,
-.about-photo-card .client-logo {
+/* ══════════════════════════════════════════════════════════════════
+   ABOUT PHOTO CARD — DESKTOP ONLY (≥1280px)
+   Original design: grayscale by default, reveal colour on hover.
+   Mobile/tablet overrides are in the @media block at the bottom.
+════════════════════════════════════════════════════════════════ */
+
+/* Desktop default: dimmed + greyscale */
+.about-photo-card img {
     filter: grayscale(1);
+    opacity: 0.65;
     transition: filter 0.7s ease, opacity 0.7s ease;
-    opacity: 0.6;
-    margin: 0 24px;
-    /* Added spacing to individual logos for consistent marquee looping */
+    transform: scale(1.15);
+    object-position: center;
 }
 
-.about-container:hover .about-photo-card img,
+/* Reveal colour when the whole about-container is hovered */
+.about-container:hover .about-photo-card img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Client logos: greyscale default → colour on hover (desktop) */
+.about-photo-card .client-logo {
+    filter: grayscale(1);
+    opacity: 0.6;
+    margin: 0 24px;
+    transition: filter 0.7s ease, opacity 0.7s ease;
+}
+
 .about-container:hover .about-photo-card .client-logo {
     filter: grayscale(0);
     opacity: 1;
+}
+
+/* Dark-mode logos: pure white silhouettes for perfect legibility */
+[data-theme="dark"] .client-logo {
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .about-container:hover .client-logo {
+    filter: invert(0) brightness(1) grayscale(0);
 }
 
 .info-chip {
@@ -395,14 +841,9 @@ h3 {
     border-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Dark mode logo visibility: Invert dark logos to light */
+/* Dark mode logos: pure white silhouettes */
 [data-theme="dark"] .client-logo {
-    filter: invert(1) brightness(1.2) grayscale(1);
-}
-
-[data-theme="dark"] .about-container:hover .client-logo,
-[data-theme="dark"] .marquee-container:hover .client-logo {
-    filter: invert(0) brightness(1) grayscale(0);
+    filter: brightness(0) invert(1);
 }
 
 /* Marquee Animation */
@@ -603,7 +1044,6 @@ h3 {
     background-size: 30px 30px;
     opacity: 0.2;
     animation: grid-move 25s linear infinite;
-    animation-play-state: paused;
     /* Static by default */
     z-index: 1;
 }
@@ -685,24 +1125,20 @@ h3 {
     background-image: url('assets/reyou-table-wf.png');
 }
 
-/* Hover Activations - Sequential Logic */
-.project-card:hover .reyou-grid {
-    animation-play-state: running;
-}
-
-.project-card:hover .reyou-scan-beam {
+/* Constant Activations - Sequential Logic */
+.reyou-scan-beam {
     animation: scan-move-seq 8s infinite ease-in-out;
 }
 
-.project-card:hover .item-chair {
+.item-chair {
     animation: chair-seq 8s infinite;
 }
 
-.project-card:hover .item-desk {
+.item-desk {
     animation: desk-seq 8s infinite;
 }
 
-.project-card:hover .item-table {
+.item-table {
     animation: table-seq 8s infinite;
 }
 
@@ -819,13 +1255,9 @@ h3 {
     inset: 0;
     pointer-events: none;
     z-index: 5;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.5s ease;
     overflow: hidden;
-}
-
-.project-card:hover .rain-container {
-    opacity: 1;
 }
 
 .rain-drop {
@@ -874,11 +1306,6 @@ h3 {
 .hr-wave-use {
     animation: move-forever 35s cubic-bezier(.45, .05, .55, .95) infinite;
     /* More liquid curve */
-    animation-play-state: paused;
-}
-
-.project-card:hover .hr-wave-use {
-    animation-play-state: running;
 }
 
 .wave1 {
@@ -1032,6 +1459,136 @@ h3 {
     width: 12.5vw;
     /* Horizontal clearance */
     pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MASTER MODAL GRID — TABLET (768px – 1279px)
+   La griglia esterna ha 2 colonne su md/lg → la griglia interna idem.
+   Scroll orizzontale tra 2 card per riga, verticale tra le righe.
+════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1279px) {
+
+    /* 2 colonne × 90vw, altezze auto per contenuto più alto */
+    .projects-grid-container {
+        grid-template-columns: repeat(2, 90vw);
+        grid-template-rows: none;
+        grid-auto-rows: 82vh;
+        padding: 6vh 5vw;
+        gap: 5vh 5vw;
+    }
+
+    /* Pseudo-element: adatta colonna/riga al nuovo layout */
+    .projects-grid-container::after {
+        grid-column: 2;
+        grid-row: 6;
+        /* abbastanza grande da dare clearance */
+        width: 5vw;
+        height: 10vh;
+    }
+
+    /* Snap: ancora snap-center ma su due colonne */
+    .project-grid-cell {
+        scroll-snap-align: center;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MASTER MODAL GRID — MOBILE (< 768px)
+   La griglia esterna ha 1 colonna su sm → la griglia interna idem.
+   Scroll solo verticale, una card per volta centrata.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+    /* 1 colonna × 92vw, scroll verticale puro */
+    .projects-grid-container {
+        grid-template-columns: repeat(1, 92vw);
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+        padding: 5vh 4vw;
+        gap: 6vh;
+    }
+
+    /* Su mobile le card hanno altezza fissa e non dipendono da vh imprevedibili */
+    .project-grid-cell {
+        height: 88vh;
+        scroll-snap-align: start;
+        align-items: flex-start;
+    }
+
+    /* Pseudo-element: 1 colonna, clearance verticale finale */
+    .projects-grid-container::after {
+        grid-column: 1;
+        grid-row: 12;
+        width: 100%;
+        height: 8vh;
+    }
+
+    /* Viewport: scroll solo y su mobile */
+    .projects-grid-viewport {
+        scroll-snap-type: y mandatory;
+    }
+
+    /* Layout SPLIT → verticale su mobile */
+    .layout-split {
+        flex-direction: column !important;
+    }
+
+    .layout-split .text-side {
+        width: 100% !important;
+        max-height: 42% !important;
+        padding: 4vh 5vw !important;
+        overflow-y: auto;
+        border-bottom: 1px solid var(--card-border);
+        border-right: none !important;
+    }
+
+    .layout-split .visual-side {
+        width: 100% !important;
+        height: auto !important;
+        flex: 1;
+        min-height: 0;
+    }
+
+    /* iFrame scaling aggressivo per mobile */
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.28) !important;
+    }
+
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.2) !important;
+        height: 500% !important;
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.22) !important;
+    }
+
+    /* Tutti i splitting wrapper → colonna */
+    [data-project="modal-kciope"] .modal-content-wrapper,
+    [data-project="modal-rockease"] .modal-content-wrapper,
+    [data-project="modal-altarea"] .modal-content-wrapper,
+    [data-project="modal-reyou"] .modal-content-wrapper,
+    [data-project="modal-elba"] .modal-content-wrapper {
+        flex-direction: column !important;
+    }
+
+    /* Bottone chiusura più compatto su mobile */
+    .master-close-btn {
+        top: 4vh;
+        right: 4vw;
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+
+    /* Typography compatta nel modal */
+    .modal-title-compact {
+        font-size: 1.4rem !important;
+    }
+
+    .modal-meta-compact {
+        font-size: 0.65rem;
+    }
 }
 
 .project-grid-cell {
@@ -1397,13 +1954,13 @@ h3 {
 }
 
 .point-item h4 {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    font-weight: 700;
-    color: var(--text-main);
-    margin-bottom: 0.25rem;
-    opacity: 0.7;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: var(--dynamic-main);
+    margin-bottom: 0.4rem;
+    opacity: 1;
 }
 
 .point-item p {
@@ -2037,4 +2594,335 @@ html.loading body {
 
 body {
     transition: background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}
+
+/* ============================================================
+   MOBILE / TABLET RESPONSIVE — BURGER MENU & GLOBE SCALE
+   Breakpoint: < 768px (md in Tailwind)
+   Desktop layout is UNTOUCHED above this point.
+   ============================================================ */
+
+/* --- BURGER BUTTON --- */
+.burger-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    z-index: 9999;
+    position: relative;
+    color: var(--text-main);
+}
+
+.burger-btn:hover {
+    background: var(--pill-bg);
+}
+
+.burger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.25s ease,
+        width 0.3s ease;
+}
+
+/* Burger → X animation (when menu is open) */
+.burger-btn.is-open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.burger-btn.is-open .burger-line:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+
+.burger-btn.is-open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- MOBILE MENU OVERLAY --- */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: 9000;
+    /* Closed state */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    padding: 6rem 2.5rem 3rem;
+    gap: 0;
+}
+
+/* --- NAV LINKS in mobile menu --- */
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    width: 100%;
+}
+
+.mobile-menu-link {
+    display: block;
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--text-sub);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transform: translateX(0);
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:active {
+    color: var(--text-main);
+    transform: translateX(6px);
+}
+
+/* Staggered entrance animation for links */
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(1) {
+    animation: slideInLink 0.4s 0.05s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(2) {
+    animation: slideInLink 0.4s 0.10s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(3) {
+    animation: slideInLink 0.4s 0.15s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(4) {
+    animation: slideInLink 0.4s 0.20s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(5) {
+    animation: slideInLink 0.4s 0.25s both ease-out;
+}
+
+@keyframes slideInLink {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- DIVIDER --- */
+.mobile-menu-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--card-border);
+    margin: 2rem 0;
+}
+
+/* --- BOTTOM ROW (langs + theme) --- */
+.mobile-menu-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    animation: slideInLink 0.4s 0.3s both ease-out;
+}
+
+.mobile-menu-langs {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.mobile-lang-btn {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* --- HERO CANVAS — Scaling handled purely in JS (viewportScale in animate())
+   NO CSS transform on the canvas: it must stay full-viewport so the JS
+   can draw at the correct canvas pixel coordinates without clipping. --- */
+
+@media (max-width: 1023px) {
+
+    /* Hero text slightly smaller on phones and tablets */
+    header h1 {
+        font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+        line-height: 1.1;
+    }
+
+    header p {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ABOUT SECTION — Mobile & Tablet (below 1280px)
+   • Cards stacked vertically (photo first, text below)
+   • No hover → show full colour immediately
+   • object-position adjusted to show face + shoulders
+   • Scroll-triggered slide-in animation
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1279px) {
+
+    /* ── Section padding ─────────────────────────────────────────── */
+    #about {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* ── Photo: full colour (no hover available on touch) ────────── */
+    .about-photo-card img {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+        transform: none !important;
+        /* Center 35% frames the face + shoulders of the portrait photo.
+           With object-cover on a landscape card, this prevents just
+           showing orange helmets and actually shows Andrea's face. */
+        object-position: center 35% !important;
+    }
+
+    /* ── Client logos: full colour ───────────────────────────────── */
+    .about-photo-card .client-logo {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+    }
+
+    [data-theme="dark"] .about-photo-card .client-logo {
+        filter: invert(1) brightness(1.2) !important;
+    }
+
+
+    /* ── Info chips: always fully visible ────────────────────────── */
+    .info-chip {
+        opacity: 1 !important;
+    }
+
+    /* ── Scroll-in animation: cards slide toward centre ──────────── */
+    /* Applied by JS IntersectionObserver (adds .about-in-view class) */
+    .about-card {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .about-photo-card {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .about-card.about-in-view,
+    .about-photo-card.about-in-view {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ── TABLET (768px – 1279px): aspect-ratio keeps photo proportional ── */
+/* With a 4:3 ratio, a 736px-wide card is ~552px tall, giving enough      */
+/* vertical space for object-position: center 35% to show face+shoulders. */
+@media (min-width: 768px) and (max-width: 1279px) {
+    .about-photo-card {
+        aspect-ratio: 4 / 3;
+        min-height: unset;
+        max-height: unset;
+    }
+
+    /* inner photo div must stretch to fill the aspect-ratio height */
+    .about-photo-card>div:first-child {
+        flex: 1;
+        min-height: 0;
+    }
+}
+
+/* ── MOBILE (< 768px): min-height only; no max-height so bottom padding shows */
+@media (max-width: 767px) {
+    .about-photo-card {
+        min-height: 420px;
+    }
+}
+
+
+/* Phone: slightly more vertical compactness */
+@media (max-width: 640px) {
+    #about {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    /* Extra breathing room below the logo carousel on small phones:
+       targets the logos wrapper (last div inside the photo card) */
+    .about-photo-card>div:last-child {
+        padding-bottom: 3rem !important;
+    }
+}
+
+
+
+
+/* Lock scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
+/* --- MOBILE MENU CLOSE (X) BUTTON --- */
+.mobile-menu-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pill-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.mobile-menu-close:hover {
+    background: var(--close-btn-hover);
+    transform: rotate(90deg);
 }

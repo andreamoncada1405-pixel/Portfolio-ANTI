@@ -2,7 +2,8 @@
 // --- HORIZONTAL RULER (SCROLLYTELLING) RENDERER ---
 function renderMethodologyTimeline() {
     const track = document.getElementById('methodology-track');
-    const scrollerSection = document.getElementById('method-scroller');
+    // The section id in HTML is 'method' (not 'method-scroller')
+    const scrollerSection = document.getElementById('method-scroller') || document.getElementById('method');
     const progressBar = document.getElementById('method-progress');
 
     if (!track || !scrollerSection) return;
@@ -16,24 +17,42 @@ function renderMethodologyTimeline() {
 
     // Adaptive Phase Width based on Screen
     const windowWidth = window.innerWidth;
-    let phaseWidth = 600; 
+    let phaseWidth = 600;
     if (windowWidth < 1440) phaseWidth = 500;
     if (windowWidth < 1024) phaseWidth = 400;
     if (windowWidth < 768) phaseWidth = 350;
-    const h = 400; // Visual Height
+
+    // Adaptive content margins & visual height for mobile/tablet
+    const isMobile = windowWidth < 1024;
+    const topPct = 15;
+    const botPct = isMobile ? 10 : 15;
+    const visualH = isMobile ? 200 : 300;
+    const blockH = isMobile ? (windowWidth < 768 ? 350 : 400) : null;
+
+    // initialOffset: on mobile Phase 0 must be centred at the red cursor.
+    // The track's left edge is at left:50% (CSS). Phase 0 spans 0→phaseWidth
+    // within the track, so its centre is at left:50% + phaseWidth/2.
+    // We need Phase 0 centre = 50% → offset the track left by -phaseWidth/2.
+    // On desktop the description occupies the left half, so offset stays 0.
+    const initialOffset = isMobile ? -(phaseWidth / 2) : 0;
 
     methodologyPhases.forEach((phase, index) => {
         const isLast = index === methodologyPhases.length - 1;
 
-        // Phase Block
+        // Phase Block — data-phase used for scroll-based activation
         const block = document.createElement('div');
         block.className = 'relative flex-shrink-0 flex flex-col justify-center items-center group select-none';
+        block.dataset.phase = index;
         block.style.width = `${phaseWidth}px`;
-        block.style.height = '100%';
+        // Fixed height on mobile so items-center on the track puts them at 50vh;
+        // desktop keeps 100% (fills the full sticky-viewport height).
+        block.style.height = blockH ? `${blockH}px` : '100%';
 
         // --- A. Top Content (Tasks/Explanation) ---
         const topContent = document.createElement('div');
-        topContent.className = 'absolute top-[15%] w-full px-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:-translate-y-2';
+        // Use inline style for the vertical position so we can adjust per breakpoint
+        topContent.className = 'absolute w-full px-8 opacity-40 group-hover:opacity-100 transition-opacity duration-500';
+        topContent.style.top = `${topPct}%`;
 
         topContent.innerHTML = `
             <div class="border-l-2 border-gray-200 dark:border-zinc-800 pl-4">
@@ -47,7 +66,8 @@ function renderMethodologyTimeline() {
 
         // --- B. Central Visual (Double Diamond Wave) ---
         const visualContainer = document.createElement('div');
-        visualContainer.className = 'w-full h-[300px] relative flex items-center';
+        visualContainer.className = 'w-full relative flex items-center';
+        visualContainer.style.height = `${visualH}px`;
 
         // Ruler Ticks Background
         const rulerBg = document.createElement('div');
@@ -119,7 +139,8 @@ function renderMethodologyTimeline() {
 
         // --- C. Bottom Content (Decisions) ---
         const bottomContent = document.createElement('div');
-        bottomContent.className = 'absolute bottom-[15%] w-full px-8 pt-4 flex flex-col items-center opacity-40 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:translate-y-2';
+        bottomContent.className = 'absolute w-full px-8 pt-4 flex flex-col items-center opacity-40 group-hover:opacity-100 transition-opacity duration-500';
+        bottomContent.style.bottom = `${botPct}%`;
 
         // Only show decision if it exists (usually at the END of the phase, i.e., at the right edge?) 
         // Or in the middle? Double Diamond decisions are usually the "Knot".
@@ -190,13 +211,50 @@ function renderMethodologyTimeline() {
         // Let's say we scroll through the whole track length.
 
         const trackWidth = methodologyPhases.length * phaseWidth;
-        const maxTranslate = trackWidth - (window.innerWidth / 2) + (phaseWidth / 2); // Stop when last phase is center?
-        // Actually, let's just scroll cleanly.
 
-        const currentTranslate = progress * (trackWidth - window.innerWidth + 200); // padding
+        // ── Horizontal scroll progress ───────────────────────────────────────
+        // On mobile, the vertical scroll first clears the description spacer (60vh).
+        // The schema perfectly centers vertically when the section has scrolled exactly 60vh 
+        // (because the sticky div is 100vh tall and sticks at top:0).
+        // We ensure horizontal scroll stays strictly at 0 until 60vh, PLUS a 20vh dwell 
+        // so the user sees it resting in the center before it starts moving left.
+        let hScrollProgress = progress;
+        if (window.innerWidth < 1024) {
+            const viewportH = window.innerHeight;
+            const spacerH = viewportH * 0.60;   // exactly the 60vh spacer from HTML
+            const dwellH = viewportH * 0.20;    // 20vh resting time
+            const horizStart = spacerH + dwellH;
 
-        // Apply transform
-        track.style.transform = `translateX(-${currentTranslate}px)`;
+            // Pixels the section top has scrolled past the viewport top
+            const sectionRect = scrollerSection.getBoundingClientRect();
+            const scrolledInSec = -sectionRect.top;
+
+            const totalDist = scrollerSection.offsetHeight - viewportH;
+
+            // Only progress horizontally if we've scrolled past the start point
+            const effectiveScroll = Math.max(0, scrolledInSec - horizStart);
+            const maxHorizScroll = Math.max(1, totalDist - horizStart);
+
+            hScrollProgress = Math.min(1, effectiveScroll / maxHorizScroll);
+        }
+
+        const currentTranslate = hScrollProgress * (trackWidth - window.innerWidth + 200);
+        track.style.transform = `translateX(${initialOffset - currentTranslate}px)`;
+
+        // ── Phase activation highlight (mobile only) ────────────────────────
+        if (window.innerWidth < 1024) {
+            const vpCenterX = window.innerWidth / 2;
+            let closestBlock = null;
+            let closestDist = Infinity;
+            track.querySelectorAll('[data-phase]').forEach(b => {
+                const r = b.getBoundingClientRect();
+                const dist = Math.abs(vpCenterX - (r.left + r.width / 2));
+                if (dist < closestDist) { closestDist = dist; closestBlock = b; }
+            });
+            track.querySelectorAll('[data-phase]').forEach(b => {
+                b.classList.toggle('phase-active', b === closestBlock);
+            });
+        }
     }
 
     window.addEventListener('scroll', updateScroll);
