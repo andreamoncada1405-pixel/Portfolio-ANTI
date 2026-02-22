@@ -260,7 +260,7 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     z-index: -1;
     background: radial-gradient(circle at center, var(--globe-center) 0%, var(--globe-edge) 80%);
     transition: background 0.5s ease;
@@ -643,12 +643,8 @@ h3 {
     .project-card .project-marquee-wall,
     .project-card .reyou-visual-container,
     .project-card .hr-visual-container {
-        filter: grayscale(0) !important;
+        filter: none !important;
         opacity: 1 !important;
-    }
-
-    .project-card .hr-visual-container {
-        filter: grayscale(0) brightness(1.2) !important;
     }
 
     /* 2. ReYou Overrides: Force active state */
@@ -1293,6 +1289,8 @@ h3 {
     position: relative;
     height: 100%;
     width: 100%;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .hr-svg-waves {

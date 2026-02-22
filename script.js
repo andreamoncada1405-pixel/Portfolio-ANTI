@@ -958,14 +958,25 @@ const canvas = document.getElementById('hero-canvas');
 const ctx = canvas.getContext('2d');
 let width, height;
 let particles = [];
-const BASE_RADIUS = 250; let DOT_COUNT = 1000; const DOT_SIZE = 1.2;
+const BASE_RADIUS = 250;
+let DOT_COUNT = window.innerWidth < 768 ? 600 : 1000;
+const DOT_SIZE = window.innerWidth < 768 ? 1.5 : 1.2;
 let rotationY = 0; let rotationX = 0; let scrollY = 0;
 let morphToStar = 0;
 let starTargetPos = { x: 0, y: 0 };
 
-function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // Reset and scale for DPR
+}
 window.addEventListener('resize', resize);
-window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
 resize();
 
 // Helper to sample points from text in a structured grid
@@ -1081,8 +1092,18 @@ function animate() {
     const rootStyle = getComputedStyle(document.documentElement);
     const colorRaw = rootStyle.getPropertyValue('--particle-color').trim();
 
+    const rotY = rotationY + (scrollY * 0.003);
+    const cosRotY = Math.cos(rotY);
+    const sinRotY = Math.sin(rotY);
+
+    const tiltVal = 0.2 * (1 - morphToStar) + (0.05 * morphToStar);
+    const cosTilt = Math.cos(tiltVal);
+    const sinTilt = Math.sin(tiltVal);
+
+    const screenCX = cx * (1 - morphToStar) + starTargetPos.x * morphToStar;
+    const screenCY = cy * (1 - morphToStar) + starTargetPos.y * morphToStar;
+
     let projected = particles.map(p => {
-        // Morphing logic: Sphere/Explosion -> Star
         let bx = p.origX + (p.driftX * explosionFactor);
         let by = p.origY + (p.driftY * explosionFactor);
         let bz = p.origZ + (p.driftZ * explosionFactor);
@@ -1091,51 +1112,30 @@ function animate() {
         let finalY = by * (1 - morphToStar) + p.targetY * morphToStar * pulse;
         let finalZ = bz * (1 - morphToStar) + p.targetZ * morphToStar;
 
-        // Apply rotation to globe AND text (Visual update: continuous rotation + Scroll Control)
-        const rotY = rotationY + (scrollY * 0.003);
+        let x1 = finalX * cosRotY - finalZ * sinRotY;
+        let z1 = finalZ * cosRotY + finalX * sinRotY;
 
-        let x1 = finalX * Math.cos(rotY) - finalZ * Math.sin(rotY);
-        let z1 = finalZ * Math.cos(rotY) + finalX * Math.sin(rotY);
-
-        const tiltVal = 0.2 * (1 - morphToStar) + (0.05 * morphToStar); // Slight constant tilt for 3D look
-        let y2 = finalY * Math.cos(tiltVal) - z1 * Math.sin(tiltVal);
-        let z2 = z1 * Math.cos(tiltVal) + finalY * Math.sin(tiltVal);
-
-        // Center position shifts towards the AI target
-        const screenCX = cx * (1 - morphToStar) + starTargetPos.x * morphToStar;
-        const screenCY = cy * (1 - morphToStar) + starTargetPos.y * morphToStar;
+        let y2 = finalY * cosTilt - z1 * sinTilt;
+        let z2 = z1 * cosTilt + finalY * sinTilt;
 
         return { x: x1, y: y2, z: z2, scx: screenCX, scy: screenCY };
     });
 
     projected.sort((a, b) => a.z - b.z);
 
-    // Viewport-responsive globe scale — mathematically derived.
-    // The sphere projects to max ~320px radius on screen (due to 3D perspective with fov=400).
-    // We want it to occupy at most 90% of half-screen → viewportScale = (width/2 × 0.9) / 320 = width/711
-    // This guarantees a ~5% clear margin on EACH side on any device (320px–768px+).
-    // Math.min(1) = no upscaling on desktop. Math.max(0.3) = safety floor for tiny screens ≤320px.
     const viewportScale = Math.min(1, Math.max(0.3, width / 711));
+    const fov = 400 + (ease * 200);
 
     projected.forEach(p => {
-        const fov = 400 + (ease * 200);
         const scale = fov / (fov + p.z);
-
-        // Adaptive dot size: growing to fill gaps but reduced for sharpness
-        // Matched to the grid style of the hero sphere (less blurry)
         const currentDotSize = DOT_SIZE * scale * (1 + morphToStar * 1.8) * viewportScale;
 
         const x2d = (p.x * scale * currentScale * viewportScale) + p.scx;
         const y2d = (p.y * scale * currentScale * viewportScale) + p.scy;
 
         let alpha = (scale - 0.5) * 1.5 * globalAlpha;
-
-        // Remove transparency for the morphed text as requested (Opaque dots)
-        if (morphToStar > 0.8) {
-            alpha = 1.0;
-        }
-
-        if (alpha > 1) alpha = 1; if (alpha < 0) alpha = 0;
+        if (morphToStar > 0.8) alpha = 1.0;
+        if (alpha > 1) alpha = 1; else if (alpha < 0) alpha = 0;
 
         if (alpha > 0) {
             ctx.fillStyle = `rgba(${colorRaw}, ${alpha})`;
