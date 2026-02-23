@@ -369,6 +369,13 @@ h3 {
     z-index: 2;
 }
 
+.flip-card-wrapper .project-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* --- BACK face --- */
 .flip-card-back {
     position: absolute;
@@ -628,7 +635,10 @@ h3 {
     }
 
     .flip-card-front {
-        position: static;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
         backface-visibility: visible;
         -webkit-backface-visibility: visible;
     }
@@ -638,7 +648,10 @@ h3 {
     }
 
     .flip-card-wrapper .project-card {
+        position: absolute;
+        inset: 0;
         width: 100%;
+        height: 100%;
     }
 }
 
