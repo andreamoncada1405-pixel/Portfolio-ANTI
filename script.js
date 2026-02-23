@@ -967,8 +967,9 @@ let starTargetPos = { x: 0, y: 0 };
 
 function resize() {
     const dpr = window.devicePixelRatio || 1;
+    const header = document.querySelector('header');
     width = window.innerWidth;
-    height = window.innerHeight;
+    height = header ? header.clientHeight : window.innerHeight;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = width + 'px';
@@ -1948,7 +1949,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- FOUC FIX ---
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.documentElement.classList.remove('loading');
     }, 100);

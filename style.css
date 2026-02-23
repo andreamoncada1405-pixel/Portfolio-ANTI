@@ -324,25 +324,32 @@ h3 {
 
 .flip-card-wrapper {
     width: 100%;
-    aspect-ratio: 16/10;
+    /* Replace aspect-ratio with padding-bottom hack for iOS consistency */
+    padding-bottom: 62.5%;
+    /* 10/16 */
     perspective: 1400px;
     position: relative;
+    z-index: 1;
 }
 
-/* On tablet the card needs more height to show all content */
 @media (min-width: 600px) and (max-width: 1024px) {
     .flip-card-wrapper {
-        aspect-ratio: 16/11;
+        padding-bottom: 68.75%;
+        /* 11/16 */
     }
 }
 
 .flip-card-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    position: relative;
     transform-style: preserve-3d;
     transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     border-radius: 16px;
+    outline: 1px solid transparent;
+    /* Safari fix */
 }
 
 .flip-card-wrapper.is-flipped .flip-card-inner {
@@ -355,8 +362,11 @@ h3 {
     inset: 0;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
     border-radius: 16px;
     overflow: hidden;
+    z-index: 2;
 }
 
 /* --- BACK face --- */
@@ -365,7 +375,8 @@ h3 {
     inset: 0;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    transform: rotateY(180deg);
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
     border-radius: 16px;
     overflow: hidden;
     background: var(--card-bg);
@@ -374,6 +385,7 @@ h3 {
     flex-direction: column;
     cursor: pointer;
     user-select: none;
+    z-index: 1;
 }
 
 /* --- Swipeable page container inside back --- */
@@ -605,7 +617,8 @@ h3 {
 ════════════════════════════════════════════════════════════════ */
 @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
     .flip-card-wrapper {
-        aspect-ratio: unset;
+        aspect-ratio: 16/10;
+        padding-bottom: 0;
         perspective: none;
     }
 
