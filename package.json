@@ -5,7 +5,7 @@
   "main": "methodology_clean.js",
   "scripts": {
     "dev": "tailwindcss -i ./input.css -o ./output.css --watch",
-    "build": "tailwindcss -i ./input.css -o ./output.css --minify && rm -rf public && mkdir public && cp -r assets Portofolio *.html *.css *.js public/",
+    "build": "tailwindcss -i ./input.css -o ./output.css --minify && rm -rf public && mkdir public && cp -r assets *.html *.css *.js public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
