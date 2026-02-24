@@ -1,0 +1,2951 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* --- THEME VARIABLES --- */
+:root {
+    /* Light Mode Defaults */
+    --bg-color: #f0f0f0;
+    /* Leggermente più chiaro per contrasto */
+    --text-main: #111111;
+    /* Quasi nero per massima leggibilità */
+    --text-sub: #555555;
+    /* Grigio scuro, non chiaro */
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.1);
+    --modal-bg: #ffffff;
+    --modal-overlay: rgba(255, 255, 255, 0.95);
+    --nav-text: #000000;
+    --pill-bg: rgba(0, 0, 0, 0.05);
+    --close-btn-bg: rgba(0, 0, 0, 0.05);
+    --close-btn-hover: rgba(0, 0, 0, 0.1);
+    --globe-center: #e5e5e5;
+    --globe-edge: #f0f0f0;
+    --particle-color: 20, 20, 20;
+    /* Particelle scure */
+
+    /* --- GRID MANIPS (Adjust these to change spacing) --- */
+    --grid-gap-v: 4vh;
+    --grid-gap-h: 4vw;
+}
+
+[data-theme="dark"] {
+    --bg-color: #050505;
+    --text-main: #f3f3f3;
+    --text-sub: #cbd5e1;
+    --card-bg: #333333;
+    --card-border: rgba(255, 255, 255, 0.15);
+    --modal-bg: #1a1a1a;
+    --modal-overlay: rgba(0, 0, 0, 0.85);
+    --nav-text: #ffffff;
+    --pill-bg: rgba(255, 255, 255, 0.05);
+    --close-btn-bg: rgba(255, 255, 255, 0.1);
+    --close-btn-hover: rgba(255, 255, 255, 0.2);
+    --globe-center: #111111;
+    --globe-edge: #050505;
+    --particle-color: 255, 255, 255;
+    /* Particelle chiare */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    margin: 0;
+    overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+body.modal-open {
+    overflow: hidden;
+    padding-right: 0px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3 {
+    letter-spacing: -0.02em;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* --- GRID CARD STYLES --- */
+.project-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    position: relative;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    outline: none;
+}
+
+/* Grayscale to Color transition for all project covers */
+.project-card img,
+.project-card video,
+.project-card .project-marquee-wall,
+.project-card .reyou-visual-container,
+.project-card .hr-visual-container {
+    filter: grayscale(1);
+    transition: filter 0.5s ease, opacity 0.5s ease;
+    opacity: 0.8;
+    /* Slightly dimmed for a more subtle look */
+}
+
+.project-card:hover img,
+.project-card:hover video,
+.project-card:hover .project-marquee-wall,
+.project-card:hover .reyou-visual-container {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Animations run natively by default on desktop and mobile */
+.project-card video,
+.project-card .marquee-col {
+    animation-play-state: running !important;
+}
+
+.project-card:hover {
+    transform: scale(0.98);
+    border-color: var(--text-sub);
+}
+
+.project-card:focus-visible {
+    /* High visibility focus ring */
+    outline: 2px solid var(--text-main);
+    outline-offset: 4px;
+    transform: scale(0.99);
+    /* Slight scale to indicate selection like hover */
+    border-color: var(--text-main);
+}
+
+/* --- MODAL SYSTEM --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(15px);
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-window {
+    background: var(--modal-bg);
+    width: 90vw;
+    max-height: 85vh;
+    /* Prevents being cut off by taskbars */
+    border-radius: 24px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    transform: scale(0.96);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+    /* Changed from scroll to contain internal scroll */
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Modal sizing for low height screens */
+@media (max-height: 800px) {
+    .modal-window {
+        height: 95vh;
+        max-height: 95vh;
+    }
+}
+
+.modal-backdrop.active .modal-window {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Close Button */
+.close-modal-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 44px;
+    height: 44px;
+    background: var(--close-btn-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: background 0.2s;
+    color: var(--text-main);
+}
+
+.close-modal-btn:hover {
+    background: var(--close-btn-hover);
+}
+
+/* Typography Colors Dynamic */
+.text-dynamic-main {
+    color: var(--text-main);
+}
+
+.text-dynamic-sub {
+    color: var(--text-sub);
+}
+
+/* Nav & Links */
+.lang-btn.active {
+    color: var(--text-main);
+    border-bottom: 1px solid var(--text-main);
+}
+
+.lang-btn {
+    color: var(--text-sub);
+    cursor: pointer;
+    transition: color 0.3s;
+    padding-bottom: 2px;
+}
+
+.lang-btn:hover {
+    color: var(--text-main);
+}
+
+/* Theme Switcher */
+.theme-switch {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s;
+    color: var(--text-main);
+}
+
+.theme-switch:hover {
+    background: var(--pill-bg);
+}
+
+/* Canvas Background */
+#hero-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, var(--globe-center) 0%, var(--globe-edge) 80%);
+    transition: background 0.5s ease;
+}
+
+.method-pill {
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+/* Utility Classes */
+.hover-underline {
+    color: var(--text-sub);
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.hover-underline:hover {
+    color: var(--text-main);
+    text-decoration: underline;
+}
+
+.method-intro-bg {
+    background-color: transparent;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+}
+
+.method-mask {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+        linear-gradient(to right, transparent 0%, transparent 22%, black 32%, black 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+        linear-gradient(to right, transparent 0%, transparent 22%, black 32%, black 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+}
+
+@media (max-width: 1024px) {
+    .method-mask {
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+            linear-gradient(to right, transparent 0%, transparent 35%, black 45%, black 100%);
+        mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 92%, transparent 100%),
+            linear-gradient(to right, transparent 0%, transparent 35%, black 45%, black 100%);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FLIP CARD SYSTEM — Mobile & Tablet (touch devices + ≤ 1024px)
+   Front: existing video/animation cover (full colour on touch)
+   Back: 2-page info/image panel — SWIPE to navigate pages
+════════════════════════════════════════════════════════════════ */
+
+.flip-card-wrapper {
+    width: 100%;
+    /* Replace aspect-ratio with padding-bottom hack for iOS consistency */
+    padding-bottom: 62.5%;
+    /* 10/16 */
+    perspective: 1400px;
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .flip-card-wrapper {
+        padding-bottom: 68.75%;
+        /* 11/16 */
+    }
+}
+
+.flip-card-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+    border-radius: 16px;
+    outline: 1px solid transparent;
+    /* Safari fix */
+}
+
+.flip-card-wrapper.is-flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* --- FRONT face --- */
+.flip-card-front {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.flip-card-wrapper .project-card {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- BACK face --- */
+.flip-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg) translateZ(1px);
+    -webkit-transform: rotateY(180deg) translateZ(1px);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    user-select: none;
+    z-index: 1;
+}
+
+/* --- Swipeable page container inside back --- */
+.flip-back-pages {
+    display: flex;
+    /* MUST be 100% of card — overflow-x creates the scroll area */
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.flip-back-pages::-webkit-scrollbar {
+    display: none;
+}
+
+/* --- Individual page --- */
+/* Each page = 100% of the card (not 50% of 200%) */
+.flip-back-page {
+    width: 100%;
+    flex-shrink: 0;
+    /* prevents collapsing */
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px 22px 12px;
+    /* more breathing room */
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* --- Page 1: Description + Context + Achievements --- */
+.flip-back-page-desc {
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.flip-back-page-desc::-webkit-scrollbar {
+    display: none;
+}
+
+.flip-back-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 0 0 2px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+}
+
+.flip-back-subtitle {
+    font-size: 0.52rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-sub);
+    margin: 0 0 7px;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.flip-back-desc {
+    font-size: 0.63rem;
+    line-height: 1.45;
+    color: var(--text-sub);
+    font-weight: 400;
+    margin: 0 0 6px;
+    flex-shrink: 0;
+    /* Clamp to 2 lines on small phones, more on tablet */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .flip-back-desc {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+}
+
+/* Section labels (CONTEXTE / RÉALISATIONS) */
+.flip-back-label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dynamic-main);
+    margin: 12px 0 4px;
+    opacity: 1;
+    flex-shrink: 0;
+}
+
+.flip-back-context {
+    font-size: 0.6rem;
+    line-height: 1.4;
+    color: var(--text-sub);
+    margin: 0 0 4px;
+    flex-shrink: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.flip-back-achievements {
+    font-size: 0.56rem;
+    line-height: 1.5;
+    color: var(--text-sub);
+    margin: 0;
+    flex-shrink: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 600px) {
+    .flip-back-label {
+        font-size: 0.75rem;
+    }
+
+    .flip-back-context {
+        font-size: 0.65rem;
+    }
+
+    .flip-back-achievements {
+        font-size: 0.6rem;
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+    }
+}
+
+/* Swipe affordance at bottom of page 1 */
+.flip-swipe-hint {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: auto;
+    padding-top: 6px;
+    opacity: 0.35;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+
+.flip-swipe-hint span {
+    font-size: 0.46rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+}
+
+.flip-swipe-hint svg {
+    width: 11px;
+    height: 11px;
+    color: var(--text-sub);
+    flex-shrink: 0;
+}
+
+/* --- Page 2: Project image --- */
+.flip-back-page-img {
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.flip-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+}
+
+/* --- Dots — visual indicators only (swipe is the UX) --- */
+.flip-back-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 7px;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.flip-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-sub);
+    opacity: 0.3;
+    flex-shrink: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.25s;
+}
+
+.flip-dot.active {
+    opacity: 1;
+    transform: scale(1.4);
+    background: var(--text-main);
+}
+
+/* Flip-back hint */
+.flip-back-hint {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+    opacity: 0.38;
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DESKTOP (> 1024px, mouse/pointer): disable flip entirely.
+   Using (hover:hover) + (pointer:fine) to target real mice only.
+   Touch-screen laptops at > 1024px still get flip via JS detection.
+════════════════════════════════════════════════════════════════ */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+    .flip-card-wrapper {
+        aspect-ratio: 16/10;
+        padding-bottom: 0;
+        perspective: none;
+    }
+
+    .flip-card-inner {
+        transform: none !important;
+        transition: none;
+    }
+
+    .flip-card-front {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: visible;
+        -webkit-backface-visibility: visible;
+    }
+
+    .flip-card-back {
+        display: none !important;
+    }
+
+    .flip-card-wrapper .project-card {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   PROJECT CARDS — Touch Devices (No Hover)
+   Forcefully displays the "active" colored and animated state permanently
+════════════════════════════════════════════════════════════════ */
+@media (hover: none),
+(pointer: coarse),
+(max-width: 1024px) {
+
+    /* 1. Remove global grayscale and restore opacity natively */
+    .project-card img,
+    .project-card video,
+    .project-card .project-marquee-wall,
+    .project-card .reyou-visual-container,
+    .project-card .hr-visual-container {
+        filter: none !important;
+        opacity: 1 !important;
+    }
+
+    /* 2. ReYou Overrides: Force active state */
+    .project-card .reyou-grid {
+        opacity: 1 !important;
+    }
+
+    .project-card .reyou-blueprint {
+        opacity: 1 !important;
+        filter: brightness(1.1) contrast(1.4) grayscale(0) saturate(1.2) !important;
+        transform: scale(1.02) !important;
+    }
+
+    .project-card .reyou-chair {
+        filter: brightness(1.2) drop-shadow(0 0 10px rgba(0, 255, 255, 0.5)) !important;
+    }
+
+    /* 3. Rain Effect Overrides (Altarea) */
+    .project-card .rain-container {
+        opacity: 1 !important;
+    }
+
+    /* 4. Helena Rubinstein Overrides */
+    .project-card .hr-gloss-overlay {
+        opacity: 1 !important;
+    }
+
+    .project-card .hr-logo-wrapper {
+        transform: scale(1.1) !important;
+    }
+
+    .project-card .hr-logo {
+        opacity: 1 !important;
+        filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(189, 155, 92, 0.3)) !important;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   METHODOLOGY SECTION — Mobile & Narrow Tablet (< 1024px)
+   Vertical layout: TEXT top, SCHEMA centred in full viewport.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+
+    /* ── Section: 60vh pre-scroll + 500vh schema = 560vh ────── */
+    #method {
+        height: 560vh !important;
+    }
+
+    /* ── Mask: gentle top/bottom fade ───────────────────────── */
+    .method-mask {
+        -webkit-mask-image: linear-gradient(to bottom,
+                transparent 0%, black 8%, black 92%, transparent 100%) !important;
+        mask-image: linear-gradient(to bottom,
+                transparent 0%, black 8%, black 92%, transparent 100%) !important;
+        -webkit-mask-composite: initial !important;
+        mask-composite: initial !important;
+    }
+
+    /* ── Track: full height, centred in sticky viewport ──────── */
+    #methodology-track {
+        top: 0 !important;
+        height: 100% !important;
+        left: 50% !important;
+        padding-left: 0 !important;
+        transform-origin: left center !important;
+    }
+
+    /* ── Red cursor always visible on mobile ──────────────────── */
+    #timeline-cursor {
+        display: block !important;
+    }
+
+    /* ── Phase activation ─────────────────────────────────────── */
+    #methodology-track .opacity-40 {
+        opacity: 0.45 !important;
+        transition: opacity 0.4s ease;
+    }
+
+    #methodology-track .phase-active .opacity-40 {
+        opacity: 1 !important;
+    }
+}
+
+@media (max-width: 767px) {
+    /* Nothing extra — structure + JS handle it all */
+}
+
+
+
+
+/* --- ABOUT SECTION 3D HOVER --- */
+.about-container {
+    perspective: 2000px;
+}
+
+.about-card,
+.about-photo-card {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Tilt towards center on hover */
+.about-container:hover .about-card {
+    transform: rotateY(10deg);
+}
+
+.about-container:hover .about-photo-card {
+    transform: rotateY(-10deg);
+}
+
+.about-photo-card {
+    background-color: rgba(var(--particle-color), 0.03);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ABOUT PHOTO CARD — DESKTOP ONLY (≥1280px)
+   Original design: grayscale by default, reveal colour on hover.
+   Mobile/tablet overrides are in the @media block at the bottom.
+════════════════════════════════════════════════════════════════ */
+
+/* Desktop default: dimmed + greyscale */
+.about-photo-card img {
+    filter: grayscale(1);
+    opacity: 0.65;
+    transition: filter 0.7s ease, opacity 0.7s ease;
+    transform: scale(1.15);
+    object-position: center;
+}
+
+/* Reveal colour when the whole about-container is hovered */
+.about-container:hover .about-photo-card img {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Client logos: greyscale default → colour on hover (desktop) */
+.about-photo-card .client-logo {
+    filter: grayscale(1);
+    opacity: 0.6;
+    margin: 0 24px;
+    transition: filter 0.7s ease, opacity 0.7s ease;
+}
+
+.about-container:hover .about-photo-card .client-logo {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+/* Dark-mode logos: pure white silhouettes for perfect legibility */
+[data-theme="dark"] .client-logo {
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="dark"] .about-container:hover .client-logo {
+    filter: invert(0) brightness(1) grayscale(0);
+}
+
+.info-chip {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 50px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.about-photo-card:hover .info-chip {
+    opacity: 1;
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="dark"] .info-chip {
+    background: rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dark mode logos: pure white silhouettes */
+[data-theme="dark"] .client-logo {
+    filter: brightness(0) invert(1);
+}
+
+/* Marquee Animation */
+.marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* --- PROJECT MARQUEE WALL (Marseille Style) --- */
+.project-marquee-wall {
+    position: absolute;
+    inset: -30%;
+    /* Slightly larger to account for more columns */
+    display: flex;
+    gap: 0.5rem;
+    /* Even tighter gap */
+    padding: 1rem;
+    transform: rotate(-10deg);
+    /* Simple rotation, no skew to avoid deformation */
+    pointer-events: none;
+    z-index: 0;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+    /* Black background as requested */
+}
+
+.marquee-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* Even tighter gap */
+    width: 180px;
+    /* Increased size to see content better */
+    flex-shrink: 0;
+}
+
+.marquee-col.col-desktop {
+    width: 260px;
+    /* Wider for desktop screens */
+}
+
+.marquee-col.col-wide {
+    width: 340px;
+}
+
+/* Stagger columns using animation-delay to break horizontal alignment */
+.marquee-col:nth-child(1) {
+    animation-delay: -10s;
+}
+
+.marquee-col:nth-child(2) {
+    animation-delay: -30s;
+}
+
+.marquee-col:nth-child(3) {
+    animation-delay: 0s;
+}
+
+/* No delay to start centered */
+.marquee-col:nth-child(4) {
+    animation-delay: -20s;
+}
+
+.marquee-col:nth-child(5) {
+    animation-delay: -40s;
+}
+
+.marquee-col img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Slightly smaller radius for a tighter look */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: block;
+}
+
+.col-up {
+    animation: marquee-v-up 25s linear infinite;
+}
+
+.col-down {
+    animation: marquee-v-down 30s linear infinite;
+}
+
+@keyframes marquee-v-up {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes marquee-v-down {
+    from {
+        transform: translateY(-50%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* No pause on hover - keeping it constant as requested */
+
+/* --- REYOU CHAIR ANIMATION --- */
+.reyou-card-bg {
+    background-color: rgba(var(--particle-color), 0.05);
+}
+
+[data-theme="dark"] .reyou-card-bg {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.reyou-chair {
+    transform: translateX(-150%);
+    opacity: 0;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+    will-change: transform, opacity;
+}
+
+.project-card:hover .reyou-chair {
+    animation: chair-slide 3.5s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes chair-slide {
+    0% {
+        transform: translateX(-150%) rotate(-2deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+        transform: translateX(-20%) rotate(0deg);
+    }
+
+    80% {
+        opacity: 1;
+        transform: translateX(20%) rotate(0deg);
+    }
+
+    100% {
+        transform: translateX(150%) rotate(2deg);
+        opacity: 0;
+    }
+}
+
+/* --- REYOU ENHANCED VISUALS --- */
+.reyou-visual-container {
+    background-color: #1b1b1d;
+    /* Matches the user-provided reyou-blueprint.png precisely */
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    opacity: 1 !important;
+    /* Full initial opacity to match brighter cards */
+}
+
+.reyou-blueprint {
+    position: absolute;
+    inset: 0;
+    background-image: url('assets/reyou-blueprint.png');
+    background-size: cover;
+    /* Using cover as the user has already added padding to the image itself */
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+    /* Almost full opacity for line clarity */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: brightness(1.7) contrast(1) grayscale(1) opacity(0.5);
+}
+
+.reyou-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.2;
+    animation: grid-move 25s linear infinite;
+    /* Static by default */
+    z-index: 1;
+}
+
+.reyou-scan-beam {
+    position: absolute;
+    top: -30%;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(59, 130, 246, 0.05) 30%,
+            rgba(59, 130, 246, 0.4) 50%,
+            rgba(59, 130, 246, 0.05) 70%,
+            transparent);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reyou-glitch-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.reyou-glitch-item {
+    position: absolute;
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    background-color: rgba(10, 15, 25, 0.9);
+    background-size: 85%;
+    background-repeat: no-repeat;
+    background-position: center 30%;
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Technical Label inside items */
+.reyou-glitch-item span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(59, 130, 246, 0.2);
+    color: rgba(59, 130, 246, 0.9);
+    font-size: 8px;
+    font-family: monospace;
+    padding: 2px 5px;
+    text-align: left;
+    border-top: 1px solid rgba(59, 130, 246, 0.4);
+}
+
+.item-chair {
+    width: 110px;
+    height: 130px;
+    top: 10%;
+    left: 10%;
+    background-image: url('assets/reyou-chair-wf.png');
+}
+
+.item-desk {
+    width: 140px;
+    height: 100px;
+    top: 45%;
+    right: 8%;
+    background-image: url('assets/reyou-desk-wf.png');
+    background-size: 85%;
+}
+
+.item-table {
+    width: 120px;
+    height: 90px;
+    top: 10%;
+    right: 10%;
+    background-image: url('assets/reyou-table-wf.png');
+}
+
+/* Constant Activations - Sequential Logic */
+.reyou-scan-beam {
+    animation: scan-move-seq 8s infinite ease-in-out;
+}
+
+.item-chair {
+    animation: chair-seq 8s infinite;
+}
+
+.item-desk {
+    animation: desk-seq 8s infinite;
+}
+
+.item-table {
+    animation: table-seq 8s infinite;
+}
+
+/* Neutralize individual delays, logic is now in keyframes */
+.item-chair,
+.item-desk,
+.item-table {
+    animation-delay: 0s !important;
+}
+
+.project-card:hover .reyou-blueprint {
+    opacity: 1;
+    filter: brightness(1.1) contrast(1.4) grayscale(0) saturate(1.2);
+    transform: scale(1.02);
+}
+
+@keyframes scan-move-seq {
+    0% {
+        top: -30%;
+        opacity: 0;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    15% {
+        top: 100%;
+        opacity: 0;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes chair-seq {
+
+    0%,
+    18% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    22%,
+    38% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    42%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes desk-seq {
+
+    0%,
+    43% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    47%,
+    63% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    67%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes table-seq {
+
+    0%,
+    68% {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    72%,
+    88% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    92%,
+    100% {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes grid-move {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 60px 60px;
+    }
+}
+
+/* --- RAIN EFFECT (ALTAREA) --- */
+.rain-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    overflow: hidden;
+}
+
+.rain-drop {
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 100%);
+    width: 1px;
+    height: 60px;
+    top: -100px;
+    animation: fall linear infinite;
+    filter: blur(0.5px);
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* --- AI EXPERTISE SECTION --- */
+#ai-star-container {
+    perspective: 1000px;
+    transition: transform 0.5s ease;
+}
+
+/* --- HELENA RUBINSTEIN (HR) LUXURY WAVES --- */
+.hr-visual-container {
+    background: linear-gradient(135deg, #000503 0%, #00120d 100%);
+    /* Ultra Deep Onyx-Emerald */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.hr-svg-waves {
+    position: absolute;
+    bottom: -35px;
+    width: 100%;
+    height: 190px;
+    opacity: 1;
+}
+
+.hr-wave-use {
+    animation: move-forever 35s cubic-bezier(.45, .05, .55, .95) infinite;
+    /* More liquid curve */
+}
+
+.wave1 {
+    fill: url(#silk-emerald);
+    animation-delay: -2s;
+    animation-duration: 25s;
+    opacity: 0.95;
+    mix-blend-mode: initial;
+}
+
+.wave2 {
+    fill: rgba(0, 0, 0, 0.9);
+    /* Dynamic Shadow Gap */
+    animation-delay: -2.5s;
+    animation-duration: 22s;
+}
+
+.wave3 {
+    fill: url(#gloss-gold);
+    animation-delay: -3s;
+    animation-duration: 18s;
+    /* Synchronized faster shine */
+    opacity: 1;
+    mix-blend-mode: screen;
+}
+
+.wave4 {
+    fill: rgba(0, 3, 2, 1);
+    /* Bottom Anchor Shadow */
+    animation-delay: -3.5s;
+    animation-duration: 30s;
+}
+
+.hr-gloss-overlay {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover .hr-gloss-overlay {
+    opacity: 1;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+.hr-logo-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 180px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card .hr-logo {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1) !important;
+    opacity: 1 !important;
+    transition: all 0.5s ease;
+}
+
+.project-card:hover .hr-logo-wrapper {
+    transform: scale(1.1);
+}
+
+.project-card:hover .hr-logo {
+    opacity: 1;
+    filter: brightness(0) invert(1) drop-shadow(0 0 15px rgba(189, 155, 92, 0.3));
+}
+
+/* Ensure the HR card doesn't get the global grayscale filter on its logo specifically if we want it crisp */
+.project-card:hover .hr-visual-container {
+    filter: grayscale(0) brightness(1.1);
+}
+
+/* --- PROJECTS MASTER GRID MODAL --- */
+.projects-master-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s step-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.projects-master-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s step-start;
+}
+
+.projects-grid-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    scroll-snap-type: both mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Removed display: flex to fix overflow padding issue */
+    scroll-behavior: smooth;
+}
+
+.projects-grid-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+.projects-grid-container {
+    display: grid;
+    display: inline-grid;
+    /* inline-grid + pseudo-element ensures padding is honored on all sides */
+    grid-template-columns: repeat(3, 75vw);
+    grid-template-rows: repeat(3, 85vh);
+    grid-auto-rows: 85vh;
+    gap: var(--grid-gap-v) var(--grid-gap-h);
+    padding: 7.5vh 12.5vw;
+    position: relative;
+}
+
+/* Pseudo-element to force right and bottom spacing in scrollable container */
+.projects-grid-container::after {
+    content: "";
+    grid-column: 3;
+    grid-row: 4;
+    height: 15vh;
+    /* Vertical clearance */
+    width: 12.5vw;
+    /* Horizontal clearance */
+    pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MASTER MODAL GRID — TABLET (768px – 1279px)
+   La griglia esterna ha 2 colonne su md/lg → la griglia interna idem.
+   Scroll orizzontale tra 2 card per riga, verticale tra le righe.
+════════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1279px) {
+
+    /* 2 colonne × 90vw, altezze auto per contenuto più alto */
+    .projects-grid-container {
+        grid-template-columns: repeat(2, 90vw);
+        grid-template-rows: none;
+        grid-auto-rows: 82vh;
+        padding: 6vh 5vw;
+        gap: 5vh 5vw;
+    }
+
+    /* Pseudo-element: adatta colonna/riga al nuovo layout */
+    .projects-grid-container::after {
+        grid-column: 2;
+        grid-row: 6;
+        /* abbastanza grande da dare clearance */
+        width: 5vw;
+        height: 10vh;
+    }
+
+    /* Snap: ancora snap-center ma su due colonne */
+    .project-grid-cell {
+        scroll-snap-align: center;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   MASTER MODAL GRID — MOBILE (< 768px)
+   La griglia esterna ha 1 colonna su sm → la griglia interna idem.
+   Scroll solo verticale, una card per volta centrata.
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+    /* 1 colonna × 92vw, scroll verticale puro */
+    .projects-grid-container {
+        grid-template-columns: repeat(1, 92vw);
+        grid-template-rows: none;
+        grid-auto-rows: auto;
+        padding: 5vh 4vw;
+        gap: 6vh;
+    }
+
+    /* Su mobile le card hanno altezza fissa e non dipendono da vh imprevedibili */
+    .project-grid-cell {
+        height: 88vh;
+        scroll-snap-align: start;
+        align-items: flex-start;
+    }
+
+    /* Pseudo-element: 1 colonna, clearance verticale finale */
+    .projects-grid-container::after {
+        grid-column: 1;
+        grid-row: 12;
+        width: 100%;
+        height: 8vh;
+    }
+
+    /* Viewport: scroll solo y su mobile */
+    .projects-grid-viewport {
+        scroll-snap-type: y mandatory;
+    }
+
+    /* Layout SPLIT → verticale su mobile */
+    .layout-split {
+        flex-direction: column !important;
+    }
+
+    .layout-split .text-side {
+        width: 100% !important;
+        max-height: 42% !important;
+        padding: 4vh 5vw !important;
+        overflow-y: auto;
+        border-bottom: 1px solid var(--card-border);
+        border-right: none !important;
+    }
+
+    .layout-split .visual-side {
+        width: 100% !important;
+        height: auto !important;
+        flex: 1;
+        min-height: 0;
+    }
+
+    /* iFrame scaling aggressivo per mobile */
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.28) !important;
+    }
+
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.2) !important;
+        height: 500% !important;
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.22) !important;
+    }
+
+    /* Tutti i splitting wrapper → colonna */
+    [data-project="modal-kciope"] .modal-content-wrapper,
+    [data-project="modal-rockease"] .modal-content-wrapper,
+    [data-project="modal-altarea"] .modal-content-wrapper,
+    [data-project="modal-reyou"] .modal-content-wrapper,
+    [data-project="modal-elba"] .modal-content-wrapper {
+        flex-direction: column !important;
+    }
+
+    /* Bottone chiusura più compatto su mobile */
+    .master-close-btn {
+        top: 4vh;
+        right: 4vw;
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+
+    /* Typography compatta nel modal */
+    .modal-title-compact {
+        font-size: 1.4rem !important;
+    }
+
+    .modal-meta-compact {
+        font-size: 0.65rem;
+    }
+}
+
+.project-grid-cell {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    /* Ensure snap always centers this cell */
+}
+
+/* Overrides for ALR3, Colas, & Altarea Layout */
+[data-project="modal-kciope"] .modal-content-wrapper,
+[data-project="modal-rockease"] .modal-content-wrapper,
+[data-project="modal-altarea"] .modal-content-wrapper,
+[data-project="modal-reyou"] .modal-content-wrapper,
+[data-project="modal-elba"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    /* Crucial for flex contraction */
+    display: flex;
+    /* Ensure it keeps flex behavior */
+    flex-direction: row;
+    /* Split layout */
+}
+
+[data-project="modal-kciope"] .visual-side,
+[data-project="modal-rockease"] .visual-side,
+[data-project="modal-altarea"] .visual-side,
+[data-project="modal-reyou"] .visual-side,
+[data-project="modal-elba"] .visual-side {
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+    /* Prevent iframe from forcing height */
+}
+
+[data-project="modal-kciope"] .text-side,
+[data-project="modal-rockease"] .text-side,
+[data-project="modal-altarea"] .text-side,
+[data-project="modal-reyou"] .text-side,
+[data-project="modal-elba"] .text-side {
+    overflow-y: scroll;
+    /* Force scroll but hide bar */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    min-height: 0;
+    /* Allow shrinking */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+[data-project="modal-kciope"] .text-side::-webkit-scrollbar,
+[data-project="modal-rockease"] .text-side::-webkit-scrollbar,
+[data-project="modal-altarea"] .text-side::-webkit-scrollbar,
+[data-project="modal-reyou"] .text-side::-webkit-scrollbar,
+[data-project="modal-elba"] .text-side::-webkit-scrollbar {
+    display: none;
+}
+
+/* Disable vertical scroll entirely for Synergie, Vamos & Agirc */
+[data-project="modal-synergie"] .modal-content-wrapper,
+[data-project="modal-vamos"] .modal-content-wrapper,
+[data-project="modal-agirc"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    /* ABSOLUTE REMOVAL OF SCROLL */
+}
+
+/* Maintain scrollable but hidden-bar logic for Interop and others */
+[data-project="modal-interop"] .modal-content-wrapper {
+    flex: 1;
+    height: auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera (Stacked) */
+[data-project="modal-interop"] .modal-content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+[data-project="modal-synergie"] .visual-side,
+[data-project="modal-vamos"] .visual-side,
+[data-project="modal-agirc"] .visual-side,
+[data-project="modal-interop"] .visual-side {
+    height: auto;
+    min-height: 0;
+}
+
+/* Inner modal-like window inside the grid cell */
+.project-grid-cell .modal-window {
+    width: 100%;
+    height: 100%;
+    max-width: 1400px;
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    /* Enable flex for layouts */
+    flex-direction: column;
+    overflow: hidden;
+    /* Try to contain without scroll */
+}
+
+/* --- OPTIMIZED MODAL LAYOUTS --- */
+.modal-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0;
+}
+
+/* SPLIT LAYOUT (Mobile Apps / Vertical Visuals) */
+.layout-split {
+    flex-direction: row;
+}
+
+.layout-split .text-side {
+    width: 50%;
+    padding: 6vh 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 20;
+    overflow-y: auto;
+    max-height: 100%;
+}
+
+.has-mask-v {
+    mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+}
+
+.has-mask-h {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+}
+
+.layout-split .text-side:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbar for side-scrolling text */
+.layout-split .text-side::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Scrollbar removed per user request - finding cleaner solution */
+
+
+.layout-split .visual-side {
+    width: 50%;
+    background: #f5f5f7;
+    position: relative;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    height: 100%;
+}
+
+[data-theme="dark"] .layout-split .visual-side {
+    background: #111;
+}
+
+
+
+/* STACKED LAYOUT (Websites / Horizontal Visuals) */
+.layout-stacked {
+    flex-direction: column;
+    height: auto;
+    min-height: 100%;
+}
+
+.layout-stacked .text-side {
+    height: auto;
+    flex: 0 0 auto;
+    padding: 5.5vh 4vw 7vh 4vw;
+    /* Added bottom padding to avoid touching image */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    /* Reduced from 4rem to fit content better */
+    /* Ensure gap between header and points */
+    border-bottom: 1px solid var(--card-border);
+    position: relative;
+    z-index: 20;
+}
+
+.layout-stacked .visual-side {
+    height: auto;
+    min-height: 60vh;
+    flex: 0 0 auto;
+    position: relative;
+    background: #f5f5f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* Align to top as requested */
+    padding-top: 0;
+}
+
+.layout-stacked .visual-side img {
+    height: auto;
+    width: 100%;
+    /* Fill width */
+    height: 100%;
+    /* Fill height */
+    object-fit: cover;
+    /* Zoom to cover space without distortion */
+    object-position: top center;
+    /* Keep top aligned while zooming */
+    display: block;
+}
+
+[data-theme="dark"] .layout-stacked .visual-side {
+    background: #111;
+}
+
+/* COMPACT TYPOGRAPHY FOR MODALS */
+.modal-title-compact {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.modal-meta-compact {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-sub);
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.modal-points-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.layout-stacked .modal-points-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    /* Dynamic columns that grow to fill space */
+    gap: 2rem;
+    /* Balanced gap */
+    margin-top: 5.25rem;
+    /* Increased to align with main title */
+    flex: 1;
+    /* Take all available space in the row */
+    padding-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.layout-stacked .point-item {
+    /* Reset for desktop */
+    width: auto;
+    flex: initial;
+}
+
+/* Hide scrollbar but keep functionality for grid or use subtle one */
+/* Hide scrollbar but keep functionality for grid or use subtle one */
+.layout-stacked .modal-points-grid::-webkit-scrollbar {
+    height: 0px;
+    background: transparent;
+}
+
+/*
+.layout-stacked .modal-points-grid::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+[data-theme="dark"] .layout-stacked .modal-points-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+}
+*/
+
+/* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
+/* Reduced Screen Logic (Laptops/Tablets or Short vertical space) */
+@media (max-width: 1600px),
+(max-height: 900px) {
+    .layout-stacked .text-side {
+        flex-direction: row;
+        /* Keep it horizontal */
+        padding: 2.5vh 4vw 2rem 4vw;
+        /* SIGNIFICANT bottom padding reduced to avoid phantom scroll */
+        /* Less top, MORE bottom to avoid touching image */
+        max-height: 48vh;
+        /* Relaxed limit to fit content */
+        overflow-y: auto;
+        /* Scroll enabled (safety) */
+        gap: 1rem;
+    }
+
+    /* Scrollbar removed from media query as well */
+
+    .layout-stacked .header-group {
+        width: 85%;
+        /* Make it VERY WIDE as requested */
+        flex-shrink: 0;
+        margin-bottom: 0;
+    }
+
+    /* Compact typography for description to save vertical space */
+    .layout-stacked .header-group p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .layout-stacked .modal-points-grid {
+        display: flex;
+        /* Enforce flexbox for horizontal scrolling on laptop/mobile */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: auto;
+        flex: 1;
+        margin-top: 5.25rem;
+        gap: 1.5rem;
+        padding-left: 1rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .layout-stacked .point-item {
+        flex: 0 0 320px;
+        /* Force wide columns on reduced screens */
+        width: 320px;
+        min-width: 320px;
+    }
+}
+
+.layout-stacked .header-group {
+    width: 35%;
+    /* Testing 35% width for more detail space */
+    flex-shrink: 0;
+}
+
+.point-item h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 800;
+    color: var(--dynamic-main);
+    margin-bottom: 0.4rem;
+    opacity: 1;
+}
+
+.point-item p {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: var(--text-sub);
+}
+
+/* iframe / img containment */
+.visual-side iframe:not(.scale-iframe-content),
+.visual-side img,
+.visual-side video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    display: block;
+}
+
+.visual-side iframe.scale-iframe-content {
+    object-fit: none;
+    overflow: hidden;
+}
+
+/* Close button for the master modal */
+.master-close-btn {
+    position: fixed;
+    top: 7.5vh;
+    right: 4vw;
+    width: 50px;
+    height: 50px;
+    background: var(--close-btn-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100000;
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    font-size: 20px;
+}
+
+.master-close-btn:hover {
+    background: var(--close-btn-hover);
+    transform: scale(1.1);
+}
+
+.master-close-btn.pos-left {
+    left: 4vw;
+    right: auto;
+}
+
+.master-close-btn.pos-right {
+    right: 4vw;
+    left: auto;
+}
+
+.master-close-btn.pos-hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+/* Custom scaler for Figma iframes - Adaptable Scale */
+.scale-iframe-content {
+    width: 500px !important;
+    height: 2000px !important;
+    min-height: 2000px;
+    min-width: 500px;
+    transform: translate(-50%, -50%) scale(0.65);
+    transform-origin: center center;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    border: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.rockease-iframe {
+    width: 1600px !important;
+    height: 250% !important;
+    /* 100% / 0.4 scale */
+    min-height: 0;
+    min-width: 1600px;
+    transform: translate(-50%, 0) scale(0.4);
+    transform-origin: top center;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    margin: 0;
+    border: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Hide Scrollbar for Altarea Visual Side */
+[data-project="modal-altarea"] .visual-side {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+}
+
+[data-project="modal-altarea"] .visual-side::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
+}
+
+
+
+.reyou-iframe {
+    width: 1538px !important;
+    height: 1000px !important;
+    min-height: 1000px;
+    min-width: 1538px;
+    transform: translate(-50%, -50%) scale(0.48);
+    transform-origin: center center;
+    border-radius: 12px;
+    box-shadow: 0 4px 60px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    border: none;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Responsiveness: Scale adjustment for smaller screens */
+@media (max-width: 1500px) {
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.35);
+        height: 285% !important;
+        /* 100% / 0.35 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.55);
+    }
+}
+
+@media (max-width: 1280px) {
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.3);
+        height: 333% !important;
+        /* 100% / 0.3 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.35);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    .layout-split .text-side {
+        width: 55%;
+    }
+
+    .layout-split .visual-side {
+        width: 45%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .modal-window {
+        width: 95vw;
+        height: 85vh;
+    }
+
+    .rockease-iframe {
+        transform: translate(-50%, 0) scale(0.25);
+        height: 400% !important;
+        /* 100% / 0.25 */
+    }
+
+    .reyou-iframe {
+        transform: translate(-50%, -50%) scale(0.3);
+    }
+
+    .scale-iframe-content {
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+
+    .modal-title-compact {
+        font-size: 1.8rem;
+    }
+}
+
+/* Interactive Prototype Badge - Soap Bubble */
+.prototype-badge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle at 30% 30%,
+            rgba(255, 255, 255, 0.5) 0%,
+            rgba(200, 255, 220, 0.3) 25%,
+            rgba(180, 240, 200, 0.2) 50%,
+            rgba(150, 220, 180, 0.15) 100%);
+    backdrop-filter: blur(8px);
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    /* Visible to float */
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: float-bubble 3s ease-in-out infinite, bubble-shimmer 4s ease-in-out infinite;
+}
+
+.badge-yellow {
+    background: rgba(255, 255, 230, 0.2);
+    /* Glassy faint yellow */
+    color: #1a1a1a;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+
+
+
+
+
+
+
+.prototype-badge::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 20%;
+    width: 50%;
+    height: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 60%);
+    border-radius: 50%;
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.prototype-badge.pop {
+    animation: bubble-pop 0.5s ease-out forwards;
+}
+
+.prototype-badge svg {
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(255, 255, 255, 0.5));
+}
+
+@keyframes float-bubble {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-20px);
+    }
+}
+
+@keyframes bubble-shimmer {
+
+    0%,
+    100% {
+        box-shadow:
+            inset 0 2px 30px rgba(255, 255, 255, 0.6),
+            inset 0 -2px 30px rgba(100, 200, 150, 0.4),
+            0 10px 40px rgba(100, 200, 150, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        box-shadow:
+            inset 0 2px 35px rgba(255, 255, 255, 0.7),
+            inset 0 -2px 35px rgba(120, 220, 170, 0.5),
+            0 15px 50px rgba(120, 220, 170, 0.4),
+            0 0 0 1px rgba(255, 255, 255, 0.5);
+    }
+}
+
+@keyframes bubble-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    30% {
+        transform: translate(-50%, -50%) scale(1.15);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.8);
+        opacity: 0;
+    }
+}
+
+.prototype-badge:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* Hide bubble after animation */
+.prototype-badge.hidden {
+    display: none;
+}
+
+/* Floating Chip for External Links on Images */
+.visit-site-chip {
+    position: sticky;
+    bottom: 30px;
+    margin: -80px auto 30px auto;
+    left: 0;
+    right: 0;
+    background: rgba(20, 20, 20, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 22px;
+    border-radius: 50px;
+    display: table;
+    /* Centers with margin auto */
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #ffffff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 20;
+    backdrop-filter: blur(12px);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+}
+
+.visit-site-chip:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    background: #000000;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dark mode adjustment if needed, assuming the image is usually bright but sticking to light chip looks premium on most 'cover' style images, 
+   but for stacked layout the image is on the side/bottom. 
+   If layout-stacked .visual-side is the container. */
+.layout-stacked .visual-side {
+    position: relative;
+    /* Ensure positioning context */
+}
+
+.visit-site-chip svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2px;
+}
+
+/* Scroll Indicator Overlay */
+.scroll-indicator-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.2s ease, background-color 0.2s;
+    animation: bounce-vertical 2.5s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.scroll-indicator-overlay:hover {
+    background: rgba(0, 0, 0, 0.5);
+    transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-indicator-overlay.rotate-180 svg {
+    transform: rotate(180deg);
+}
+
+.scroll-indicator-overlay svg {
+    transition: transform 0.3s ease;
+}
+
+.scroll-indicator-overlay.rotate-180:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+@keyframes bounce-vertical {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    40% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+
+    60% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* GROUPE ATLANTIC (Interop) Specific Overrides */
+[data-project="modal-interop"] .layout-stacked .text-side {
+    padding: 3vh 4vw;
+}
+
+[data-project="modal-interop"] .layout-stacked .visual-side iframe {
+    /* Align prototype to start exactly after the text section */
+    margin-top: 0;
+}
+
+/* VAMOS BIKES Specific Overrides */
+[data-project="modal-vamos"] .layout-stacked .text-side {
+    border-bottom: none;
+}
+
+[data-project="modal-vamos"] .layout-stacked .visual-side {
+    margin-top: -30px;
+    z-index: 10;
+    border-top: 1px solid var(--card-border);
+}
+
+[data-project="modal-vamos"] .layout-stacked .visual-side img {
+    /* Image just fits container now */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- SCROLL INDICATORS --- */
+.modal-content-wrapper {
+    position: relative;
+}
+
+/* Base Style */
+.scroll-indicator {
+    position: absolute;
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+    /* Hidden by default */
+}
+
+.scroll-indicator.visible {
+    opacity: 1;
+    /* JS controls visibility via class */
+    display: block;
+}
+
+/* SVG Styling */
+.scroll-indicator svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-sub);
+    stroke-width: 2;
+    fill: none;
+}
+
+/* --- VERTICAL INDICATOR (For Text Column) --- */
+.scroll-indicator-vertical {
+    animation: bounce-vertical 2s infinite;
+    /* Default for SPLIT layout (Desktop > 1280px): Text is 50%, so center is 25% */
+    bottom: 2rem;
+    left: 25%;
+    transform: translateX(-50%);
+}
+
+/* --- HORIZONTAL INDICATOR (For Points Grid) --- */
+.scroll-indicator-horizontal {
+    animation: bounce-horizontal 2s infinite;
+    /* Positioned ABSOLUTE inside .modal-content-wrapper */
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+@keyframes bounce-vertical {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    40% {
+        transform: translate(-50%, -5px);
+    }
+
+    60% {
+        transform: translate(-50%, -3px);
+    }
+}
+
+@keyframes bounce-horizontal {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateX(-50%);
+    }
+
+    40% {
+        transform: translateX(-40%);
+    }
+
+    60% {
+        transform: translateX(-45%);
+    }
+}
+
+/* Reduced Screen Logic */
+@media (max-width: 1600px),
+(max-height: 900px) {
+
+    /* Ensure indicators can be seen */
+    .scroll-indicator {
+        display: block;
+        /* But hidden by opacity until 'visible' added */
+        opacity: 0;
+    }
+
+    .scroll-indicator.visible {
+        opacity: 0.8;
+    }
+
+    /* Stacked (Mobile) Adjustments */
+    .layout-stacked .scroll-indicator-vertical {
+        /* In stacked, appended to text-side. Relative to text-side */
+        /* Acts as "Read More" at bottom of text block */
+        bottom: 1rem;
+        top: auto;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .layout-stacked .scroll-indicator-horizontal {
+        /* Horizontal: In text-side. Relative to text-side */
+        /* Positioned on the RIGHT edge to indicate "Scroll Right" */
+        bottom: auto;
+        top: 50%;
+        right: 1rem;
+        /* Suggesting rightward movement */
+        left: auto;
+        transform: translateY(-50%);
+    }
+}
+
+/* --- STATIC FOOTER (Flex Column Layout) --- */
+
+.modal-footer-static {
+    width: 100%;
+    flex: 0 0 auto;
+    /* Don't shrink/grow */
+    background: var(--bg-card);
+    /* Use variable if available, else #fff */
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    min-height: 50px;
+    z-index: 60;
+    position: relative;
+    border-radius: 0 0 24px 24px;
+    /* Match modal rounded corners at bottom */
+}
+
+[data-theme="dark"] .modal-footer-static {
+    background: #111;
+}
+
+/* Responsive Adjustment for Methodology Timeline on Small Heights */
+@media screen and (max-height: 800px) {
+    .responsive-decision-content {
+        padding-top: 2rem !important;
+        /* Pull content up over the schema when vertical space is tight */
+    }
+}
+
+/* --- FOUC PRELOADER corrected --- */
+html.loading body {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body {
+    transition: background-color 0.5s ease, color 0.5s ease, opacity 0.5s ease;
+}
+
+/* ============================================================
+   MOBILE / TABLET RESPONSIVE — BURGER MENU & GLOBE SCALE
+   Breakpoint: < 768px (md in Tailwind)
+   Desktop layout is UNTOUCHED above this point.
+   ============================================================ */
+
+/* --- BURGER BUTTON --- */
+.burger-btn {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+    z-index: 9999;
+    position: relative;
+    color: var(--text-main);
+}
+
+.burger-btn:hover {
+    background: var(--pill-bg);
+}
+
+.burger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.25s ease,
+        width 0.3s ease;
+}
+
+/* Burger → X animation (when menu is open) */
+.burger-btn.is-open .burger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.burger-btn.is-open .burger-line:nth-child(2) {
+    opacity: 0;
+    width: 0;
+}
+
+.burger-btn.is-open .burger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- MOBILE MENU OVERLAY --- */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: var(--modal-overlay);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    z-index: 9000;
+    /* Closed state */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-12px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-menu-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    padding: 6rem 2.5rem 3rem;
+    gap: 0;
+}
+
+/* --- NAV LINKS in mobile menu --- */
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    width: 100%;
+}
+
+.mobile-menu-link {
+    display: block;
+    font-size: clamp(2rem, 8vw, 3rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    color: var(--text-sub);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    transform: translateX(0);
+}
+
+.mobile-menu-link:hover,
+.mobile-menu-link:active {
+    color: var(--text-main);
+    transform: translateX(6px);
+}
+
+/* Staggered entrance animation for links */
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(1) {
+    animation: slideInLink 0.4s 0.05s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(2) {
+    animation: slideInLink 0.4s 0.10s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(3) {
+    animation: slideInLink 0.4s 0.15s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(4) {
+    animation: slideInLink 0.4s 0.20s both ease-out;
+}
+
+.mobile-menu-overlay.is-open .mobile-menu-link:nth-child(5) {
+    animation: slideInLink 0.4s 0.25s both ease-out;
+}
+
+@keyframes slideInLink {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* --- DIVIDER --- */
+.mobile-menu-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--card-border);
+    margin: 2rem 0;
+}
+
+/* --- BOTTOM ROW (langs + theme) --- */
+.mobile-menu-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    animation: slideInLink 0.4s 0.3s both ease-out;
+}
+
+.mobile-menu-langs {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.mobile-lang-btn {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* --- HERO CANVAS — Scaling handled purely in JS (viewportScale in animate())
+   NO CSS transform on the canvas: it must stay full-viewport so the JS
+   can draw at the correct canvas pixel coordinates without clipping. --- */
+
+@media (max-width: 1023px) {
+
+    /* Hero text slightly smaller on phones and tablets */
+    header h1 {
+        font-size: clamp(2.2rem, 10vw, 3.5rem) !important;
+        line-height: 1.1;
+    }
+
+    header p {
+        font-size: 0.65rem !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ABOUT SECTION — Mobile & Tablet (below 1280px)
+   • Cards stacked vertically (photo first, text below)
+   • No hover → show full colour immediately
+   • object-position adjusted to show face + shoulders
+   • Scroll-triggered slide-in animation
+════════════════════════════════════════════════════════════════ */
+@media (max-width: 1279px) {
+
+    /* ── Section padding ─────────────────────────────────────────── */
+    #about {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    /* ── Photo: full colour (no hover available on touch) ────────── */
+    .about-photo-card img {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+        transform: none !important;
+        /* Center 35% frames the face + shoulders of the portrait photo.
+           With object-cover on a landscape card, this prevents just
+           showing orange helmets and actually shows Andrea's face. */
+        object-position: center 35% !important;
+    }
+
+    /* ── Client logos: full colour ───────────────────────────────── */
+    .about-photo-card .client-logo {
+        filter: grayscale(0) !important;
+        opacity: 1 !important;
+    }
+
+    [data-theme="dark"] .about-photo-card .client-logo {
+        filter: invert(1) brightness(1.2) !important;
+    }
+
+
+    /* ── Info chips: always fully visible ────────────────────────── */
+    .info-chip {
+        opacity: 1 !important;
+    }
+
+    /* ── Scroll-in animation: cards slide toward centre ──────────── */
+    /* Applied by JS IntersectionObserver (adds .about-in-view class) */
+    .about-card {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .about-photo-card {
+        opacity: 0;
+        transform: translateX(40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .about-card.about-in-view,
+    .about-photo-card.about-in-view {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ── TABLET (768px – 1279px): aspect-ratio keeps photo proportional ── */
+/* With a 4:3 ratio, a 736px-wide card is ~552px tall, giving enough      */
+/* vertical space for object-position: center 35% to show face+shoulders. */
+@media (min-width: 768px) and (max-width: 1279px) {
+    .about-photo-card {
+        aspect-ratio: 4 / 3;
+        min-height: unset;
+        max-height: unset;
+    }
+
+    /* inner photo div must stretch to fill the aspect-ratio height */
+    .about-photo-card>div:first-child {
+        flex: 1;
+        min-height: 0;
+    }
+}
+
+/* ── MOBILE (< 768px): min-height only; no max-height so bottom padding shows */
+@media (max-width: 767px) {
+    .about-photo-card {
+        min-height: 420px;
+    }
+}
+
+
+/* Phone: slightly more vertical compactness */
+@media (max-width: 640px) {
+    #about {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    /* Extra breathing room below the logo carousel on small phones:
+       targets the logos wrapper (last div inside the photo card) */
+    .about-photo-card>div:last-child {
+        padding-bottom: 3rem !important;
+    }
+}
+
+
+
+
+/* Lock scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
+/* --- MOBILE MENU CLOSE (X) BUTTON --- */
+.mobile-menu-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pill-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+}
+
+.mobile-menu-close:hover {
+    background: var(--close-btn-hover);
+    transform: rotate(90deg);
+}

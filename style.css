@@ -2628,7 +2628,6 @@ body {
 
 /* --- BURGER BUTTON --- */
 .burger-btn {
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
